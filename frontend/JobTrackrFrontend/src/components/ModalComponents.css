@@ -1,0 +1,5 @@
+/* Change placeholder text color */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Light white */
+  opacity: 1; /* Ensure visibility in some browsers */
+}

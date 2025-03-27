@@ -1,0 +1,6 @@
+.default-text-color {
+  color: #c9c9c9;
+}
+.default-placeholder-color::placeholder {
+  color: #c9c9c9;
+}
