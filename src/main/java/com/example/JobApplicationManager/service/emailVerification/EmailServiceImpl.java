@@ -1,6 +1,5 @@
 package com.example.JobApplicationManager.service.emailVerification;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -11,8 +10,11 @@ import java.util.Properties;
 @Component
 public class EmailServiceImpl{
 
-    @Autowired
-    private JavaMailSender emailSender;
+    private final JavaMailSender javaMailSender;
+
+    public EmailServiceImpl(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     public void sendSimpleMessage(
             String to, String subject, String text) {
@@ -21,7 +23,7 @@ public class EmailServiceImpl{
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-        emailSender.send(message);
+        javaMailSender.send(message);
     }
 
 
