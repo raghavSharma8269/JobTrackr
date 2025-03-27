@@ -9,8 +9,6 @@ import com.example.JobApplicationManager.service.resumeServices.UploadCoverLette
 import com.example.JobApplicationManager.service.resumeServices.UploadResumeService;
 import com.example.JobApplicationManager.service.userServices.DeleteUserService;
 import com.example.JobApplicationManager.service.userServices.ResetPasswordService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,6 @@ import java.io.IOException;
 @RequestMapping("/api/profile")
 public class ProfileController {
 
-    private final Logger logger = LoggerFactory.getLogger(ProfileController.class);
     private final UploadResumeService uploadResumeService;
     private final UploadCoverLetterService uploadCoverLetterService;
     private final ResumeOpenAIService resumeOpenAIService;
