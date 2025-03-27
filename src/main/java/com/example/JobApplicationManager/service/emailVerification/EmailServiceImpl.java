@@ -5,32 +5,28 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
-@Service
-public class EmailServiceImpl {
+@Component
+public class EmailServiceImpl{
 
-    private final JavaMailSenderImpl emailSender;
-
-    public EmailServiceImpl(JavaMailSenderImpl emailSender) {
-        this.emailSender = emailSender;
-    }
+    @Autowired
+    private JavaMailSender emailSender;
 
     public void sendSimpleMessage(
-      String to, String subject, String text) {
+            String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@baeldung.com");
-        message.setTo(to); 
-        message.setSubject(subject); 
+        message.setTo(to);
+        message.setSubject(subject);
         message.setText(text);
         emailSender.send(message);
     }
 
 
-
-    public JavaMailSenderImpl getJavaMailSender() {
+    public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
@@ -46,5 +42,4 @@ public class EmailServiceImpl {
 
         return mailSender;
     }
-
 }

@@ -27,10 +27,7 @@ public class AdminController {
     public ResponseEntity<String> deleteUser (@PathVariable String email) {
         return deleteUserViaAdminService.execute(email);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 4c8afbc (recommit)
     @GetMapping()
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<UserDTO>> getAllUsers() {

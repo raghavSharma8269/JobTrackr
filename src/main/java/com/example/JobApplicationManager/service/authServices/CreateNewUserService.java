@@ -51,12 +51,6 @@ public class CreateNewUserService implements Command<CustomUser, String> {
 
 
         if (userOptional.isEmpty()){
-<<<<<<< HEAD
-
-            //email is unique so creating new user
-
-=======
->>>>>>> 4c8afbc (recommit)
             //set default values for new user
             customUser.setAuthority(Authority.USER);
             customUser.setEmailVerificationToken(emailVerificationTokenGenerator.execute());

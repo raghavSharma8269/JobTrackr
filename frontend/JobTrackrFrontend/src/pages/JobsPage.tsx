@@ -1,5 +1,3 @@
-import SearchBarComponent from "../components/SearchBarComponent";
-import JobCardComponent from "../components/JobCardComponent";
 import ExpandedJobCard from "../components/ExpandedJobCard";
 import JobListComponent from "../components/JobListComponent";
 

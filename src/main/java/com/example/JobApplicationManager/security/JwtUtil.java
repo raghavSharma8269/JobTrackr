@@ -16,14 +16,19 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
+    // Static secret key and signing key
     private static String secretKey;
+    private static SecretKey signingKey;
 
     @Value("${jwt.secret.key}")
     private String injectedSecretKey;
 
     @PostConstruct
     public void init() {
+        // Initialize the static secretKey and signingKey
         secretKey = injectedSecretKey;
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        signingKey = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public static String generateToken(User user) {
@@ -36,16 +41,16 @@ public class JwtUtil {
                 .subject(user.getUsername())
                 .claim("authority", authority)
                 .expiration(new Date(System.currentTimeMillis() + 172_800_000))
-                .signWith(getSigningKey())
+                .signWith(signingKey)
                 .compact();
     }
 
     public static Claims getClaims(String token) {
         return Jwts.parser()
-                .verifyWith(getSigningKey())
+                .setSigningKey(signingKey)
                 .build()
-                .parseSignedClaims(token)
-                .getPayload();
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public static boolean isTokenValid(String token) {
@@ -56,32 +61,8 @@ public class JwtUtil {
         return getClaims(token).getExpiration().before(new Date());
     }
 
-    private static SecretKey getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
-
     public static String getAuthorityFromToken(String token) {
         Claims claims = getClaims(token);
         return claims.get("authority", String.class);
     }
-
-//    public static String getEmailFromJWT(String jwtToken){
-//
-//        String[] chunks = jwtToken.split("\\.");
-//
-//        if (chunks.length < 2){
-//            throw new JwtTokenInvalidException(ExceptionMessages.INVALID_JWT.getMessage());
-//        }
-//
-//        Base64.Decoder decoder = Base64.getUrlDecoder();
-//        String payload = new String(decoder.decode(chunks[1]));
-//
-//        JSONObject jsonPayload = new JSONObject(payload);
-//
-//
-//        return jsonPayload.getString("sub");
-//
-//    }
-
 }
