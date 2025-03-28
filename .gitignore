@@ -35,5 +35,7 @@ build/
 =======
 
 # Ignore application.properties
-!**/src/main/**/application.properties/
->>>>>>> 4c8afbc (recommit)
+/src/main/resources/application.properties
+
+# Ignore JobApplicationManagerLogging.log
+JobApplicationManagerLogging.log
