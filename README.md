@@ -58,7 +58,7 @@ JobTrackr is a web application designed to help users track their job applicatio
 
 - Use postman to send api requests 
 
-- **FRONT END WIP**
+- ****FRONT END WIP****
 - **Jobs Page**: View and manage your job applications.
 - **Settings Page**: Upload resumes and cover letters, and change your password.
 
