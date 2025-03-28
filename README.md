@@ -1,8 +1,3 @@
-
-# Project Title
-
-A brief description of what this project does and who it's for
-
 # JobTrackr
 
 JobTrackr is a web application designed to help users track their job applications. It includes features for uploading resumes and cover letters, changing passwords, and managing job listings.
