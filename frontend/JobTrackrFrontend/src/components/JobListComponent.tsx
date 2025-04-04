@@ -24,4 +24,5 @@ const JobListComponent = () => {
 };
 
 
+
 export default JobListComponent

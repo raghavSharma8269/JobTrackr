@@ -31,4 +31,5 @@ const JobCardComponent = () => {
     );
 };
 
+
 export default JobCardComponent;

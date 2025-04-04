@@ -2,7 +2,6 @@ interface ExpandedJobCardProps {
   isVisible: boolean;
 }
 
-
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
   if (!isVisible) return null;
   return (
