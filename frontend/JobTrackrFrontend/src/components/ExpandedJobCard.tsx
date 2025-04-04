@@ -1,4 +1,4 @@
-
+import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
 interface ExpandedJobCardProps {
   isVisible: boolean;
 }
@@ -7,7 +7,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
   if (!isVisible) return null;
 
   return (
-      <div className="container-fluid default-text-color" style={{ backgroundColor: "#292b38", borderRadius:"10px" }}>
+      <div className="container-fluid default-text-color" style={{ backgroundColor: "#292b38", borderRadius:"10px", overflow:"hidden", marginTop:"100px"}}>
         <div className="container text-center">
           <div className="row d-flex flex-column">
 
@@ -54,14 +54,24 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                 className="col-12 col-md"
                 style={{
                   paddingTop: "15px",
-                  paddingBottom: "15px"// Correct camelCase for borderBottom
+                  paddingBottom: "15px",
                 }}
             >
-            column 3
+                <div
+                    className="custom-scrollbar"
+                    style={{
+                        overflowY: "auto",
+                        overflowX: "hidden",
+                        maxHeight: "calc(100vh - 469px)"
+
+                    }}
+                >
+                    <DescriptionComponent/>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 
