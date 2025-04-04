@@ -13,31 +13,44 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
 
             {/* This is the 1st column with job info*/}
 
-            <div
-                className="col-12 col-md"
-                style={{
-                  borderBottom: "1px solid #9e9ca1",
-                }}
-            >
+              <div
+                  className="col-12 col-md text-start"
+                  style={{
+                      borderBottom: "1px solid #9e9ca1",
+                  }}
+              >
 
-              <h3 className="text-start" style={{paddingTop:"20px"}}>Job Title</h3>
-              <h5 className="text-start">Company Name</h5>
-              <p className="text-start">Location</p>
-              <p className="text-start">Date Added</p>
-            </div>
-            <div
-                className="col-12 col-md"
-                style={{
-                  borderBottom: "1px solid #9e9ca1",
-                }}
-            >
+                  <h3 style={{paddingTop: "20px"}}>Job Title</h3>
+                  <h5>Company Name</h5>
+                  <p>Location</p>
+                  <p>Date Added: 4/4/2025</p>
+                  <div className="dropdown mb-4">
+                      <button className="btn btn-secondary dropdown-toggle text-start" type="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                          Set Status...
+                      </button>
+                      <ul className="dropdown-menu">
+                          <li><a className="dropdown-item" href="#">Applied</a></li>
+                          <li><a className="dropdown-item" href="#">Interview</a></li>
+                          <li><a className="dropdown-item" href="#">Accepted</a></li>
+                          <li><a className="dropdown-item" href="#">Rejected</a></li>
+                          <li><a className="dropdown-item" href="#">N/A</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div
+                  className="col-12 col-md"
+                  style={{
+                      borderBottom: "1px solid #9e9ca1",
+                  }}
+              >
 
 
-              {/* This is the 2nd column with buttons*/}
+                  {/* This is the 2nd column with buttons*/}
 
-              <div className="container text-center" style={{paddingTop: "15px", paddingBottom: "15px"}}>
-                <div className="row">
-                    <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>Description</button>
+                  <div className="container text-center" style={{paddingTop: "15px", paddingBottom: "15px"}}>
+                      <div className="row">
+                          <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>Description</button>
 
                     <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>CV</button>
 
