@@ -16,12 +16,11 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
             <div
                 className="col-12 col-md"
                 style={{
-                  borderBottom: "1px solid #ccc", // Correct camelCase for borderBottom
-                  paddingTop: "15px",
+                  borderBottom: "1px solid #9e9ca1",
                 }}
             >
 
-              <h3 className="text-start">Job Title</h3>
+              <h3 className="text-start" style={{paddingTop:"20px"}}>Job Title</h3>
               <h5 className="text-start">Company Name</h5>
               <p className="text-start">Location</p>
               <p className="text-start">Date Added</p>
@@ -29,7 +28,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
             <div
                 className="col-12 col-md"
                 style={{
-                  borderBottom: "1px solid #ccc", // Correct camelCase for borderBottom
+                  borderBottom: "1px solid #9e9ca1",
                 }}
             >
 
@@ -38,11 +37,11 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
 
               <div className="container text-center" style={{paddingTop: "15px", paddingBottom: "15px"}}>
                 <div className="row">
-                  <button type="button" className="col">Primary</button>
+                    <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>Description</button>
 
-                  <button type="button" className="col">Primary</button>
+                    <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>CV</button>
 
-                  <button type="button" className="col">Primary</button>
+                    <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>Resume</button>
 
                 </div>
               </div>
@@ -62,7 +61,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                     style={{
                         overflowY: "auto",
                         overflowX: "hidden",
-                        maxHeight: "calc(100vh - 469px)"
+                        maxHeight: "calc(100vh - 480px)"
 
                     }}
                 >

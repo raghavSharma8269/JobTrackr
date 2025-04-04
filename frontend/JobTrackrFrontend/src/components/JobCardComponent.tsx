@@ -10,7 +10,7 @@ const JobCardComponent = () => {
             <div className="row-100">
                 <button
                     type="button"
-                    className="btn btn-lg w-100" // Ensures full width
+                    className="btn btn-lg w-100"
                     style={{
                         backgroundColor: "#292b38",
                         color: "#c9c9c9",
