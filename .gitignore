@@ -38,6 +38,6 @@ build/
 /src/main/resources/application.properties
 
 # Ignore JobApplicationManagerLogging.log
-JobApplicationManagerLogging.log
+*.JobApplicationManagerLogging.log
 
 *.DS_Store
