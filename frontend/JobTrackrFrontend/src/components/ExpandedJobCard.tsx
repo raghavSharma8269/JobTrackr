@@ -1,4 +1,5 @@
 import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
+import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 interface ExpandedJobCardProps {
   isVisible: boolean;
 }
@@ -20,7 +21,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                   }}
               >
 
-                  <h3 style={{paddingTop: "20px"}}>Job Title</h3>
+                  <h3 style={{paddingTop: "20px"}}>Job Title<FavoriteStarComponent/></h3>
                   <h5>Company Name</h5>
                   <p>Location</p>
                   <p>Date Added: 4/4/2025</p>
@@ -74,7 +75,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                     style={{
                         overflowY: "auto",
                         overflowX: "hidden",
-                        maxHeight: "calc(100vh - 480px)"
+                        maxHeight: "calc(100vh - 579px)"
 
                     }}
                 >
