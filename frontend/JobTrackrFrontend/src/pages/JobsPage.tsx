@@ -4,23 +4,20 @@ import JobListComponent from "../components/JobListComponent";
 
 const JobsPage = () => {
   return (
-    <div className="container-fluid vh-100 d-flex align-items-center">
-      <div className="row w-100">
-        <div
-          className="col-md-10 d-flex justify-content-center align-items-start"
-          style={{ marginTop: "350px" }}
-        >
-          <JobListComponent />
-        </div>
-        <div
-          className="col-md-1 d-flex justify-content-center align-items-start"
-          style={{ marginTop: "350px" }}
-        >
-          <ExpandedJobCard isVisible={true} />
+      <div className="container-fluid min-vh-100 d-flex align-items-center">
+        <div className="row w-100">
+          {/* Ensure this column takes enough space for scrolling */}
+          <div className="col-md-8 d-flex justify-content-center align-items-start overflow-hidden">
+            <JobListComponent />
+          </div>
+          {/* Adjust ExpandedJobCard positioning */}
+          <div className="col-md-4 d-flex justify-content-center align-items-start">
+            <ExpandedJobCard isVisible={true} />
+          </div>
         </div>
       </div>
-    </div>
   );
 };
+
 
 export default JobsPage;
