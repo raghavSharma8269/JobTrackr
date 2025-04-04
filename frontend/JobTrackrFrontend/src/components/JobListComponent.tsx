@@ -1,4 +1,4 @@
-import JobCardComponent from "./JobCardComponent.tsx";
+import JobCardComponent from "./JobCardComponent";
 
 
 const JobListComponent = () => {
@@ -8,7 +8,6 @@ const JobListComponent = () => {
                 height: "75vh",
                 overflowY: "auto",
                 overflowX: "hidden",
-                marginRight: "350px", // Adjust margin to bring scrollbar closer
             }}
             className="w-100 custom-scrollbar"
         >
