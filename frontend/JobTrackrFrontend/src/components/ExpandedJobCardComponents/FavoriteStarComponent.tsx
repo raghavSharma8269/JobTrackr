@@ -5,7 +5,7 @@ const FavoriteStarComponent = () => {
 
     return (
         <button
-            className="btn hover"
+            className="btn favorite-button"
             onClick={() => setIsStarred(!isStarred)}
             style={{
                 fontSize: "2rem",
