@@ -1,6 +1,7 @@
 .default-text-color {
   color: #c9c9c9;
 }
+
 .default-placeholder-color::placeholder {
   color: #c9c9c9;
 }
@@ -8,6 +9,7 @@
 .custom-scrollbar{
   scrollbar-width: thin;
   scrollbar-color: #c9c9c9 transparent;}
+
 button:hover {
   filter: drop-shadow(0 0 5px gold);
 }
