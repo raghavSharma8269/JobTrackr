@@ -20,3 +20,7 @@
   opacity: 1; /* Ensure visibility in some browsers */
 }
 
+.open-job-link-btn:hover{
+    filter: drop-shadow(0 0 5px gray);
+}
+
