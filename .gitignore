@@ -39,5 +39,7 @@ build/
 
 # Ignore JobApplicationManagerLogging.log
 *.JobApplicationManagerLogging.log
+*.log
+
 
 *.DS_Store
