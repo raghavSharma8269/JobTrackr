@@ -1,9 +1,10 @@
 import React from 'react';
 import SortDownIconComponent from './SortDownIconComponent';
 import SortUpIconComponent from './SortUpIconComponent';
-
+import FilterByDropdownComponent from "./FilterByDropdownComponent.tsx";
 const SortByButtonGroupComponent = () => {
     return (
+
         <div className="btn-group" role="group" aria-label="Sort toggle button group">
 
             <input
@@ -28,8 +29,9 @@ const SortByButtonGroupComponent = () => {
             <label className="btn btn-outline-primary" htmlFor="btnradio2">
                 <SortDownIconComponent />
             </label>
-
+            <FilterByDropdownComponent/>
         </div>
+
     );
 };
 

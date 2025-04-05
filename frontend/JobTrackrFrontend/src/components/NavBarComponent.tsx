@@ -1,9 +1,9 @@
-import FilterDropdownComponent from "./NavBarComponents/FilterDropdownComponent.tsx";
+import SortByDropdownComponent from "./NavBarComponents/SortByDropdownComponent.tsx";
 const NavBarComponent = () => {
   return (
     <nav className="navbar" style={{marginBottom:"-40px", borderRadius:"10px", backgroundColor:"#292b38", paddingTop:"15px", paddingBottom:"15px"}}>
       <div className="container-fluid" style={{ backgroundColor:"#292b38"}}>
-        <FilterDropdownComponent/>
+        <SortByDropdownComponent/>
         <form className="d-flex" role="search">
           <input
             className="form-control me-2"
