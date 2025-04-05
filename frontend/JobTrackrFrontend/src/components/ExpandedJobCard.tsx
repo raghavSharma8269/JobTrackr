@@ -4,11 +4,16 @@ import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkB
 import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
 import CvComponent from "./ExpandedJobCardComponents/CvComponent.tsx";
 import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent.tsx";
+import {useState} from "react";
 interface ExpandedJobCardProps {
   isVisible: boolean;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
+
+    const [activeSection, setActiveSection] = useState<"description" | "cv" | "resume">("description");
+
+
   if (!isVisible) return null;
 
   return (
@@ -56,11 +61,20 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
 
                   <div className="container text-center" style={{paddingTop: "15px", paddingBottom: "15px"}}>
                       <div className="row">
-                          <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>Description</button>
+                          <button type="button" className="col btn"
+                                  style={{backgroundColor: activeSection === "description" ? "#1c1d26" : "#292b38",
+                                          color:"#9e9ca1"}}
+                                  onClick={() => setActiveSection("description")}>Description</button>
 
-                    <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>CV</button>
+                    <button type="button" className="col btn"
+                            style={{backgroundColor: activeSection === "cv" ? "#1c1d26" : "#292b38",
+                                color:"#9e9ca1"}}
+                            onClick={() => setActiveSection("cv")}>CV</button>
 
-                    <button type="button" className="col btn" style={{backgroundColor:"#292b38", color:"#9e9ca1"}}>Resume</button>
+                    <button type="button" className="col btn"
+                            style={{backgroundColor: activeSection === "resume" ? "#1c1d26" : "#292b38",
+                                color:"#9e9ca1"}}
+                            onClick={() => setActiveSection("resume")}>Resume</button>
 
                 </div>
               </div>
@@ -84,9 +98,9 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
 
                     }}
                 >
-                    {/*<CvComponent/>*/}
-                    <ResumeComponent/>
-                    {/*<DescriptionComponent/>*/}
+                    {activeSection === "description" && <DescriptionComponent/>}
+                    {activeSection === "cv" && <CvComponent/>}
+                    {activeSection === "resume" && <ResumeComponent/>}
             </div>
           </div>
         </div>
