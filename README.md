@@ -58,6 +58,4 @@ JobTrackr is a web application designed to help users track their job applicatio
 - **Settings Page**: Upload resumes and cover letters, and change your password.
 
 
-## License
 
-This project is licensed under the MIT License.
