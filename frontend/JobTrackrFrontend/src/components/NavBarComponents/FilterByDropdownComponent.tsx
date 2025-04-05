@@ -1,4 +1,5 @@
 import React from 'react'
+import ResetSearchParametersIconComponent from "./ResetSearchParametersIconComponent.tsx";
 
 const FilterByDropdownComponent = () => {
     return (
@@ -16,7 +17,7 @@ const FilterByDropdownComponent = () => {
                 <li><a className="dropdown-item default-text-color" style={{backgroundColor:"red", borderRadius:"10px"}} href="#">Rejected</a></li>
             </ul>
 
-
+        <ResetSearchParametersIconComponent/>
         </div>
     )
 }

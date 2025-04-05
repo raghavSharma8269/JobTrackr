@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RefreshStatusButtonComponent = () => {
+const RefreshStatusIconComponent = () => {
     return (
 
         <i className="bi bi-arrow-clockwise icon-btn" style={{
@@ -17,4 +17,4 @@ const RefreshStatusButtonComponent = () => {
         ></i>
     )
             }
-            export default RefreshStatusButtonComponent
+            export default RefreshStatusIconComponent

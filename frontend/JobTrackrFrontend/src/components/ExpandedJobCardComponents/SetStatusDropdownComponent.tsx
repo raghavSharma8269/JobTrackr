@@ -1,5 +1,5 @@
 import React from 'react'
-import RefreshStatusButtonComponent from "./RefreshStatusButtonComponent.tsx";
+import RefreshStatusIconComponent from "./RefreshStatusIconComponent.tsx";
 
 const SetStatusDropdownComponent = () => {
     return (
@@ -15,7 +15,7 @@ const SetStatusDropdownComponent = () => {
                 <li><a className="dropdown-item default-text-color" style={{backgroundColor:"#7400f0", borderRadius:"10px"}} href="#">Accepted</a></li>
                 <li><a className="dropdown-item default-text-color" style={{backgroundColor:"red", borderRadius:"10px"}} href="#">Rejected</a></li>
             </ul>
-            <RefreshStatusButtonComponent/>
+            <RefreshStatusIconComponent/>
 
         </div>    )
 }
