@@ -1,5 +1,5 @@
 import FilterDropdownComponent from "./NavBarComponents/FilterDropdownComponent.tsx";
-const SearchBarComponent = () => {
+const NavBarComponent = () => {
   return (
     <nav className="navbar" style={{marginBottom:"-40px", borderRadius:"10px", backgroundColor:"#292b38", paddingTop:"15px", paddingBottom:"15px"}}>
       <div className="container-fluid" style={{ backgroundColor:"#292b38"}}>
@@ -21,4 +21,4 @@ const SearchBarComponent = () => {
   );
 };
 
-export default SearchBarComponent;
+export default NavBarComponent;

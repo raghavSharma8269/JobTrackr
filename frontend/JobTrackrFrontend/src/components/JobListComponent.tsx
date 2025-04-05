@@ -3,6 +3,7 @@ import JobCardComponent from "./JobCardComponent";
 
 const JobListComponent = () => {
     return (
+
         <div
             style={{
                 height: "75vh",
@@ -20,6 +21,7 @@ const JobListComponent = () => {
                 ))}
             </div>
         </div>
+
     );
 };
 

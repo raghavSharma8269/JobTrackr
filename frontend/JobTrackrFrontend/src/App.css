@@ -4,7 +4,7 @@
 cream text color: #c9c9c9
 dark background: #1c1d26
 light background: #292b38
-purple background: #7400f0
+purple: #7400f0
 
 */
 
@@ -46,6 +46,10 @@ purple background: #7400f0
   background-color: #1c1d26;
   color: #c9c9c9; /* Keep text color the same */
 }
+
+
+
+
 
 
 

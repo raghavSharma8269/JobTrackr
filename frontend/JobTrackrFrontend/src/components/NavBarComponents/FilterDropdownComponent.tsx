@@ -1,5 +1,5 @@
 import React from 'react'
-
+import SortByButtonGroupComponent from './SortByButtonGroupComponent'
 const FilterDropdownComponent = () => {
     return (
         <div className="dropdown">
@@ -8,7 +8,8 @@ const FilterDropdownComponent = () => {
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                style={{backgroundColor:"#7400f0"}}
+                style={{backgroundColor:"#7400f0", marginRight:"10px"}}
+
 
             >
                 Sort By...
@@ -35,6 +36,9 @@ const FilterDropdownComponent = () => {
                     </a>
                 </li>
             </ul>
-        </div>    )
+            <SortByButtonGroupComponent/>
+        </div>
+
+    )
 }
 export default FilterDropdownComponent
