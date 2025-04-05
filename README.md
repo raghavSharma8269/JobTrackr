@@ -17,9 +17,9 @@ JobTrackr is a web application designed to help users track their job applicatio
 
 ### Backend Setup
 
-1. Navigate to the `backend` directory:
+1. Navigate to the `root` directory:
     ```sh
-    cd backend
+    cd JobApplicationManager
     ```
 
 2. Build the project using Maven:
