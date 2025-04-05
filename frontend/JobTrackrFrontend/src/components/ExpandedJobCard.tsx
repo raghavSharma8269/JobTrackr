@@ -2,6 +2,8 @@ import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionCompone
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
 import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
+import CvComponent from "./ExpandedJobCardComponents/CvComponent.tsx";
+import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent.tsx";
 interface ExpandedJobCardProps {
   isVisible: boolean;
 }
@@ -82,7 +84,9 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
 
                     }}
                 >
-                    <DescriptionComponent/>
+                    {/*<CvComponent/>*/}
+                    <ResumeComponent/>
+                    {/*<DescriptionComponent/>*/}
             </div>
           </div>
         </div>
