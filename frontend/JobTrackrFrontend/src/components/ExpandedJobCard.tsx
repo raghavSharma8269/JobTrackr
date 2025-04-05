@@ -1,5 +1,7 @@
 import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
+import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
+import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent.tsx";
 interface ExpandedJobCardProps {
   isVisible: boolean;
 }
@@ -21,23 +23,24 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                   }}
               >
 
-                  <h3 style={{paddingTop: "20px"}}>Job Title<FavoriteStarComponent/></h3>
+                  <h3 style={{ paddingTop: "20px" }} className="d-flex align-items-center justify-content-between">
+                      Job Title
+                      <div className="d-flex align-items-center" style={{ gap: "10px" }}>
+                          <FavoriteStarComponent />
+                          <div style={{ lineHeight: 0 }}>
+                              <OpenJobLinkButtonComponent />
+                          </div>
+                      </div>
+                  </h3>
+
+
                   <h5>Company Name</h5>
+
                   <p>Location</p>
+
                   <p>Date Added: 4/4/2025</p>
-                  <div className="dropdown mb-4">
-                      <button className="btn btn-secondary dropdown-toggle text-start" type="button" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                          Set Status...
-                      </button>
-                      <ul className="dropdown-menu">
-                          <li><a className="dropdown-item" href="#">Applied</a></li>
-                          <li><a className="dropdown-item" href="#">Interview</a></li>
-                          <li><a className="dropdown-item" href="#">Accepted</a></li>
-                          <li><a className="dropdown-item" href="#">Rejected</a></li>
-                          <li><a className="dropdown-item" href="#">N/A</a></li>
-                      </ul>
-                  </div>
+
+                  <SetStatusDropdownComponent/>
               </div>
               <div
                   className="col-12 col-md"

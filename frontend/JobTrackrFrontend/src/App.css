@@ -13,3 +13,10 @@
 .favorite-button:hover{
   filter: drop-shadow(0 0 5px gold);
 }
+
+/* Change placeholder text color */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Light white */
+  opacity: 1; /* Ensure visibility in some browsers */
+}
+
