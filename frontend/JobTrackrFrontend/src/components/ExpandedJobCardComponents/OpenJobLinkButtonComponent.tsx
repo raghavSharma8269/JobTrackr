@@ -3,7 +3,7 @@ import React from 'react'
 const OpenJobLinkButtonComponent = () => {
     return (
         <i
-            className="bi bi-arrow-up-right-square default-text-color open-job-link-btn"
+            className="bi bi-arrow-up-right-square default-text-color icon-btn"
             style={{
                 fontSize: "2rem",
                 cursor: "pointer",

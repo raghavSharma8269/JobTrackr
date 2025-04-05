@@ -1,4 +1,5 @@
 import React from 'react'
+import RefreshStatusButtonComponent from "./RefreshStatusButtonComponent.tsx";
 
 const SetStatusDropdownComponent = () => {
     return (
@@ -8,12 +9,14 @@ const SetStatusDropdownComponent = () => {
                     aria-expanded="false">
                 Set Status...
             </button>
-            <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Applied</a></li>
-                <li><a className="dropdown-item" href="#">Interview</a></li>
-                <li><a className="dropdown-item" href="#">Accepted</a></li>
-                <li><a className="dropdown-item" href="#">Rejected</a></li>
+            <ul className="dropdown-menu" style={{backgroundColor:"#292b38"}}>
+                <li><a className="dropdown-item default-text-color" style={{backgroundColor:"blue", borderRadius:"10px"}} href="#">Applied</a></li>
+                <li><a className="dropdown-item default-text-color" style={{backgroundColor:"green", borderRadius:"10px"}} href="#">Interview</a></li>
+                <li><a className="dropdown-item default-text-color" style={{backgroundColor:"#7400f0", borderRadius:"10px"}} href="#">Accepted</a></li>
+                <li><a className="dropdown-item default-text-color" style={{backgroundColor:"red", borderRadius:"10px"}} href="#">Rejected</a></li>
             </ul>
+            <RefreshStatusButtonComponent/>
+
         </div>    )
 }
 export default SetStatusDropdownComponent

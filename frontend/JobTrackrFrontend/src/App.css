@@ -1,3 +1,14 @@
+
+/* Main Colors Used
+
+cream text color: #c9c9c9
+dark background: #1c1d26
+light background: #292b38
+purple background: #7400f0
+
+*/
+
+
 .default-text-color {
   color: #c9c9c9;
 }
@@ -20,7 +31,23 @@
   opacity: 1; /* Ensure visibility in some browsers */
 }
 
-.open-job-link-btn:hover{
+.icon-btn:hover{
     filter: drop-shadow(0 0 5px gray);
 }
+
+
+  /* Only target items in .custom-filter-dropdown */
+.custom-filter-dropdown .dropdown-item {
+  color: #c9c9c9; /* or inherit from your default-text-color class */
+  transition: background-color 0.2s ease;
+}
+
+.custom-filter-dropdown .dropdown-item:hover {
+  background-color: #1c1d26;
+  color: #c9c9c9; /* Keep text color the same */
+}
+
+
+
+
 
