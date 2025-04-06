@@ -6,7 +6,7 @@ const AddCustomJobModalComponent = () => {
       className="modal fade default-text-color"
       id="newCustomJobModal"
       tabIndex={-1}
-      aria-labelledby="newJobModalLabel"
+      aria-labelledby="newCustomJobModal"
       aria-hidden="true"
     >
       <div className="modal-dialog">
@@ -26,28 +26,69 @@ const AddCustomJobModalComponent = () => {
 
           {/* Modal Body */}
           <div className="modal-body light-bg">
-            <h3 className="mb-3">
-              Enter Job Via <span style={{ color: "#0077B5" }}>LinkedIn</span>{" "}
-              Link
-            </h3>
-
+            <h5>Job Title</h5>
             <input
               type="text"
               className="form-control light-bg mb-4"
               id="jobLink"
-              placeholder="Enter Job Link"
+              placeholder="Enter Job Title"
+              required
             />
+
+            <h5>Company</h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Company Name"
+              required
+            />
+
+            <h5>Description</h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Job Description"
+              required
+            />
+
+            <h5>Location</h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Job Location"
+            />
+
+            <h5>Salary</h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Salary"
+            />
+
+            <h5>Job Level</h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Job Level"
+            />
+
+            <h5>Job Page URL</h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Job URL"
+              required
+            />
+
             <div className="d-flex justify-content-center mb-4">
               <button className="btn purple-bg default-text-color">
                 Add Job
-              </button>
-            </div>
-
-            <h5 className="text-center mb-3">OR</h5>
-
-            <div className="d-flex justify-content-center mb-4">
-              <button className="btn purple-bg default-text-color">
-                Enter Custom Job Details
               </button>
             </div>
 
