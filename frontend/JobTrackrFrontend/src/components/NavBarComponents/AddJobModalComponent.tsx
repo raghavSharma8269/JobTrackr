@@ -26,7 +26,10 @@ const AddJobModalComponent = () => {
 
           {/* Modal Body */}
           <div className="modal-body light-bg">
-            <h3 className="mb-3">Enter Job Via LinkedIn Link</h3>
+            <h3 className="mb-3">
+              Enter Job Via <span style={{ color: "#0077B5" }}>LinkedIn</span>{" "}
+              Link
+            </h3>
 
             <input
               type="text"
@@ -34,6 +37,11 @@ const AddJobModalComponent = () => {
               id="jobLink"
               placeholder="Enter Job Link"
             />
+            <div className="d-flex justify-content-center mb-4">
+              <button className="btn purple-bg default-text-color">
+                Add Job
+              </button>
+            </div>
 
             <h5 className="text-center mb-3">OR</h5>
 
