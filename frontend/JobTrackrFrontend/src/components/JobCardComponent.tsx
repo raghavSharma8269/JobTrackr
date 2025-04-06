@@ -6,11 +6,11 @@ const JobCardComponent = () => {
     const openExpanded = () => setIsExpanded(true);
 
     return (
-        <div className="container">
+        <div className="container mt-1">
             <div className="row-100">
                 <button
                     type="button"
-                    className="btn btn-lg w-100"
+                    className="btn btn-lg w-100 job-card"
                     style={{
                         backgroundColor: "#292b38",
                         color: "#c9c9c9",
