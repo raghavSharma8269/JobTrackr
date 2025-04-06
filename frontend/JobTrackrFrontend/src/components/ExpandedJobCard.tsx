@@ -4,103 +4,134 @@ import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkB
 import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
 import CvComponent from "./ExpandedJobCardComponents/CvComponent.tsx";
 import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent.tsx";
-import {useState} from "react";
+import { useState } from "react";
 interface ExpandedJobCardProps {
   isVisible: boolean;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
-
-    const [activeSection, setActiveSection] = useState<"description" | "cv" | "resume">("description");
-
+  const [activeSection, setActiveSection] = useState<
+    "description" | "cv" | "resume"
+  >("description");
 
   if (!isVisible) return null;
 
   return (
-      <div className="container-fluid default-text-color" style={{ backgroundColor: "#292b38", borderRadius:"10px", overflow:"hidden", marginTop:"100px"}}>
-        <div className="container text-center">
-          <div className="row d-flex flex-column">
+    <div
+      className="container-fluid default-text-color"
+      style={{
+        backgroundColor: "#292b38",
+        borderRadius: "10px",
+        overflow: "hidden",
+        marginTop: "100px",
+      }}
+    >
+      <div className="container text-center">
+        <div className="row d-flex flex-column">
+          {/* This is the 1st column with job info*/}
 
-            {/* This is the 1st column with job info*/}
-
+          <div
+            className="col-12 col-md text-start"
+            style={{
+              borderBottom: "1px solid #9e9ca1",
+            }}
+          >
+            <h3
+              style={{ paddingTop: "20px" }}
+              className="d-flex align-items-center justify-content-between"
+            >
+              Job Title
               <div
-                  className="col-12 col-md text-start"
-                  style={{
-                      borderBottom: "1px solid #9e9ca1",
-                  }}
+                className="d-flex align-items-center"
+                style={{ gap: "10px" }}
               >
-
-                  <h3 style={{ paddingTop: "20px" }} className="d-flex align-items-center justify-content-between">
-                      Job Title
-                      <div className="d-flex align-items-center" style={{ gap: "10px" }}>
-                          <FavoriteStarComponent />
-                          <div style={{ lineHeight: 0 }}>
-                              <OpenJobLinkButtonComponent />
-                          </div>
-                      </div>
-                  </h3>
-
-
-                  <h5>Company Name</h5>
-
-                  <p>Location</p>
-
-                  <p>Date Added: 4/4/2025</p>
-
-                  <SetStatusDropdownComponent/>
-              </div>
-              <div
-                  className="col-12 col-md"
-                  style={{
-                      borderBottom: "1px solid #9e9ca1",
-                  }}
-              >
-
-
-                  {/* This is the 2nd column with buttons to switch sections*/}
-
-                  <div className="container text-center" style={{paddingTop: "15px", paddingBottom: "15px"}}>
-                      <div className="row">
-                          <button className="col btn section-change-button"
-                                  style={{backgroundColor: activeSection === "description" ? "#1c1d26" : "#292b38",
-                                          color:"#9e9ca1"}}
-                                  onClick={() => setActiveSection("description")}>Description</button>
-
-                    <button className="col btn section-change-button"
-                            style={{backgroundColor: activeSection === "cv" ? "#1c1d26" : "#292b38",
-                                color:"#9e9ca1"}}
-                            onClick={() => setActiveSection("cv")}>CV</button>
-
-                    <button className="col btn section-change-button"
-                            style={{backgroundColor: activeSection === "resume" ? "#1c1d26" : "#292b38",
-                                color:"#9e9ca1"}}
-                            onClick={() => setActiveSection("resume")}>Resume</button>
-
+                <FavoriteStarComponent />
+                <div style={{ lineHeight: 0 }}>
+                  <OpenJobLinkButtonComponent />
                 </div>
               </div>
-            </div>
+            </h3>
 
-            {/* This is the 3rd column with description/cv/resume*/}
+            <h5>Company Name</h5>
+
+            <p>Location</p>
+
+            <p>Date Added: 4/4/2025</p>
+
+            <SetStatusDropdownComponent />
+          </div>
+          <div
+            className="col-12 col-md"
+            style={{
+              borderBottom: "1px solid #9e9ca1",
+            }}
+          >
+            {/* This is the 2nd column with buttons to switch sections*/}
 
             <div
-                className="col-12 col-md"
-                style={{
-                  paddingTop: "15px",
-                  paddingBottom: "15px",
-                }}
+              className="container text-center"
+              style={{ paddingTop: "15px", paddingBottom: "15px" }}
             >
-                <div
-                    className="custom-scrollbar"
-                    style={{
-                        overflowY: "auto",
-                        overflowX: "hidden",
-                        maxHeight: "calc(100vh - 579px)"
-
-                    }}
+              <div className="row">
+                <button
+                  className="col btn section-change-button"
+                  style={{
+                    backgroundColor:
+                      activeSection === "description" ? "#1c1d26" : "#292b38",
+                    color: "#9e9ca1",
+                  }}
+                  onClick={() => setActiveSection("description")}
                 >
-                    {activeSection === "description" && <DescriptionComponent/>}
-                    {activeSection === "cv" && <CvComponent/>}
-                    {activeSection === "resume" && <ResumeComponent/>}
+                  Description
+                </button>
+
+                <button
+                  className="col btn section-change-button"
+                  style={{
+                    backgroundColor:
+                      activeSection === "cv" ? "#1c1d26" : "#292b38",
+                    color: "#9e9ca1",
+                  }}
+                  onClick={() => setActiveSection("cv")}
+                >
+                  CV
+                </button>
+
+                <button
+                  className="col btn section-change-button"
+                  style={{
+                    backgroundColor:
+                      activeSection === "resume" ? "#1c1d26" : "#292b38",
+                    color: "#9e9ca1",
+                  }}
+                  onClick={() => setActiveSection("resume")}
+                >
+                  Resume
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* This is the 3rd column with description/cv/resume*/}
+
+          <div
+            className="col-12 col-md"
+            style={{
+              paddingTop: "15px",
+              paddingBottom: "15px",
+            }}
+          >
+            <div
+              className="custom-scrollbar"
+              style={{
+                overflowY: "auto",
+                overflowX: "hidden",
+                maxHeight: "calc(100vh - 579px)",
+              }}
+            >
+              {activeSection === "description" && <DescriptionComponent />}
+              {activeSection === "cv" && <CvComponent />}
+              {activeSection === "resume" && <ResumeComponent />}
             </div>
           </div>
         </div>

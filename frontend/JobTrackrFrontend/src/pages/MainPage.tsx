@@ -3,10 +3,12 @@ import clipBoardSvg from "../assets/clipboard-check.svg";
 import SettingsPage from "./SettingsPage";
 import logOutSvg from "../assets/box-arrow-left.svg";
 import JobsPage from "./JobsPage";
-import {useState} from "react";
+import { useState } from "react";
 
 const MainPage = () => {
-  const [activePage, setActivePage] = useState<"jobs" | "settings">("jobs");
+  const [activePage, setActivePage] = useState<"jobs" | "settings" | "logout">(
+    "jobs",
+  );
 
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
@@ -43,8 +45,7 @@ const MainPage = () => {
               </div>
               {/* Jobs Button */}
               <button
-                type="button"
-                className="btn mt-5 btn-lg d-flex align-items-center"
+                className="btn mt-5 btn-lg d-flex align-items-center section-change-button"
                 style={{
                   color: "#c9c9c9",
                   backgroundColor:
@@ -61,8 +62,7 @@ const MainPage = () => {
               </button>
               {/* Settings Button */}
               <button
-                type="button"
-                className="btn mt-5 btn-lg d-flex align-items-center"
+                className="btn mt-5 btn-lg d-flex align-items-center section-change-button"
                 style={{
                   color: "#c9c9c9",
                   backgroundColor:
@@ -78,12 +78,11 @@ const MainPage = () => {
                 Settings
               </button>
               <button
-                type="button"
-                className="btn mt-5 btn-lg d-flex align-items-center"
+                className="btn mt-5 btn-lg d-flex align-items-center section-change-button"
                 style={{
                   color: "#c9c9c9",
                   backgroundColor:
-                    activePage === "settings" ? "#1c1d26" : "transparent",
+                    activePage === "logout" ? "#1c1d26" : "transparent",
                 }}
               >
                 <img
