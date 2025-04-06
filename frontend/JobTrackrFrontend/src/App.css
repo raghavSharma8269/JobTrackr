@@ -22,7 +22,7 @@ purple: #7400f0
   scrollbar-color: #c9c9c9 transparent;}
 
 .favorite-button:hover{
-  filter: drop-shadow(0 0 5px gold);
+  filter: drop-shadow(0 0 8px gold);
 }
 
 /* Change placeholder text color */
@@ -35,6 +35,9 @@ purple: #7400f0
     filter: drop-shadow(0 0 5px gray);
 }
 
+.delete-icon-btn:hover {
+  filter: drop-shadow(0 0 10px red);
+}
 
   /* Only target items in .custom-filter-dropdown */
 .custom-filter-dropdown .dropdown-item {
@@ -52,7 +55,7 @@ purple: #7400f0
 }
 
 .job-card:hover{
-  filter: drop-shadow(0 0 5px #7400f0);
+  filter: drop-shadow(0 0 10px #7400f0);
 }
 
 

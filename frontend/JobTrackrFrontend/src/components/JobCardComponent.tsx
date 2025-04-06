@@ -17,7 +17,6 @@ const JobCardComponent = () => {
             height: "140px",
             marginBottom: "5px",
           }}
-          onClick={openExpanded}
         >
           <div className="container align-items-start text-start">
             <h5>Job Title</h5>
@@ -26,7 +25,6 @@ const JobCardComponent = () => {
           </div>
         </button>
       </div>
-      <ExpandedJobCard isVisible={isExpanded} />
     </div>
   );
 };
