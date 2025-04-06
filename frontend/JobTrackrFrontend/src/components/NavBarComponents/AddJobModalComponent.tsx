@@ -1,6 +1,5 @@
 import React from "react";
 import CustomJobModalComponent from "./CustomJobModalComponent.tsx";
-import * as bootstrap from "bootstrap";
 
 const AddJobModalComponent = () => {
   return (
