@@ -58,6 +58,23 @@ purple: #7400f0
   filter: drop-shadow(0 0 10px #7400f0);
 }
 
+.dark-bg {
+  background-color: #1c1d26;
+}
+
+.light-bg {
+  background-color: #292b38;
+}
+
+.light-bg:focus{
+  background-color: #292b38;
+  color: #c9c9c9;
+}
+
+.purple-bg {
+  background-color: #7400f0;
+}
+
 
 
 
