@@ -57,21 +57,21 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
               >
 
 
-                  {/* This is the 2nd column with buttons*/}
+                  {/* This is the 2nd column with buttons to switch sections*/}
 
                   <div className="container text-center" style={{paddingTop: "15px", paddingBottom: "15px"}}>
                       <div className="row">
-                          <button type="button" className="col btn"
+                          <button className="col btn section-change-button"
                                   style={{backgroundColor: activeSection === "description" ? "#1c1d26" : "#292b38",
                                           color:"#9e9ca1"}}
                                   onClick={() => setActiveSection("description")}>Description</button>
 
-                    <button type="button" className="col btn"
+                    <button className="col btn section-change-button"
                             style={{backgroundColor: activeSection === "cv" ? "#1c1d26" : "#292b38",
                                 color:"#9e9ca1"}}
                             onClick={() => setActiveSection("cv")}>CV</button>
 
-                    <button type="button" className="col btn"
+                    <button className="col btn section-change-button"
                             style={{backgroundColor: activeSection === "resume" ? "#1c1d26" : "#292b38",
                                 color:"#9e9ca1"}}
                             onClick={() => setActiveSection("resume")}>Resume</button>

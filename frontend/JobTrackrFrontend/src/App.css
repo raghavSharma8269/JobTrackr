@@ -47,6 +47,10 @@ purple: #7400f0
   color: #c9c9c9; /* Keep text color the same */
 }
 
+.section-change-button:hover{
+  filter: drop-shadow(0 0 5px gray);
+}
+
 
 
 
