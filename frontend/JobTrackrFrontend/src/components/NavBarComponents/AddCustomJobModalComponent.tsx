@@ -1,11 +1,10 @@
 import React from "react";
-import AddCustomJobModalComponent from "./AddCustomJobModalComponent.tsx";
 
-const AddJobModalComponent = () => {
+const AddCustomJobModalComponent = () => {
   return (
     <div
       className="modal fade default-text-color"
-      id="newJobModal"
+      id="newCustomJobModal"
       tabIndex={-1}
       aria-labelledby="newJobModalLabel"
       aria-hidden="true"
@@ -15,7 +14,7 @@ const AddJobModalComponent = () => {
           {/* Modal Header */}
           <div className="modal-header light-bg">
             <h1 className="modal-title fs-5" id="newJobModalLabel">
-              Add Job
+              Add Custom Job
             </h1>
             <button
               type="button"
@@ -47,21 +46,16 @@ const AddJobModalComponent = () => {
             <h5 className="text-center mb-3">OR</h5>
 
             <div className="d-flex justify-content-center mb-4">
-              <button
-                className="btn purple-bg default-text-color"
-                data-bs-toggle="modal"
-                data-bs-target="#newCustomJobModal"
-              >
+              <button className="btn purple-bg default-text-color">
                 Enter Custom Job Details
               </button>
             </div>
+
             <div className="d-flex justify-content-end"></div>
           </div>
         </div>
       </div>
-      <AddCustomJobModalComponent />
     </div>
   );
 };
-
-export default AddJobModalComponent;
+export default AddCustomJobModalComponent;
