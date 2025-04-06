@@ -35,11 +35,6 @@ const SortByDropdownComponent = () => {
             Favorites
           </a>
         </li>
-        <li>
-          <a className="dropdown-item default-text-color" href="#">
-            Applied
-          </a>
-        </li>
       </ul>
       <SortByButtonGroupComponent />
     </div>
