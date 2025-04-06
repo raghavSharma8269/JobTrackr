@@ -1,5 +1,5 @@
 import React from "react";
-import AddCustomJobModalComponent from "./AddCustomJobModalComponent.tsx";
+import CustomJobModalComponent from "./CustomJobModalComponent.tsx";
 import * as bootstrap from "bootstrap";
 
 const AddJobModalComponent = () => {
@@ -58,7 +58,7 @@ const AddJobModalComponent = () => {
           </div>
         </div>
       </div>
-      <AddCustomJobModalComponent />
+      <CustomJobModalComponent />
     </>
   );
 };

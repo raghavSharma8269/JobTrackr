@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddCustomJobModalComponent = () => {
+const CustomJobModalComponent = () => {
   return (
     <div
       className="modal fade default-text-color"
@@ -99,4 +99,4 @@ const AddCustomJobModalComponent = () => {
     </div>
   );
 };
-export default AddCustomJobModalComponent;
+export default CustomJobModalComponent;
