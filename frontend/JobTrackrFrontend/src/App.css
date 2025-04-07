@@ -79,7 +79,6 @@ purple: #7400f0
 }
 
 .purple-bg:hover,
-.purple-bg:focus,
 .purple-bg:active {
   background-color: #5710ad !important;
   color: #c9c9c9 !important;
