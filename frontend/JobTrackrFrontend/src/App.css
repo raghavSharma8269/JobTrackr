@@ -68,8 +68,9 @@ purple: #7400f0
   color: #c9c9c9;
 }
 
-.light-bg:focus{
-  background-color: #292b38;
+.light-bg:hover,
+.light-bg:active {
+  background-color: #1c1d26;
   color: #c9c9c9;
 }
 
@@ -83,6 +84,41 @@ purple: #7400f0
   background-color: #5710ad !important;
   color: #c9c9c9 !important;
 }
+
+.blue-bg {
+  background-color: blue;
+  color: #c9c9c9;
+}
+
+.blue-bg:hover,
+.blue-bg:active {
+  background-color: darkblue !important;
+  color: #c9c9c9 !important;
+}
+
+.red-bg {
+  background-color: red;
+  color: #c9c9c9;
+}
+
+.red-bg:hover,
+.red-bg:active {
+  background-color: darkred !important;
+  color: #c9c9c9 !important;
+}
+
+
+.green-bg {
+  background-color: green;
+  color: #c9c9c9;
+}
+
+.green-bg:hover,
+.green-bg:active {
+  background-color: darkgreen !important;
+  color: #c9c9c9 !important;
+}
+
 
 
 .btn-close {

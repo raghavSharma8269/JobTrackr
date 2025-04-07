@@ -1,22 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import ResetSearchParametersIconComponent from "./ResetSearchParametersIconComponent.tsx";
+import FilterDropDown from "./FilterButtons/FilterDropDown.tsx";
 
 const FilterByDropdownComponent = () => {
+  const [activeSection, setActiveSection] = useState<
+    "applied" | "interview" | "accepted" | "rejected" | "none"
+  >("none");
+
   return (
     <div className="dropdown" style={{ marginLeft: "10px" }}>
-      <button
-        className="btn purple-bg dropdown-toggle default-text-color"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Filter...
-      </button>
+      {activeSection === "none" && <FilterDropDown />}
+      {activeSection === "applied" && (
+        <FilterDropDown
+          className="btn blue-bg dropdown-toggle default-text-color"
+          text="Applied"
+        />
+      )}
+      {activeSection === "interview" && (
+        <FilterDropDown
+          className="btn green-bg dropdown-toggle default-text-color"
+          text="Interview"
+        />
+      )}
+      {activeSection === "accepted" && (
+        <FilterDropDown
+          className="btn purple-bg dropdown-toggle default-text-color"
+          text="Accepted"
+        />
+      )}
+      {activeSection === "rejected" && (
+        <FilterDropDown
+          className="btn red-bg dropdown-toggle default-text-color"
+          text="Rejected"
+        />
+      )}
+
       <ul className="dropdown-menu" style={{ backgroundColor: "#292b38" }}>
         <li>
           <a
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "blue", borderRadius: "10px" }}
             href="#"
+            onClick={() => setActiveSection("applied")}
           >
             Applied
           </a>
@@ -26,6 +51,7 @@ const FilterByDropdownComponent = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "green", borderRadius: "10px" }}
             href="#"
+            onClick={() => setActiveSection("interview")}
           >
             Interview
           </a>
@@ -35,6 +61,7 @@ const FilterByDropdownComponent = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "#7400f0", borderRadius: "10px" }}
             href="#"
+            onClick={() => setActiveSection("accepted")}
           >
             Accepted
           </a>
@@ -44,8 +71,18 @@ const FilterByDropdownComponent = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "red", borderRadius: "10px" }}
             href="#"
+            onClick={() => setActiveSection("rejected")}
           >
             Rejected
+          </a>
+        </li>
+        <li>
+          <a
+            className="dropdown-item light-bg default-text-color"
+            href="#"
+            onClick={() => setActiveSection("none")}
+          >
+            Reset...
           </a>
         </li>
       </ul>
