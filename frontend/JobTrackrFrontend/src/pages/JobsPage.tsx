@@ -3,16 +3,27 @@ import JobListComponent from "../components/JobListComponent";
 import NavBarComponent from "../components/NavBarComponent.tsx";
 import { useState } from "react";
 
+type JobStatus = "applied" | "interview" | "accepted" | "rejected" | "none";
+
 const JobsPage = () => {
   const [selectedJobIndex, setSelectedJobIndex] = useState<number | null>(null);
   const [favoriteJobs, setFavoriteJobs] = useState<boolean[]>(
     Array(10).fill(false),
+  );
+  const [jobStatuses, setJobStatuses] = useState<JobStatus[]>(
+    Array(10).fill("none"),
   );
 
   const toggleFavorite = (index: number) => {
     const updated = [...favoriteJobs];
     updated[index] = !updated[index];
     setFavoriteJobs(updated);
+  };
+
+  const updateJobStatus = (index: number, newStatus: JobStatus) => {
+    const updated = [...jobStatuses];
+    updated[index] = newStatus;
+    setJobStatuses(updated);
   };
 
   return (
@@ -35,6 +46,13 @@ const JobsPage = () => {
             }
             onToggleFavorite={() =>
               selectedJobIndex !== null && toggleFavorite(selectedJobIndex)
+            }
+            status={
+              selectedJobIndex !== null ? jobStatuses[selectedJobIndex] : "none"
+            }
+            onUpdateStatus={(newStatus) =>
+              selectedJobIndex !== null &&
+              updateJobStatus(selectedJobIndex, newStatus)
             }
           />
         </div>

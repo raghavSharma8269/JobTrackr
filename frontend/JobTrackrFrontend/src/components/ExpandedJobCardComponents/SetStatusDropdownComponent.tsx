@@ -1,127 +1,86 @@
 import DeleteJobIcon from "./DeleteJobIcon.tsx";
 import SetStatusButtonComponent from "./SetStatusButtonComponent.tsx";
-import { useState } from "react";
 
-const SetStatusDropdownComponent = () => {
-  const [activeSection, setActiveSection] = useState<
-    "applied" | "interview" | "accepted" | "rejected" | "none"
-  >("none");
+interface SetStatusDropdownComponentProps {
+  status: "applied" | "interview" | "accepted" | "rejected" | "none";
+  onUpdateStatus: (
+    status: "applied" | "interview" | "accepted" | "rejected" | "none",
+  ) => void;
+}
+
+const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
+  status,
+  onUpdateStatus,
+}) => {
+  const getButtonProps = () => {
+    switch (status) {
+      case "applied":
+        return {
+          className: "btn blue-bg dropdown-toggle default-text-color",
+          text: "Applied",
+        };
+      case "interview":
+        return {
+          className: "btn green-bg dropdown-toggle default-text-color",
+          text: "Interview",
+        };
+      case "accepted":
+        return {
+          className: "btn purple-bg dropdown-toggle default-text-color",
+          text: "Accepted",
+        };
+      case "rejected":
+        return {
+          className: "btn red-bg dropdown-toggle default-text-color",
+          text: "Rejected",
+        };
+      default:
+        return {};
+    }
+  };
 
   return (
     <div className="dropdown mb-4" data-bs-display="static">
-      {activeSection === "none" && <SetStatusButtonComponent />}
-      {activeSection === "applied" && (
-        <SetStatusButtonComponent
-          className="btn blue-bg dropdown-toggle default-text-color"
-          text="Applied"
-        />
-      )}
-
-      {activeSection === "interview" && (
-        <SetStatusButtonComponent
-          className="btn green-bg dropdown-toggle default-text-color"
-          text="Interview"
-        />
-      )}
-      {activeSection === "accepted" && (
-        <SetStatusButtonComponent
-          className="btn purple-bg dropdown-toggle default-text-color"
-          text="Accepted"
-        />
-      )}
-      {activeSection === "rejected" && (
-        <SetStatusButtonComponent
-          className="btn red-bg dropdown-toggle default-text-color"
-          text="Rejected"
-        />
-      )}
+      <SetStatusButtonComponent
+        className={getButtonProps().className}
+        text={getButtonProps().text}
+      />
       <ul
         className="dropdown-menu force-drop-down"
         style={{ backgroundColor: "#292b38" }}
       >
-        <li>
-          <a
-            className="dropdown-item"
-            style={{
-              backgroundColor: "blue",
-              borderRadius: "10px",
-              color: "white",
-              height: "25px",
-              fontSize: ".9rem",
-            }}
-            onClick={() => setActiveSection("applied")}
-            href="#"
-          >
-            Applied
-          </a>
-        </li>
-        <li>
-          <a
-            className="dropdown-item"
-            style={{
-              backgroundColor: "green",
-              borderRadius: "10px",
-              color: "white",
-              height: "25px",
-              fontSize: ".9rem",
-            }}
-            onClick={() => setActiveSection("interview")}
-            href="#"
-          >
-            Interview
-          </a>
-        </li>
-        <li>
-          <a
-            className="dropdown-item"
-            style={{
-              backgroundColor: "#7400f0",
-              borderRadius: "10px",
-              color: "white",
-              height: "25px",
-              fontSize: ".9rem",
-            }}
-            href="#"
-            onClick={() => setActiveSection("accepted")}
-          >
-            Accepted
-          </a>
-        </li>
-        <li>
-          <a
-            className="dropdown-item"
-            style={{
-              backgroundColor: "red",
-              borderRadius: "10px",
-              color: "white",
-              height: "25px",
-              fontSize: ".9rem",
-            }}
-            href="#"
-            onClick={() => setActiveSection("rejected")}
-          >
-            Rejected
-          </a>
-        </li>
-        <li>
-          <a
-            className="dropdown-item"
-            style={{
-              backgroundColor: "gray",
-              borderRadius: "10px",
-              color: "white",
-              height: "25px",
-              fontSize: ".9rem",
-            }}
-            href="#"
-            onClick={() => setActiveSection("none")}
-          >
-            Reset...
-          </a>
-        </li>
+        {[
+          { label: "Applied", value: "applied", bg: "blue" },
+          { label: "Interview", value: "interview", bg: "green" },
+          { label: "Accepted", value: "accepted", bg: "#7400f0" },
+          { label: "Rejected", value: "rejected", bg: "red" },
+          { label: "Reset...", value: "none", bg: "gray" },
+        ].map(({ label, value, bg }) => (
+          <li key={value}>
+            <a
+              className="dropdown-item"
+              href="#"
+              style={{
+                backgroundColor: bg,
+                borderRadius: "10px",
+                color: "white",
+                height: "25px",
+                fontSize: ".9rem",
+              }}
+              onClick={() =>
+                onUpdateStatus(
+                  value as SetStatusDropdownComponentProps["status"],
+                )
+              }
+            >
+              {label}
+            </a>
+          </li>
+        ))}
       </ul>
       <DeleteJobIcon />
     </div>
   );
 };
+
 export default SetStatusDropdownComponent;

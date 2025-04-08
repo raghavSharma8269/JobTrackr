@@ -11,6 +11,10 @@ interface ExpandedJobCardProps {
   jobIndex: number | null;
   isFavorite: boolean;
   onToggleFavorite: () => void;
+  status: "applied" | "interview" | "accepted" | "rejected" | "none";
+  onUpdateStatus: (
+    status: "applied" | "interview" | "accepted" | "rejected" | "none",
+  ) => void;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
@@ -18,6 +22,8 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
   jobIndex,
   isFavorite,
   onToggleFavorite,
+  status,
+  onUpdateStatus,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "description" | "cv" | "resume"
@@ -66,14 +72,17 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
                 </div>
               </div>
             </h3>
-
             <h5>{jobData.company}</h5>
             <p>{jobData.location}</p>
             <p>Date Added: {jobData.dateAdded}</p>
-            <SetStatusDropdownComponent />
+
+            <SetStatusDropdownComponent
+              status={status}
+              onUpdateStatus={onUpdateStatus}
+            />
           </div>
 
-          {/* Section Tabs */}
+          {/* Section tabs */}
           <div
             className="col-12 col-md"
             style={{ borderBottom: "1px solid #9e9ca1" }}
@@ -83,44 +92,27 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
               style={{ paddingTop: "15px", paddingBottom: "15px" }}
             >
               <div className="row">
-                <button
-                  className="col btn section-change-button"
-                  style={{
-                    backgroundColor:
-                      activeSection === "description" ? "#1c1d26" : "#292b38",
-                    color: "#9e9ca1",
-                  }}
-                  onClick={() => setActiveSection("description")}
-                >
-                  Description
-                </button>
-                <button
-                  className="col btn section-change-button"
-                  style={{
-                    backgroundColor:
-                      activeSection === "cv" ? "#1c1d26" : "#292b38",
-                    color: "#9e9ca1",
-                  }}
-                  onClick={() => setActiveSection("cv")}
-                >
-                  CV
-                </button>
-                <button
-                  className="col btn section-change-button"
-                  style={{
-                    backgroundColor:
-                      activeSection === "resume" ? "#1c1d26" : "#292b38",
-                    color: "#9e9ca1",
-                  }}
-                  onClick={() => setActiveSection("resume")}
-                >
-                  Resume
-                </button>
+                {["description", "cv", "resume"].map((section) => (
+                  <button
+                    key={section}
+                    className="col btn section-change-button"
+                    style={{
+                      backgroundColor:
+                        activeSection === section ? "#1c1d26" : "#292b38",
+                      color: "#9e9ca1",
+                    }}
+                    onClick={() =>
+                      setActiveSection(section as typeof activeSection)
+                    }
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Section Content */}
+          {/* Section content */}
           <div
             className="col-12 col-md"
             style={{ paddingTop: "15px", paddingBottom: "15px" }}
