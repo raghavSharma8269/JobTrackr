@@ -49,8 +49,7 @@ public class LinkedInJobsToTableService {
         String jobLocation = getElementText(doc, "span.topcard__flavor.topcard__flavor--bullet");
         String jobSalary = getElementText(doc, "div.compensation__salary");
         String companyName = getElementText(doc, "a.sub-nav-cta__optional-url");
-        String jobType = getElementText(doc,"span.description__job-criteria-text");
-        String jobLevel = getElementText(doc, "span.description__job-criteria-text");
+
 
 
         //Creating new job object to store in JobListEntity
@@ -69,8 +68,6 @@ public class LinkedInJobsToTableService {
         job.setCompanyName(companyName);
         job.setJobTitle(jobTitle);
         job.setJobLocation(jobLocation);
-        job.setJobLevel(jobLevel);
-        job.setJobType(jobType);
         job.setJobSalary(jobSalary);
         job.setJobDescription(jobDescription);
         job.setApplicationStatus(null);

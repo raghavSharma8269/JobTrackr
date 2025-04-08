@@ -32,12 +32,6 @@ public class JobsList {
     @Column(name = "job_location")
     private String jobLocation;
 
-    @Column(name = "job_level")
-    private String jobLevel;
-
-    @Column(name = "job_type")
-    private String jobType;
-
     @Column(name = "job_salary")
     private String jobSalary;
 
