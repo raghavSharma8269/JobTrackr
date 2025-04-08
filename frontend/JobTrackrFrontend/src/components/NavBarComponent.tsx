@@ -1,4 +1,4 @@
-import SortByDropdownComponent from "./NavBarComponents/SortByDropdownComponent.tsx";
+import SortByDropdownComponent from "./NavBarComponents/SortByComponents/SortByDropdownComponent.tsx";
 import AddJobIcon from "./NavBarComponents/AddJobIcon.tsx";
 const NavBarComponent = () => {
   return (

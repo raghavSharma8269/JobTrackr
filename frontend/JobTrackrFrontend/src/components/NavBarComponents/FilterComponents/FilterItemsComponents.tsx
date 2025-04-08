@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ResetSearchParametersIconComponent from "./ResetSearchParametersIconComponent.tsx";
+import ResetSearchParametersIconComponent from "../ResetSearchParametersIconComponent.tsx";
 import FilterDropDownButtonComponent from "./FilterDropDownButtonComponent.tsx";
 
-const FilterByDropdownComponent = () => {
+const FilterItemsComponents = () => {
   const [activeSection, setActiveSection] = useState<
     "applied" | "interview" | "accepted" | "rejected" | "none"
   >("none");
@@ -91,4 +91,4 @@ const FilterByDropdownComponent = () => {
     </div>
   );
 };
-export default FilterByDropdownComponent;
+export default FilterItemsComponents;

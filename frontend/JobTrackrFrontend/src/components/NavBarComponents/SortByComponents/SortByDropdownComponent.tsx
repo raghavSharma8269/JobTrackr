@@ -1,5 +1,5 @@
 import React from "react";
-import SortByButtonGroupComponent from "./SortByButtonGroupComponent";
+import SortBy_Up_Down_ButtonGroupComponent from "./SortBy_Up_Down_ButtonGroupComponent.tsx";
 const SortByDropdownComponent = () => {
   return (
     <div className="dropdown">
@@ -36,7 +36,7 @@ const SortByDropdownComponent = () => {
           </a>
         </li>
       </ul>
-      <SortByButtonGroupComponent />
+      <SortBy_Up_Down_ButtonGroupComponent />
     </div>
   );
 };
