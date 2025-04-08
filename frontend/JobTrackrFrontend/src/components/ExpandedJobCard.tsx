@@ -1,20 +1,36 @@
+import { useState } from "react";
 import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
 import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent.tsx";
 import CvComponent from "./ExpandedJobCardComponents/CvComponent.tsx";
 import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent.tsx";
-import { useState } from "react";
+
 interface ExpandedJobCardProps {
   isVisible: boolean;
+  jobIndex: number | null;
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
 }
 
-const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
+const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
+  isVisible,
+  jobIndex,
+  isFavorite,
+  onToggleFavorite,
+}) => {
   const [activeSection, setActiveSection] = useState<
     "description" | "cv" | "resume"
   >("description");
 
-  if (!isVisible) return null;
+  if (!isVisible || jobIndex === null) return null;
+
+  const jobData = {
+    title: `Job Title ${jobIndex + 1}`,
+    company: `Company ${jobIndex + 1}`,
+    location: `Location ${jobIndex + 1}`,
+    dateAdded: "4/4/2025",
+  };
 
   return (
     <div
@@ -28,46 +44,40 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
     >
       <div className="container text-center">
         <div className="row d-flex flex-column">
-          {/* This is the 1st column with job info*/}
-
           <div
             className="col-12 col-md text-start"
-            style={{
-              borderBottom: "1px solid #9e9ca1",
-            }}
+            style={{ borderBottom: "1px solid #9e9ca1" }}
           >
             <h3
               style={{ paddingTop: "20px" }}
               className="d-flex align-items-center justify-content-between"
             >
-              Job Title
+              {jobData.title}
               <div
                 className="d-flex align-items-center"
                 style={{ gap: "10px" }}
               >
-                <FavoriteStarComponent />
+                <FavoriteStarComponent
+                  isFavorite={isFavorite}
+                  onToggle={onToggleFavorite}
+                />
                 <div style={{ lineHeight: 0 }}>
                   <OpenJobLinkButtonComponent />
                 </div>
               </div>
             </h3>
 
-            <h5>Company Name</h5>
-
-            <p>Location</p>
-
-            <p>Date Added: 4/4/2025</p>
-
+            <h5>{jobData.company}</h5>
+            <p>{jobData.location}</p>
+            <p>Date Added: {jobData.dateAdded}</p>
             <SetStatusDropdownComponent />
           </div>
+
+          {/* Section Tabs */}
           <div
             className="col-12 col-md"
-            style={{
-              borderBottom: "1px solid #9e9ca1",
-            }}
+            style={{ borderBottom: "1px solid #9e9ca1" }}
           >
-            {/* This is the 2nd column with buttons to switch sections*/}
-
             <div
               className="container text-center"
               style={{ paddingTop: "15px", paddingBottom: "15px" }}
@@ -84,7 +94,6 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                 >
                   Description
                 </button>
-
                 <button
                   className="col btn section-change-button"
                   style={{
@@ -96,7 +105,6 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
                 >
                   CV
                 </button>
-
                 <button
                   className="col btn section-change-button"
                   style={{
@@ -112,14 +120,10 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({ isVisible }) => {
             </div>
           </div>
 
-          {/* This is the 3rd column with description/cv/resume*/}
-
+          {/* Section Content */}
           <div
             className="col-12 col-md"
-            style={{
-              paddingTop: "15px",
-              paddingBottom: "15px",
-            }}
+            style={{ paddingTop: "15px", paddingBottom: "15px" }}
           >
             <div
               className="custom-scrollbar"
