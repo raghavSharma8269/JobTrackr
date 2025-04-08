@@ -126,6 +126,14 @@ purple: #7400f0
   filter: invert(1);
 }
 
+.force-drop-down {
+  top: 100% !important;
+  transform: translateY(0) !important;
+  inset: unset !important;
+  max-height: 200px !important;
+}
+
+
 
 
 

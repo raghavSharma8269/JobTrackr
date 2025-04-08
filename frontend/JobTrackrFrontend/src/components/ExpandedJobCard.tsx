@@ -1,7 +1,7 @@
 import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
-import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
+import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent.tsx";
 import CvComponent from "./ExpandedJobCardComponents/CvComponent.tsx";
 import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent.tsx";
 import { useState } from "react";
