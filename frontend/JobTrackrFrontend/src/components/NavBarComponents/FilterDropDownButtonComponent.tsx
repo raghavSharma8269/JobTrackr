@@ -5,7 +5,7 @@ interface FilterDropDownProps {
   text?: string;
 }
 
-const FilterDropDown: React.FC<FilterDropDownProps> = ({
+const FilterDropDownButtonComponent: React.FC<FilterDropDownProps> = ({
   className = "btn dropdown-toggle default-text-color",
   text = "Filter...",
 }) => {
@@ -19,4 +19,4 @@ const FilterDropDown: React.FC<FilterDropDownProps> = ({
     </button>
   );
 };
-export default FilterDropDown;
+export default FilterDropDownButtonComponent;

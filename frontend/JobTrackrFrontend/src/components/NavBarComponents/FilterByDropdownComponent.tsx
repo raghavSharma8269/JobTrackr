@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ResetSearchParametersIconComponent from "./ResetSearchParametersIconComponent.tsx";
-import FilterDropDown from "./FilterButtons/FilterDropDown.tsx";
+import FilterDropDownButtonComponent from "./FilterDropDownButtonComponent.tsx";
 
 const FilterByDropdownComponent = () => {
   const [activeSection, setActiveSection] = useState<
@@ -9,27 +9,27 @@ const FilterByDropdownComponent = () => {
 
   return (
     <div className="dropdown" style={{ marginLeft: "10px" }}>
-      {activeSection === "none" && <FilterDropDown />}
+      {activeSection === "none" && <FilterDropDownButtonComponent />}
       {activeSection === "applied" && (
-        <FilterDropDown
+        <FilterDropDownButtonComponent
           className="btn blue-bg dropdown-toggle default-text-color"
           text="Applied"
         />
       )}
       {activeSection === "interview" && (
-        <FilterDropDown
+        <FilterDropDownButtonComponent
           className="btn green-bg dropdown-toggle default-text-color"
           text="Interview"
         />
       )}
       {activeSection === "accepted" && (
-        <FilterDropDown
+        <FilterDropDownButtonComponent
           className="btn purple-bg dropdown-toggle default-text-color"
           text="Accepted"
         />
       )}
       {activeSection === "rejected" && (
-        <FilterDropDown
+        <FilterDropDownButtonComponent
           className="btn red-bg dropdown-toggle default-text-color"
           text="Rejected"
         />
