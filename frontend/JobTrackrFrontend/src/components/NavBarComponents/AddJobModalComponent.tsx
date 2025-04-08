@@ -48,8 +48,12 @@ const AddJobModalComponent = () => {
               <h5 className="text-center mb-3">OR</h5>
 
               <div className="d-flex justify-content-center mb-4">
-                <button className="btn purple-bg default-text-color">
-                  Enter Custom Job Details
+                <button
+                  className="btn purple-bg default-text-color"
+                  data-bs-toggle="modal"
+                  data-bs-target="#newCustomJobModal"
+                >
+                  Add Custom Job
                 </button>
               </div>
               <div className="d-flex justify-content-end"></div>
