@@ -69,7 +69,8 @@ purple: #7400f0
 }
 
 .light-bg:hover,
-.light-bg:active {
+.light-bg:active,
+.light-bg:focus {
   background-color: #1c1d26;
   color: #c9c9c9;
 }
