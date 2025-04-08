@@ -1,4 +1,3 @@
-import RefreshStatusIconComponent from "./RefreshStatusIconComponent.tsx";
 import DeleteJobIcon from "./DeleteJobIcon.tsx";
 import SetStatusButtonComponent from "./SetStatusButtonComponent.tsx";
 import { useState } from "react";
@@ -121,7 +120,6 @@ const SetStatusDropdownComponent = () => {
           </a>
         </li>
       </ul>
-      <RefreshStatusIconComponent />
       <DeleteJobIcon />
     </div>
   );
