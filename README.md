@@ -11,7 +11,7 @@ JobTrackr is a web application designed to help users track their job applicatio
 
 ### Prerequisites
 
-- Java 11 or higher
+- Java 17
 - Maven
 - Node.js and npm
 
@@ -57,5 +57,16 @@ JobTrackr is a web application designed to help users track their job applicatio
 - **Jobs Page**: View and manage your job applications. Receive feedback on your resume/cv
 - **Settings Page**: Upload resumes and cover letters, and change your password.
 
+
+## Screenshots
+
+### 👋 Welcome Page
+![Welcome Page Screenshot](./screenshots/welcome_page.png)
+
+### 🖼 Jobs Page
+![Jobs Page Screenshot](./screenshots/jobs_page.png)
+
+### ⚙️ Settings Page
+![Settings Page Screenshot](./screenshots/settings_page.png)
 
 
