@@ -12,9 +12,10 @@ import java.util.List;
 @Repository
 public interface JobsRepository extends JpaRepository<JobsList, String> { //String is datatype of primary key
 
-
+    // finds job via custom user
     @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email")
     List<JobsList> findByCustomUser(@Param("email") String email);
+
 
     @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email " + // selects all jobs where email matches the email of the user sending request
             "AND (:keyword IS NULL OR :keyword = '' " + // if keyword is null or empty string, return all jobs

@@ -38,19 +38,22 @@ public class GetAllJobsService  {
 
         logger.info("Executing " + getClass() + ", getting all jobs saved by: " + email);
 
-        Sort sort = Sort.by(Sort.Direction.DESC, "localDateTime");
+        Sort sort = Sort.by(Sort.Direction.DESC, "localDateTime"); // sorts by newest job first by default
         if ("localDateTime".equalsIgnoreCase(sortBy.toString())) {
             sort = Sort.by(Sort.Direction.DESC, "localDateTime");
         } else if ("companyName".equalsIgnoreCase(sortBy.toString())) {
             sort = Sort.by(Sort.Direction.ASC, "companyName");
         } else if ("jobTitle".equalsIgnoreCase(sortBy.toString())) {
             sort = Sort.by(Sort.Direction.ASC, "jobTitle");
+        } else if ("favorite".equalsIgnoreCase(sortBy.toString())) {
+            sort = Sort.by(Sort.Direction.DESC, "favorite");
         }
-
 
 
         Optional<CustomUser> optionalCustomUser = userRepository.findById(email);
 
+        
+        //Default (with no search parameters) is sorted by newest job first
         if (optionalCustomUser.isPresent()){
             CustomUser customUser = optionalCustomUser.get();
             List<JobsList> jobs = jobsRepository.search(customUser.getEmail(), search, sort);
