@@ -5,8 +5,8 @@ function App() {
   return (
     <>
       <div style={{ backgroundColor: "#1c1d26", minHeight: "100vh" }}>
-        {/*<WelcomePage />*/}
-        <MainPage />
+        <WelcomePage />
+        {/*<MainPage />*/}
       </div>
     </>
   );
