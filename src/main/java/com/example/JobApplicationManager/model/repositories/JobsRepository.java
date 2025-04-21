@@ -1,6 +1,7 @@
 package com.example.JobApplicationManager.model.repositories;
 
 import com.example.JobApplicationManager.model.entity.JobsList;
+import com.example.JobApplicationManager.service.jobsServices.ApplicationStatus;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +24,9 @@ public interface JobsRepository extends JpaRepository<JobsList, String> { //Stri
             "OR LOWER(query.companyName) LIKE LOWER(CONCAT('%', :keyword, '%')) " + // if keyword is in company name, return job
             "OR LOWER(query.jobDescription) LIKE LOWER(CONCAT('%', :keyword, '%')))") // if keyword is in job description, return job
     List<JobsList> search(@Param("email") String email, @Param("keyword") String keyword, Sort sort); // search for jobs by email, keyword, and sort
+
+
+    @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email AND query.applicationStatus = :status")
+    List<JobsList> filterByStatus (@Param("email") String email, @Param("status")ApplicationStatus status);
 
 }
