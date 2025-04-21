@@ -62,8 +62,7 @@ public class CreateNewUserService implements Command<CustomUser, String> {
             userRepository.save(new CustomUser(
                     customUser.getEmail(),
 
-                    //encoding password
-                    passwordEncoder.encode(
+                    passwordEncoder.encode(                     //encoding password
                             customUser.getPassword()),
                     customUser.getFullName(),
                     customUser.getResume(),
@@ -75,7 +74,10 @@ public class CreateNewUserService implements Command<CustomUser, String> {
                     customUser.getEmailVerificationToken()
             ));
 
-            emailService.sendSimpleMessage(customUser.getEmail(), "JobTrackr Email Verification", "http://localhost:8080/api/auth/verify?emailVerificationToken="+customUser.getEmailVerificationToken());
+            emailService.sendSimpleMessage(customUser.getEmail(), "JobTrackr Email Verification",
+                    "Click the link below to verify your email\n" +
+                            "http://localhost:8080/api/auth/verify?emailVerificationToken="+customUser.getEmailVerificationToken()+
+                            "\n**Do not reply to this email**\n");
 
             return ResponseEntity.status(HttpStatus.CREATED).body("User Created Successfully");
         }
