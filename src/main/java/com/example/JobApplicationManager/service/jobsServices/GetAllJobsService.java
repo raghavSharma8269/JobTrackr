@@ -31,7 +31,7 @@ public class GetAllJobsService  {
     }
 
 
-    public ResponseEntity<List<JobsDTO>> execute(Object sortBy, String search) {
+    public ResponseEntity<List<JobsDTO>> execute(Object sortBy, String search, ApplicationStatus status) {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = userDetails.getUsername();
@@ -60,7 +60,7 @@ public class GetAllJobsService  {
 
             List<JobsDTO> jobsDTOS = jobs
                     .stream()
-                    .map(JobsDTO ::new)
+                    .map(JobsDTO::new)
                     .toList();
 
             return ResponseEntity.ok().body(jobsDTOS);
