@@ -1,12 +1,9 @@
 package com.example.JobApplicationManager.controller;
 
 import com.example.JobApplicationManager.UpdateJobCommand;
-import com.example.JobApplicationManager.service.jobsServices.DeleteJobService;
-import com.example.JobApplicationManager.service.jobsServices.EditJobService;
-import com.example.JobApplicationManager.service.jobsServices.GetAllJobsService;
+import com.example.JobApplicationManager.service.jobsServices.*;
 import com.example.JobApplicationManager.model.DTOs.JobsDTO;
 import com.example.JobApplicationManager.model.entity.JobsList;
-import com.example.JobApplicationManager.service.jobsServices.CreateNewCustomJobService;
 import com.example.JobApplicationManager.service.jobsServices.scrapers.linkedin.LinkedInJobsToTableService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -54,8 +51,9 @@ public class JobController {
     @GetMapping()
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<List<JobsDTO>> getAllJobs(@RequestParam(defaultValue = "localDateTime") String sortBy,
-                                                    @RequestParam(required = false) String search) {
-        return getAllJobsService.execute(sortBy, search);
+                                                    @RequestParam(required = false) String search,
+                                                    @RequestParam(required = false) ApplicationStatus status) {
+        return getAllJobsService.execute(sortBy, search, status );
     }
 
     // Update existing job
