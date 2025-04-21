@@ -83,13 +83,14 @@ public class ResumeOpenAIService {
         String prompt = "Given these parameters: \n" +
                 "Given Resume: " + resume + " ,Job Description: " + jobDescription + " ,Job title: " + jobTitle +
                 " ,Company Name: " + companyName + "\n" +
-                "Do these 3 steps: \n" +
+                "Do these 4 steps: \n" +
                 "Step 1: Focus on this step the least. Highlight the most relevant key bullet points from the resume for this role\n" +
                 "Step 2: This is the step you should focus on the most.In order to maximize an interview offer, use the 3 parameters to edit bullet points in " +
                 "the resume for this role to bypass Applicant Tracking Systems (ATS) by using key words. Return both the " +
                 "edited bullet point along with the original to let the user easily figure out which bullet points need to be edited\n" +
                 "Step 3: Give suggestions of what is missing in this resume based on the given parameters and what the user should focus on adding to their resume.\n" +
-                "Limit the response to 325 words and do not make up information.";
+                "Step 4: Give a score from 1-10 on how well this resume fits the job description and an explanation on why you gave it that score including what technologies are missing or need more work. \n" +
+                "Limit the response to 350 words and do not make up information. If some skills are not already stated in the resume do not just add them to the resume to make it more aligned with the description.";
 
         List<Map<String, String>> messages = new ArrayList<>();
         Map<String, String> systemMessage = new HashMap<>();
