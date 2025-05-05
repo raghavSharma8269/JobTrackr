@@ -40,7 +40,7 @@ const MainPage = () => {
                     paddingBottom: "10px",
                   }}
                 >
-                  <span style={{ color: "#7400f0" }}>Job</span>Trackr
+                  <span style={{ color: "#7400f0" }}>Job</span>Vault
                 </h1>
               </div>
               {/* Jobs Button */}
