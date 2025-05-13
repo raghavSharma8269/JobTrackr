@@ -17,19 +17,19 @@ public class JobController {
     private final LinkedInJobsToTableService linkedInJobsToTableService;
     private final CreateNewCustomJobService createNewCustomJobService;
     private final GetAllJobsService getAllJobsService;
-    private final EditJobService editJobService;
+    private final UpdateJobService updateJobService;
     private final DeleteJobService deleteJobService;
 
     public JobController(LinkedInJobsToTableService linkedInJobsToTableService,
                          CreateNewCustomJobService createNewCustomJobService,
                          GetAllJobsService getAllJobsService,
-                         EditJobService editJobService,
+                         UpdateJobService updateJobService,
                          DeleteJobService deleteJobService
     ) {
         this.linkedInJobsToTableService = linkedInJobsToTableService;
         this.createNewCustomJobService = createNewCustomJobService;
         this.getAllJobsService = getAllJobsService;
-        this.editJobService = editJobService;
+        this.updateJobService = updateJobService;
         this.deleteJobService = deleteJobService;
     }
 
@@ -60,7 +60,7 @@ public class JobController {
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<JobsDTO> updateJob (@PathVariable String id, @RequestBody JobsList job){
-        return editJobService.execute(new UpdateJobCommand(id, job));
+        return updateJobService.execute(new UpdateJobCommand(id, job));
     }
 
     @DeleteMapping("/{id}")

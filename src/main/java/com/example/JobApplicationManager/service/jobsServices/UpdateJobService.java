@@ -21,13 +21,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class EditJobService implements Command<UpdateJobCommand, JobsDTO> {
+public class UpdateJobService implements Command<UpdateJobCommand, JobsDTO> {
 
     private final JobsRepository jobsRepository;
     private final UserRepository userRepository;
-    Logger logger = LoggerFactory.getLogger(EditJobService.class);
+    Logger logger = LoggerFactory.getLogger(UpdateJobService.class);
 
-    public EditJobService(JobsRepository jobsRepository, UserRepository userRepository) {
+    public UpdateJobService(JobsRepository jobsRepository, UserRepository userRepository) {
         this.jobsRepository = jobsRepository;
         this.userRepository = userRepository;
     }

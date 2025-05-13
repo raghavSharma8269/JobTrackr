@@ -77,7 +77,7 @@ public class LinkedInJobsToTableService {
 
         jobsRepository.save(job);
 
-        return ResponseEntity.ok().body("Job Successfully Added");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Job Added Successfully");
     }
 
 
