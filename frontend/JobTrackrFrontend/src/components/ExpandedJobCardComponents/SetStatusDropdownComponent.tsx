@@ -1,5 +1,6 @@
 import DeleteJobIcon from "./DeleteJobIcon.tsx";
 import SetStatusButtonComponent from "./SetStatusButtonComponent.tsx";
+import UpdateJobIcon from "./UpdateJobIcon.tsx";
 
 interface SetStatusDropdownComponentProps {
   status: "applied" | "interview" | "accepted" | "rejected" | "none";
@@ -78,6 +79,7 @@ const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
           </li>
         ))}
       </ul>
+      <UpdateJobIcon />
       <DeleteJobIcon />
     </div>
   );
