@@ -56,7 +56,7 @@ public class GetAllJobsService  {
         //Default (with no search parameters) is sorted by newest job first
         if (optionalCustomUser.isPresent()){
             CustomUser customUser = optionalCustomUser.get();
-            List<JobsList> jobs = jobsRepository.search(customUser.getEmail(), search, sort);
+            List<JobsList> jobs = jobsRepository.search(customUser.getEmail(), search, status, sort);
 
             List<JobsDTO> jobsDTOS = jobs
                     .stream()

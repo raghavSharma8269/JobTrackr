@@ -18,12 +18,19 @@ public interface JobsRepository extends JpaRepository<JobsList, String> { //Stri
     List<JobsList> findByCustomUser(@Param("email") String email);
 
 
-    @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email " + // selects all jobs where email matches the email of the user sending request
-            "AND (:keyword IS NULL OR :keyword = '' " + // if keyword is null or empty string, return all jobs
-            "OR LOWER(query.jobTitle) LIKE LOWER(CONCAT('%', :keyword, '%')) " + // if keyword is in job title, return job
-            "OR LOWER(query.companyName) LIKE LOWER(CONCAT('%', :keyword, '%')) " + // if keyword is in company name, return job
-            "OR LOWER(query.jobDescription) LIKE LOWER(CONCAT('%', :keyword, '%')))") // if keyword is in job description, return job
-    List<JobsList> search(@Param("email") String email, @Param("keyword") String keyword, Sort sort); // search for jobs by email, keyword, and sort
+    @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email " +
+            "AND (:keyword IS NULL OR :keyword = '' " +
+            "OR LOWER(query.jobTitle) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(query.companyName) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(query.jobDescription) LIKE LOWER(CONCAT('%', :keyword, '%'))) " +
+            "AND (:status IS NULL OR query.applicationStatus = :status)")
+    List<JobsList> search(
+            @Param("email") String email,
+            @Param("keyword") String keyword,
+            @Param("status") ApplicationStatus status,
+            Sort sort
+    );
+
 
 
     @Query("SELECT query FROM JobsList query WHERE query.customUser.email = :email AND query.applicationStatus = :status")
