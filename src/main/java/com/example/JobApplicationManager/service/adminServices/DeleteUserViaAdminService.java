@@ -1,7 +1,7 @@
 package com.example.JobApplicationManager.service.adminServices;
 
 import com.example.JobApplicationManager.exceptions.ExceptionMessages;
-import com.example.JobApplicationManager.exceptions.NotAuthorizedException;
+import com.example.JobApplicationManager.exceptions.UnauthorizedException;
 import com.example.JobApplicationManager.model.entity.CustomUser;
 import com.example.JobApplicationManager.model.entity.JobsList;
 import com.example.JobApplicationManager.model.repositories.JobsRepository;
@@ -48,7 +48,7 @@ public class DeleteUserViaAdminService {
         }
 
         else {
-            throw new NotAuthorizedException(ExceptionMessages.NOT_AUTHORIZED_TO_DELETE_USER.getMessage());
+            throw new UnauthorizedException(ExceptionMessages.NOT_AUTHORIZED_TO_DELETE_USER.getMessage());
         }
 
 
