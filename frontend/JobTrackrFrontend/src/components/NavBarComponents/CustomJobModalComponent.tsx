@@ -26,7 +26,9 @@ const CustomJobModalComponent = () => {
 
           {/* Modal Body */}
           <div className="modal-body light-bg">
-            <h5>Job Title</h5>
+            <h5>
+              Job Title <span style={{ color: "#d9182b" }}>*</span>
+            </h5>
             <input
               type="text"
               className="form-control light-bg mb-4"
@@ -35,7 +37,9 @@ const CustomJobModalComponent = () => {
               required
             />
 
-            <h5>Company</h5>
+            <h5>
+              Company <span style={{ color: "#d9182b" }}>*</span>
+            </h5>
             <input
               type="text"
               className="form-control light-bg mb-4"
@@ -44,12 +48,25 @@ const CustomJobModalComponent = () => {
               required
             />
 
-            <h5>Description</h5>
+            <h5>
+              Description <span style={{ color: "#d9182b" }}>*</span>
+            </h5>
             <input
               type="text"
               className="form-control light-bg mb-4"
               id="jobLink"
               placeholder="Enter Job Description"
+              required
+            />
+
+            <h5>
+              Job Page URL <span style={{ color: "#d9182b" }}>*</span>
+            </h5>
+            <input
+              type="text"
+              className="form-control light-bg mb-4"
+              id="jobLink"
+              placeholder="Enter Job URL"
               required
             />
 
@@ -67,15 +84,6 @@ const CustomJobModalComponent = () => {
               className="form-control light-bg mb-4"
               id="jobLink"
               placeholder="Enter Salary"
-            />
-
-            <h5>Job Page URL</h5>
-            <input
-              type="text"
-              className="form-control light-bg mb-4"
-              id="jobLink"
-              placeholder="Enter Job URL"
-              required
             />
 
             <div className="d-flex justify-content-center mb-4">
