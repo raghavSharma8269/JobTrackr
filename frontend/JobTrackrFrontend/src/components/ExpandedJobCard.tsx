@@ -62,6 +62,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
             </h3>
             <h5>{job.companyName}</h5>
             <p>{job.jobLocation}</p>
+            <p>Salary: {job.jobSalary}</p>
             <p>
               Date Added: {new Date(job.localDateTime).toLocaleDateString()}
             </p>
