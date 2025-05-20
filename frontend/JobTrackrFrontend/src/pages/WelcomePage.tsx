@@ -13,6 +13,8 @@ const WelcomePage: React.FC = () => {
   const openRegisterModal = () => setIsRegisterModalVisible(true);
   const closeRegisterModal = () => setIsRegisterModalVisible(false);
 
+  console.log("Rendering WelcomePage");
+
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
       <div className="row w-100">

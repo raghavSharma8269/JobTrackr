@@ -29,11 +29,17 @@ const LoginModalComponent: React.FC<LoginModalComponentProps> = ({
         },
       );
 
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+      console.log("Login Response: " + JSON.stringify(response, null, 2));
 
-      closeModal(); // hide the modal
-      navigate("/jobs"); // go to the jobs page
+      const token = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        closeModal(); // hide the modal
+        navigate("/dashboard"); // redirect to dashboard page
+      } else {
+        setErrorMessage("Login failed. Invalid token.");
+      }
     } catch (error: any) {
       console.error(error);
       setErrorMessage("Invalid credentials. Please try again.");
