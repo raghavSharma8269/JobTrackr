@@ -69,14 +69,6 @@ const CustomJobModalComponent = () => {
               placeholder="Enter Salary"
             />
 
-            <h5>Job Level</h5>
-            <input
-              type="text"
-              className="form-control light-bg mb-4"
-              id="jobLink"
-              placeholder="Enter Job Level"
-            />
-
             <h5>Job Page URL</h5>
             <input
               type="text"
