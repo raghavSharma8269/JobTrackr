@@ -4,11 +4,19 @@ import SettingsPage from "./SettingsPage";
 import logOutSvg from "../assets/box-arrow-left.svg";
 import JobsPage from "./JobsPage";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const [activePage, setActivePage] = useState<"jobs" | "settings" | "logout">(
     "jobs",
   );
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/welcome");
+  };
 
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
@@ -77,6 +85,8 @@ const MainPage = () => {
                 />
                 Settings
               </button>
+
+              {/* Log Out Button */}
               <button
                 className="btn mt-5 btn-lg d-flex align-items-center section-change-button"
                 style={{
@@ -84,6 +94,7 @@ const MainPage = () => {
                   backgroundColor:
                     activePage === "logout" ? "#1c1d26" : "transparent",
                 }}
+                onClick={handleLogout}
               >
                 <img
                   src={logOutSvg}
@@ -99,7 +110,7 @@ const MainPage = () => {
         {/* Right Section - Main Content */}
         <div className="col-md-10 d-flex justify-content-center align-items-center">
           {activePage === "jobs" ? (
-            <JobsPage /> // ✅ Now it loads the correct JobsPage
+            <JobsPage />
           ) : (
             <SettingsPage closeSettingsPage={() => setActivePage("jobs")} />
           )}
