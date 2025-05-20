@@ -12,10 +12,8 @@ const AddJobModalComponent = () => {
         jobUrl,
       };
 
-      console.log("REQUEST DUDE: " + request.jobUrl);
-
       await axios.post(
-        `http://localhost:8080/api/jobs/create?url=${encodeURIComponent(jobUrl)}`,
+        `http://localhost:8080/api/jobs/create?url=${encodeURIComponent(request.jobUrl)}`,
         {},
         {
           headers: {
