@@ -1,6 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const CustomJobModalComponent = () => {
+  const [jobTitle, setJobTitle] = useState("");
+  const [companyName, setCompany] = useState("");
+  const [jobDescription, setDescription] = useState("");
+  const [jobUrl, setJobUrl] = useState("");
+  const [jobLocation, setLocation] = useState("");
+  const [jobSalary, setSalary] = useState("");
+
+  const handleAddJob = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      // data to be sent to the backend
+      const jobData = {
+        jobTitle,
+        companyName,
+        jobDescription,
+        jobUrl,
+        jobLocation,
+        jobSalary,
+        favorite: false,
+        applicationStatus: null,
+      };
+
+      await axios.post(
+        "http://localhost:8080/api/jobs/create/custom",
+        jobData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      // Reset form
+      setJobTitle("");
+      setCompany("");
+      setDescription("");
+      setJobUrl("");
+      setLocation("");
+      setSalary("");
+
+      alert("Job added successfully!");
+    } catch (error) {
+      console.error("Error adding job:", error);
+      return (
+        <div className="alert alert-danger" role="alert">
+          A simple danger alert—check it out!
+        </div>
+      );
+    }
+  };
+
   return (
     <div
       className="modal fade default-text-color"
@@ -32,9 +85,10 @@ const CustomJobModalComponent = () => {
             <input
               type="text"
               className="form-control light-bg mb-4"
-              id="jobLink"
               placeholder="Enter Job Title"
               required
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
             />
 
             <h5>
@@ -43,9 +97,10 @@ const CustomJobModalComponent = () => {
             <input
               type="text"
               className="form-control light-bg mb-4"
-              id="jobLink"
               placeholder="Enter Company Name"
               required
+              value={companyName}
+              onChange={(e) => setCompany(e.target.value)}
             />
 
             <h5>
@@ -54,9 +109,10 @@ const CustomJobModalComponent = () => {
             <input
               type="text"
               className="form-control light-bg mb-4"
-              id="jobLink"
               placeholder="Enter Job Description"
               required
+              value={jobDescription}
+              onChange={(e) => setDescription(e.target.value)}
             />
 
             <h5>
@@ -65,29 +121,35 @@ const CustomJobModalComponent = () => {
             <input
               type="text"
               className="form-control light-bg mb-4"
-              id="jobLink"
               placeholder="Enter Job URL"
               required
+              value={jobUrl}
+              onChange={(e) => setJobUrl(e.target.value)}
             />
 
             <h5>Location</h5>
             <input
               type="text"
               className="form-control light-bg mb-4"
-              id="jobLink"
               placeholder="Enter Job Location"
+              value={jobLocation}
+              onChange={(e) => setLocation(e.target.value)}
             />
 
             <h5>Salary</h5>
             <input
               type="text"
               className="form-control light-bg mb-4"
-              id="jobLink"
               placeholder="Enter Salary"
+              value={jobSalary}
+              onChange={(e) => setSalary(e.target.value)}
             />
 
             <div className="d-flex justify-content-center mb-4">
-              <button className="btn purple-bg default-text-color">
+              <button
+                className="btn purple-bg default-text-color"
+                onClick={handleAddJob}
+              >
                 Add Job
               </button>
             </div>
