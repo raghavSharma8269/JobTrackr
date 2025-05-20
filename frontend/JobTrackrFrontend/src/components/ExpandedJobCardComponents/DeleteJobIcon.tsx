@@ -10,7 +10,7 @@ const DeleteJobIcon = () => {
         display: "inline-block",
         position: "absolute",
         top: "-3px",
-        left: "650px",
+        left: "200px",
       }}
       onClick={() => alert("Delete Job")}
     />

@@ -23,7 +23,9 @@ const NavBarComponent = () => {
             aria-label="Search"
             style={{ backgroundColor: "#1c1d26", color: "#9e9ca1" }}
           />
-          <button className="btn purple-bg default-text-color">Search</button>
+          <button className="btn purple-bg default-text-color">
+            <i className="bi bi-search"></i>
+          </button>
         </form>
       </div>
     </nav>

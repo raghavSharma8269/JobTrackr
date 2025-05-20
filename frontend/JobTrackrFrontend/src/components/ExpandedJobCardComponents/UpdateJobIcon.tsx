@@ -10,7 +10,7 @@ const UpdateJobIcon = () => {
         display: "inline-block",
         position: "absolute",
         top: "-3px",
-        left: "600px",
+        left: "150px",
       }}
       onClick={() => alert("Update Job")}
     />
