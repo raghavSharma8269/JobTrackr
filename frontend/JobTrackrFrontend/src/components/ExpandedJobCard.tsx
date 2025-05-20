@@ -1,5 +1,4 @@
 import { useState } from "react";
-import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
 import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
@@ -116,9 +115,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
                 maxHeight: "calc(100vh - 579px)",
               }}
             >
-              {activeSection === "description" && (
-                <DescriptionComponent description={job.jobDescription} />
-              )}
+              {activeSection === "description" && <p>{job.jobDescription}</p>}
               {activeSection === "cv" && <CvComponent />}
               {activeSection === "resume" && <ResumeComponent />}
             </div>
