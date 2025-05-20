@@ -46,11 +46,16 @@ const CustomJobModalComponent = () => {
       alert("Job added successfully!");
     } catch (error) {
       console.error("Error adding job:", error);
-      return (
-        <div className="alert alert-danger" role="alert">
-          A simple danger alert—check it out!
-        </div>
-      );
+
+      if (axios.isAxiosError(error) && error.response) {
+        const backendMessage = error.response.data;
+
+        if (backendMessage.message) {
+          alert(backendMessage.message);
+        }
+      } else {
+        alert("An unknown error occurred.");
+      }
     }
   };
 
