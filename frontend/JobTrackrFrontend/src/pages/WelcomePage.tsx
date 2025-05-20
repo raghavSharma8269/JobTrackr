@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/JobTrackr.png";
+import logo2 from "../assets/vectorized.svg";
 import LoginModalComponent from "../components/LoginModalComponent";
 import RegisterModalComponent from "../components/RegisterModalComponent";
 
@@ -28,7 +29,7 @@ const WelcomePage: React.FC = () => {
             style={{ marginTop: "35px" }}
           >
             Welcome To <br /> <span style={{ color: "#7400f0" }}>Job</span>
-            Trackr
+            Vault
           </h1>
 
           <img

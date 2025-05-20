@@ -90,7 +90,7 @@ const MainPage = () => {
                   alt="Log Out Icon"
                   style={{ marginRight: "10px", width: "20px", height: "20px" }}
                 />
-                Sign Out
+                Log Out
               </button>
             </div>
           </div>
