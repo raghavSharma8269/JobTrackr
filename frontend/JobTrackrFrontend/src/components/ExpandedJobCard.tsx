@@ -2,41 +2,29 @@ import { useState } from "react";
 import DescriptionComponent from "./ExpandedJobCardComponents/DescriptionComponent";
 import FavoriteStarComponent from "./ExpandedJobCardComponents/FavoriteStarComponent";
 import OpenJobLinkButtonComponent from "./ExpandedJobCardComponents/OpenJobLinkButtonComponent";
-import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent.tsx";
-import CvComponent from "./ExpandedJobCardComponents/CvComponent.tsx";
-import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent.tsx";
+import SetStatusDropdownComponent from "./ExpandedJobCardComponents/SetStatusDropdownComponent";
+import CvComponent from "./ExpandedJobCardComponents/CvComponent";
+import ResumeComponent from "./ExpandedJobCardComponents/ResumeComponent";
+import { Job } from "../types/Job";
 
 interface ExpandedJobCardProps {
   isVisible: boolean;
-  jobIndex: number | null;
-  isFavorite: boolean;
+  job: Job | null;
   onToggleFavorite: () => void;
-  status: "applied" | "interview" | "accepted" | "rejected" | "none";
-  onUpdateStatus: (
-    status: "applied" | "interview" | "accepted" | "rejected" | "none",
-  ) => void;
+  onUpdateStatus: (status: Job["applicationStatus"]) => void;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
   isVisible,
-  jobIndex,
-  isFavorite,
+  job,
   onToggleFavorite,
-  status,
   onUpdateStatus,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "description" | "cv" | "resume"
   >("description");
 
-  if (!isVisible || jobIndex === null) return null;
-
-  const jobData = {
-    title: `Job Title ${jobIndex + 1}`,
-    company: `Company ${jobIndex + 1}`,
-    location: `Location ${jobIndex + 1}`,
-    dateAdded: "4/4/2025",
-  };
+  if (!isVisible || job === null) return null;
 
   return (
     <div
@@ -58,26 +46,28 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
               style={{ paddingTop: "20px" }}
               className="d-flex align-items-center justify-content-between"
             >
-              {jobData.title}
+              {job.jobTitle}
               <div
                 className="d-flex align-items-center"
                 style={{ gap: "10px" }}
               >
                 <FavoriteStarComponent
-                  isFavorite={isFavorite}
+                  isFavorite={job.favorite}
                   onToggle={onToggleFavorite}
                 />
                 <div style={{ lineHeight: 0 }}>
-                  <OpenJobLinkButtonComponent />
+                  <OpenJobLinkButtonComponent url={job.jobUrl} />
                 </div>
               </div>
             </h3>
-            <h5>{jobData.company}</h5>
-            <p>{jobData.location}</p>
-            <p>Date Added: {jobData.dateAdded}</p>
+            <h5>{job.companyName}</h5>
+            <p>{job.jobLocation}</p>
+            <p>
+              Date Added: {new Date(job.localDateTime).toLocaleDateString()}
+            </p>
 
             <SetStatusDropdownComponent
-              status={status}
+              status={job.applicationStatus}
               onUpdateStatus={onUpdateStatus}
             />
           </div>
@@ -125,7 +115,9 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
                 maxHeight: "calc(100vh - 579px)",
               }}
             >
-              {activeSection === "description" && <DescriptionComponent />}
+              {activeSection === "description" && (
+                <DescriptionComponent description={job.jobDescription} />
+              )}
               {activeSection === "cv" && <CvComponent />}
               {activeSection === "resume" && <ResumeComponent />}
             </div>

@@ -1,7 +1,10 @@
-const DescriptionComponent = () => {
-  const text =
-    "Text for the description component. This is where the job description will go";
+import React from "react";
 
-  return <div>{text}</div>;
+interface Props {
+  description: string;
+}
+
+const DescriptionComponent: React.FC<Props> = ({ description }) => {
+  return <div>{description}</div>;
 };
 export default DescriptionComponent;

@@ -1,3 +1,10 @@
+export type JobStatus =
+  | "applied"
+  | "interview"
+  | "accepted"
+  | "rejected"
+  | "none";
+
 export interface Job {
   id: string;
   companyName: string;
@@ -5,7 +12,7 @@ export interface Job {
   jobLocation: string;
   jobSalary: string;
   jobDescription: string;
-  applicationStatus: "applied" | "interview" | "accepted" | "rejected" | "none";
+  applicationStatus: JobStatus;
   jobUrl: string;
   favorite: boolean;
   localDateTime: string;

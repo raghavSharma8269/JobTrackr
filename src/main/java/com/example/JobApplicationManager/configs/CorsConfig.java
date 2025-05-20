@@ -15,7 +15,8 @@ public class CorsConfig {
                 registry
                         .addMapping("/api/**")
                         .allowedOrigins("http://localhost:5173") // React frontend URL
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
                         .allowCredentials(true);
             }
         };

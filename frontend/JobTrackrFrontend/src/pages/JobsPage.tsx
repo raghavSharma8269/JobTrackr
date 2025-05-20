@@ -1,29 +1,47 @@
+import { useEffect, useState } from "react";
 import ExpandedJobCard from "../components/ExpandedJobCard";
 import JobListComponent from "../components/JobListComponent";
-import NavBarComponent from "../components/NavBarComponent.tsx";
-import { useState } from "react";
-
-type JobStatus = "applied" | "interview" | "accepted" | "rejected" | "none";
+import NavBarComponent from "../components/NavBarComponent";
+import axios from "axios";
+import { Job, JobStatus } from "../types/Job";
 
 const JobsPage = () => {
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [selectedJobIndex, setSelectedJobIndex] = useState<number | null>(null);
-  const [favoriteJobs, setFavoriteJobs] = useState<boolean[]>(
-    Array(10).fill(false),
-  );
-  const [jobStatuses, setJobStatuses] = useState<JobStatus[]>(
-    Array(10).fill("none"),
-  );
+
+  // Fetch jobs on mount
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get("http://localhost:8080/api/jobs", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setJobs(res.data);
+      } catch (err) {
+        console.error("Failed to fetch jobs:", err);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
   const toggleFavorite = (index: number) => {
-    const updated = [...favoriteJobs];
-    updated[index] = !updated[index];
-    setFavoriteJobs(updated);
+    setJobs((prev) =>
+      prev.map((job, i) =>
+        i === index ? { ...job, favorite: !job.favorite } : job,
+      ),
+    );
   };
 
   const updateJobStatus = (index: number, newStatus: JobStatus) => {
-    const updated = [...jobStatuses];
-    updated[index] = newStatus;
-    setJobStatuses(updated);
+    setJobs((prev) =>
+      prev.map((job, i) =>
+        i === index ? { ...job, applicationStatus: newStatus } : job,
+      ),
+    );
   };
 
   return (
@@ -32,23 +50,17 @@ const JobsPage = () => {
         <NavBarComponent />
         <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
           <JobListComponent
+            jobs={jobs}
             onJobClick={setSelectedJobIndex}
-            favoriteJobs={favoriteJobs}
             toggleFavorite={toggleFavorite}
           />
         </div>
         <div className="col-md-8 d-flex justify-content-center align-items-start">
           <ExpandedJobCard
             isVisible={selectedJobIndex !== null}
-            jobIndex={selectedJobIndex}
-            isFavorite={
-              selectedJobIndex !== null ? favoriteJobs[selectedJobIndex] : false
-            }
+            job={selectedJobIndex !== null ? jobs[selectedJobIndex] : null}
             onToggleFavorite={() =>
               selectedJobIndex !== null && toggleFavorite(selectedJobIndex)
-            }
-            status={
-              selectedJobIndex !== null ? jobStatuses[selectedJobIndex] : "none"
             }
             onUpdateStatus={(newStatus) =>
               selectedJobIndex !== null &&
