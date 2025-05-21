@@ -2,6 +2,7 @@ import WelcomePage from "./pages/WelcomePage";
 import MainPage from "./pages/MainPage";
 import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute.tsx";
+import ContactPage from "./pages/ContactPage.tsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           }
         />
         <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </div>
   );
