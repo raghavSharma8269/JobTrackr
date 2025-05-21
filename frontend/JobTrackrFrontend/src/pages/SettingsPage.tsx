@@ -4,7 +4,7 @@ interface SettingsPageProps {
   closeSettingsPage: () => void;
 }
 
-const SettingsPage: React.FC<SettingsPageProps> = ({}) => {
+const SettingsPage: React.FC<SettingsPageProps> = () => {
   //changes tab name
   useEffect(() => {
     document.title = "Settings | JobVault";
