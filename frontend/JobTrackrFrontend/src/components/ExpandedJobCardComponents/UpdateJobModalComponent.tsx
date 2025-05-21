@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Job } from "../../types/Job.ts";
+import { useJobContext } from "../../context/JobContext.tsx";
 
 interface Props {
   job: Job;
@@ -13,6 +14,8 @@ const UpdateJobModalComponent: React.FC<Props> = ({ job }) => {
   const [jobUrl, setJobUrl] = useState("");
   const [jobLocation, setLocation] = useState("");
   const [jobSalary, setSalary] = useState("");
+
+  const { refreshJobs } = useJobContext();
 
   useEffect(() => {
     if (job) {
@@ -47,6 +50,7 @@ const UpdateJobModalComponent: React.FC<Props> = ({ job }) => {
       });
 
       alert("Job updated successfully!");
+      refreshJobs();
     } catch (error) {
       console.error("Error updating job:", error);
 
