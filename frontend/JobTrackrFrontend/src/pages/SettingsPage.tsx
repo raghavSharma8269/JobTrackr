@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface SettingsPageProps {
   closeSettingsPage: () => void;
 }
 
 const SettingsPage: React.FC<SettingsPageProps> = ({}) => {
+  //changes tab name
+  useEffect(() => {
+    document.title = "Settings | JobVault"; // <- Your custom tab title
+  }, []);
+
   const [resume, setResume] = useState<File | null>(null);
   const [coverLetter, setCoverLetter] = useState<File | null>(null);
 
@@ -19,7 +24,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({}) => {
   };
 
   const handleCoverLetterUpload = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
