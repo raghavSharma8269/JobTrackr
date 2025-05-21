@@ -1,9 +1,11 @@
 import React from "react";
 import CustomJobModalComponent from "./CustomJobModalComponent.tsx";
 import axios from "axios";
+import { useJobContext } from "../../context/JobContext.tsx";
 
 const AddJobModalComponent = () => {
   const [jobUrl, setJobUrl] = React.useState("");
+  const { refreshJobs } = useJobContext();
 
   const handleAddingJobViaLinkedIn = async () => {
     try {
@@ -26,6 +28,7 @@ const AddJobModalComponent = () => {
       setJobUrl("");
 
       alert("Job added successfully!");
+      refreshJobs();
     } catch (error) {
       console.error("Error adding job:", error);
 
