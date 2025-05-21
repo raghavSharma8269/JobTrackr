@@ -3,6 +3,7 @@ import logo from "../assets/JobTrackr.png";
 import logo2 from "../assets/vectorized.svg";
 import LoginModalComponent from "../components/LoginModalComponent";
 import RegisterModalComponent from "../components/RegisterModalComponent";
+import { useNavigate } from "react-router-dom";
 
 const WelcomePage: React.FC = () => {
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
@@ -13,6 +14,8 @@ const WelcomePage: React.FC = () => {
 
   const openRegisterModal = () => setIsRegisterModalVisible(true);
   const closeRegisterModal = () => setIsRegisterModalVisible(false);
+
+  const navigate = useNavigate();
 
   console.log("Rendering WelcomePage");
 
@@ -71,6 +74,15 @@ const WelcomePage: React.FC = () => {
               onClick={openLoginModal} // This will open the modal when clicked
             >
               Login
+            </button>
+
+            {/*Contact Us Button */}
+            <button
+              type="button"
+              className="btn btn-secondary btn-lg mt-xxl-5"
+              onClick={() => navigate("/contact")}
+            >
+              Contact Us <i className="bi bi-question-circle" />
             </button>
           </div>
         </div>
