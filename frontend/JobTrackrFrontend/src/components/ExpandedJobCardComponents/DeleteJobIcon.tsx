@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { useJobContext } from "../../JobContext";
 
 interface Props {
   id: string;
-  refreshJobs: () => void;
 }
 
-const DeleteJobIcon: React.FC<Props> = ({ id, refreshJobs }) => {
-  console.log("ID DUDE", id);
+const DeleteJobIcon: React.FC<Props> = ({ id }) => {
+  const { refreshJobs } = useJobContext();
 
   const handleDeleteJob = async () => {
     try {

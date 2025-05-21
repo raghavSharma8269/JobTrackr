@@ -9,14 +9,12 @@ interface SetStatusDropdownComponentProps {
   ) => void;
 
   jobId: string;
-  refreshJobs: () => void;
 }
 
 const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
   status,
   onUpdateStatus,
   jobId,
-  refreshJobs,
 }) => {
   const getButtonProps = () => {
     switch (status) {
@@ -85,7 +83,7 @@ const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
         ))}
       </ul>
       <UpdateJobIcon />
-      <DeleteJobIcon id={jobId} refreshJobs={refreshJobs} />
+      <DeleteJobIcon id={jobId} />
     </div>
   );
 };

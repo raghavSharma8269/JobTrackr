@@ -4,6 +4,7 @@ import JobListComponent from "../components/JobListComponent";
 import NavBarComponent from "../components/NavBarComponent";
 import axios from "axios";
 import { Job, JobStatus } from "../types/Job";
+import { JobContext } from "../JobContext.tsx";
 
 const JobsPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -45,32 +46,34 @@ const JobsPage = () => {
   };
 
   return (
-    <div className="container-fluid min-vh-100 d-flex align-items-center">
-      <div className="row w-100">
-        <NavBarComponent />
-        <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
-          <JobListComponent
-            jobs={jobs}
-            onJobClick={setSelectedJobIndex}
-            toggleFavorite={toggleFavorite}
-          />
-        </div>
-        <div className="col-md-8 d-flex justify-content-center align-items-start">
-          <ExpandedJobCard
-            isVisible={selectedJobIndex !== null}
-            job={selectedJobIndex !== null ? jobs[selectedJobIndex] : null}
-            onToggleFavorite={() =>
-              selectedJobIndex !== null && toggleFavorite(selectedJobIndex)
-            }
-            onUpdateStatus={(newStatus) =>
-              selectedJobIndex !== null &&
-              updateJobStatus(selectedJobIndex, newStatus)
-            }
-            refreshJobs={fetchJobs}
-          />
+    <JobContext.Provider value={{ refreshJobs: fetchJobs }}>
+      <div className="container-fluid min-vh-100 d-flex align-items-center">
+        <div className="row w-100">
+          <NavBarComponent />
+          <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
+            <JobListComponent
+              jobs={jobs}
+              onJobClick={setSelectedJobIndex}
+              toggleFavorite={toggleFavorite}
+            />
+          </div>
+          <div className="col-md-8 d-flex justify-content-center align-items-start">
+            <ExpandedJobCard
+              isVisible={selectedJobIndex !== null}
+              job={selectedJobIndex !== null ? jobs[selectedJobIndex] : null}
+              onToggleFavorite={() =>
+                selectedJobIndex !== null && toggleFavorite(selectedJobIndex)
+              }
+              onUpdateStatus={(newStatus) =>
+                selectedJobIndex !== null &&
+                updateJobStatus(selectedJobIndex, newStatus)
+              }
+              refreshJobs={fetchJobs}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </JobContext.Provider>
   );
 };
 
