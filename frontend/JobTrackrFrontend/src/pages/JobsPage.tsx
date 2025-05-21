@@ -4,7 +4,7 @@ import JobListComponent from "../components/JobListComponent";
 import NavBarComponent from "../components/NavBarComponent";
 import axios from "axios";
 import { Job, JobStatus } from "../types/Job";
-import { JobContext } from "../JobContext.tsx";
+import { JobContext } from "../context/JobContext.tsx";
 
 const JobsPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -68,7 +68,6 @@ const JobsPage = () => {
                 selectedJobIndex !== null &&
                 updateJobStatus(selectedJobIndex, newStatus)
               }
-              refreshJobs={fetchJobs}
             />
           </div>
         </div>

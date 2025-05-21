@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useJobContext } from "../../JobContext";
+import { useJobContext } from "../../context/JobContext.tsx";
 
 interface Props {
   id: string;
