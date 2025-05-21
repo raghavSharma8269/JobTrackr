@@ -54,8 +54,11 @@ purple: #7400f0
   filter: drop-shadow(0 0 5px gray);
 }
 
-.job-card:hover{
+.job-card:hover,
+.job-card:active,
+.job-card:focus {
   filter: drop-shadow(0 0 10px #7400f0);
+
 }
 
 .dark-bg {
