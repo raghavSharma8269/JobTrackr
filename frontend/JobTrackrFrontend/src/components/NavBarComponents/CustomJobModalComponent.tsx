@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useJobContext } from "../../context/JobContext.tsx";
 
 const CustomJobModalComponent = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -8,6 +9,8 @@ const CustomJobModalComponent = () => {
   const [jobUrl, setJobUrl] = useState("");
   const [jobLocation, setLocation] = useState("");
   const [jobSalary, setSalary] = useState("");
+
+  const { refreshJobs } = useJobContext();
 
   const handleAddJob = async () => {
     try {
@@ -44,6 +47,7 @@ const CustomJobModalComponent = () => {
       setSalary("");
 
       alert("Job added successfully!");
+      refreshJobs();
     } catch (error) {
       console.error("Error adding job:", error);
 
