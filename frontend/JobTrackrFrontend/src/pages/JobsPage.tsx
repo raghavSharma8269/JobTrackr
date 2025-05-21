@@ -9,22 +9,22 @@ const JobsPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [selectedJobIndex, setSelectedJobIndex] = useState<number | null>(null);
 
-  // Fetch jobs on mount
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8080/api/jobs", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setJobs(res.data);
-      } catch (err) {
-        console.error("Failed to fetch jobs:", err);
-      }
-    };
+  // Fetch jobs
+  const fetchJobs = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("http://localhost:8080/api/jobs", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setJobs(response.data);
+    } catch (err) {
+      console.error("Failed to fetch jobs:", err);
+    }
+  };
 
+  useEffect(() => {
     fetchJobs();
   }, []);
 
@@ -66,6 +66,7 @@ const JobsPage = () => {
               selectedJobIndex !== null &&
               updateJobStatus(selectedJobIndex, newStatus)
             }
+            refreshJobs={fetchJobs}
           />
         </div>
       </div>

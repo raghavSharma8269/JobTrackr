@@ -7,11 +7,16 @@ interface SetStatusDropdownComponentProps {
   onUpdateStatus: (
     status: "applied" | "interview" | "accepted" | "rejected" | "none",
   ) => void;
+
+  jobId: string;
+  refreshJobs: () => void;
 }
 
 const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
   status,
   onUpdateStatus,
+  jobId,
+  refreshJobs,
 }) => {
   const getButtonProps = () => {
     switch (status) {
@@ -80,7 +85,7 @@ const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
         ))}
       </ul>
       <UpdateJobIcon />
-      <DeleteJobIcon />
+      <DeleteJobIcon id={jobId} refreshJobs={refreshJobs} />
     </div>
   );
 };

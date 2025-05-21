@@ -11,6 +11,7 @@ interface ExpandedJobCardProps {
   job: Job | null;
   onToggleFavorite: () => void;
   onUpdateStatus: (status: Job["applicationStatus"]) => void;
+  refreshJobs: () => void;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
@@ -18,6 +19,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
   job,
   onToggleFavorite,
   onUpdateStatus,
+  refreshJobs,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "description" | "cv" | "resume"
@@ -70,6 +72,8 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
             <SetStatusDropdownComponent
               status={job.applicationStatus}
               onUpdateStatus={onUpdateStatus}
+              jobId={job.id}
+              refreshJobs={refreshJobs}
             />
           </div>
 
