@@ -5,7 +5,6 @@ import com.example.JobApplicationManager.model.entity.CustomUser;
 import com.example.JobApplicationManager.model.entity.JobsList;
 import com.example.JobApplicationManager.model.repositories.JobsRepository;
 import com.example.JobApplicationManager.model.repositories.UserRepository;
-import com.example.JobApplicationManager.security.JwtUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
