@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/JobTrackr.png";
 import logo2 from "../assets/vectorized.svg";
 import LoginModalComponent from "../components/LoginModalComponent";
@@ -6,6 +6,11 @@ import RegisterModalComponent from "../components/RegisterModalComponent";
 import { useNavigate } from "react-router-dom";
 
 const WelcomePage: React.FC = () => {
+  //changes tab name
+  useEffect(() => {
+    document.title = "JobVault"; // <- Your custom tab title
+  }, []);
+
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [isRegisterModalVisible, setIsRegisterModalVisible] = useState(false);
 
