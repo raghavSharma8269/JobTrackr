@@ -75,7 +75,7 @@ const ContactPage: React.FC = () => {
               </div>
               <button
                 type="submit"
-                className="btn text-white"
+                className="btn text-white mt-1"
                 style={{ backgroundColor: "#7400f0", borderColor: "#7400f0" }}
               >
                 Submit
