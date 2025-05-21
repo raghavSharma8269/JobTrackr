@@ -71,6 +71,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
               status={job.applicationStatus}
               onUpdateStatus={onUpdateStatus}
               jobId={job.id}
+              job={job}
             />
           </div>
 
