@@ -2,6 +2,7 @@ import gearSvg from "../assets/gear.svg";
 import clipBoardSvg from "../assets/clipboard-check.svg";
 import SettingsPage from "./SettingsPage";
 import logOutSvg from "../assets/box-arrow-left.svg";
+import questionMarkSvg from "../assets/question-circle.svg";
 import JobsPage from "./JobsPage";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,10 @@ const MainPage = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/welcome");
+  };
+
+  const handleContact = () => {
+    window.open("/contact", "_blank");
   };
 
   return (
@@ -84,6 +89,19 @@ const MainPage = () => {
                   style={{ marginRight: "10px", width: "20px", height: "20px" }}
                 />
                 Settings
+              </button>
+
+              {/* Contact Button */}
+              <button
+                className="btn mt-5 btn-lg d-flex align-items-center section-change-button default-text-color"
+                onClick={handleContact}
+              >
+                <img
+                  src={questionMarkSvg}
+                  alt="Question Mark Icon"
+                  style={{ marginRight: "10px", width: "20px", height: "20px" }}
+                />
+                Contact
               </button>
 
               {/* Log Out Button */}

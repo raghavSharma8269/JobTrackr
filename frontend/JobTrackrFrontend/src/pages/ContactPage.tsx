@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../assets/JobTrackr.png"; // or replace with a contact-themed image
 
 const ContactPage: React.FC = () => {
+  //changes tab name
+  useEffect(() => {
+    document.title = "Contact | JobVault"; // <- Your custom tab title
+  }, []);
+
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
       <div className="row w-100">
