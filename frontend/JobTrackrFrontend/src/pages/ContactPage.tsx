@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import logo from "../assets/JobTrackr.png"; // or replace with a contact-themed image
+import logo from "../assets/JobTrackr.png";
+import { useNavigate } from "react-router-dom";
 
 const ContactPage: React.FC = () => {
   //changes tab name
   useEffect(() => {
     document.title = "Contact | JobVault"; // <- Your custom tab title
   }, []);
+
+  const navigate = useNavigate();
 
   return (
     <div className="container-fluid vh-100 d-flex align-items-center">
@@ -24,8 +27,14 @@ const ContactPage: React.FC = () => {
 
           <img
             src={logo}
-            alt="Contact Illustration"
-            style={{ width: "500px", height: "500px", marginTop: "20px" }}
+            alt="Logo"
+            style={{
+              width: "500px",
+              height: "500px",
+              marginTop: "20px",
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/dashboard")}
           />
         </div>
 
