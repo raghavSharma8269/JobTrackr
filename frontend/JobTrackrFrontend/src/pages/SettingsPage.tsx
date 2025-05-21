@@ -7,7 +7,7 @@ interface SettingsPageProps {
 const SettingsPage: React.FC<SettingsPageProps> = ({}) => {
   //changes tab name
   useEffect(() => {
-    document.title = "Settings | JobVault"; // <- Your custom tab title
+    document.title = "Settings | JobVault";
   }, []);
 
   const [resume, setResume] = useState<File | null>(null);

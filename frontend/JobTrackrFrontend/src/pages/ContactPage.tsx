@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ContactPage: React.FC = () => {
   //changes tab name
   useEffect(() => {
-    document.title = "Contact | JobVault"; // <- Your custom tab title
+    document.title = "Contact | JobVault";
   }, []);
 
   const navigate = useNavigate();

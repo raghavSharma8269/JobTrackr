@@ -9,7 +9,7 @@ import { JobContext } from "../context/JobContext.tsx";
 const JobsPage = () => {
   //changes tab name
   useEffect(() => {
-    document.title = "Jobs | JobVault"; // <- Your custom tab title
+    document.title = "Jobs | JobVault";
   }, []);
 
   const [jobs, setJobs] = useState<Job[]>([]);
