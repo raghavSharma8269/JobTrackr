@@ -38,7 +38,7 @@ public class UpdateJobService implements Command<UpdateJobCommand, JobsDTO> {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = userDetails.getUsername();
 
-        logger.info("Executing " + getClass() + " input: " + command);
+        logger.info("Executing " + getClass() + " input: " + command.getJob());
 
         Optional<JobsList> existingJob = jobsRepository.findById(command.getId());
         if (existingJob.isPresent()) {
