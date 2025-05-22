@@ -14,16 +14,23 @@ const JobsPage = () => {
 
   const [jobs, setJobs] = useState<Job[]>([]);
   const [selectedJobIndex, setSelectedJobIndex] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
   // Fetch jobs
   const fetchJobs = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:8080/api/jobs`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+
+      const response = await axios.get(
+        `http://localhost:8080/api/jobs?sortBy=${sortBy}&search=${search}&status=${status}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       const normalizedJobs = response.data.map((job: Job) => ({
         ...job,
@@ -93,7 +100,11 @@ const JobsPage = () => {
     <JobContext.Provider value={{ refreshJobs: fetchJobs }}>
       <div className="container-fluid min-vh-100 d-flex align-items-center">
         <div className="row w-100">
-          <NavBarComponent />
+          <NavBarComponent
+            search={search}
+            setSearch={setSearch}
+            onSearch={fetchJobs}
+          />
           <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
             <JobListComponent
               jobs={jobs}
