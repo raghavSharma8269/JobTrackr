@@ -6,11 +6,17 @@ interface SortByDropdownComponentProps {
   sortBy: string;
   setSortBy: (sortBy: string) => void;
   onSort: () => void;
+  filter: string;
+  setFilter: (filter: string) => void;
+  onFilter: () => void;
 }
 
 const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
   setSortBy,
   onSort,
+  filter,
+  setFilter,
+  onFilter,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "companyName" | "jobTitle" | "dateAdded" | "favorites" | "none"
@@ -88,7 +94,11 @@ const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
           </a>
         </li>
       </ul>
-      <SortBy_Up_Down_ButtonGroupComponent />
+      <SortBy_Up_Down_ButtonGroupComponent
+        filter={filter}
+        setFilter={setFilter}
+        onFilter={onFilter}
+      />
     </div>
   );
 };

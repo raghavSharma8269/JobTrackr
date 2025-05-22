@@ -15,7 +15,7 @@ const JobsPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [selectedJobIndex, setSelectedJobIndex] = useState<number | null>(null);
   const [search, setSearch] = useState("");
-  const [status, setStatus] = useState("");
+  const [filter, setFilter] = useState("");
   const [sortBy, setSortBy] = useState("");
 
   // Fetch jobs
@@ -24,7 +24,7 @@ const JobsPage = () => {
       const token = localStorage.getItem("token");
       console.log("SORT BY", sortBy);
       const response = await axios.get(
-        `http://localhost:8080/api/jobs?sortBy=${sortBy}&search=${search}&status=${status}`,
+        `http://localhost:8080/api/jobs?sortBy=${sortBy}&search=${search}&status=${filter}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,6 +68,13 @@ const JobsPage = () => {
       fetchJobs();
     }
   }, [sortBy]);
+
+  // Fetch jobs on filter change
+  useEffect(() => {
+    if (filter || filter === "") {
+      fetchJobs(); // fetches with updated filter
+    }
+  }, [filter]);
 
   const toggleFavorite = async (index: number) => {
     const job = jobs[index];
@@ -127,6 +134,8 @@ const JobsPage = () => {
             sortBy={sortBy}
             setSortBy={setSortBy}
             onSort={fetchJobs}
+            filter={filter}
+            setFilter={setFilter}
           />
           <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
             <JobListComponent

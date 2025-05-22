@@ -2,7 +2,16 @@ import React from "react";
 import SortDownIconComponent from "./SortDownIconComponent.tsx";
 import SortUpIconComponent from "./SortUpIconComponent.tsx";
 import FilterItemsComponents from "../FilterComponents/FilterItemsComponents.tsx";
-const SortBy_Up_Down_ButtonGroupComponent = () => {
+
+interface SortBy_Up_Down_ButtonGroupComponentProps {
+  filter: string;
+  setFilter: (filter: string) => void;
+  onFilter: () => void;
+}
+
+const SortBy_Up_Down_ButtonGroupComponent: React.FC<
+  SortBy_Up_Down_ButtonGroupComponentProps
+> = ({ filter, setFilter, onFilter }) => {
   return (
     <div
       className="btn-group"
@@ -31,7 +40,11 @@ const SortBy_Up_Down_ButtonGroupComponent = () => {
       <label className="btn btn-outline-primary" htmlFor="btnradio2">
         <SortDownIconComponent />
       </label>
-      <FilterItemsComponents />
+      <FilterItemsComponents
+        filter={filter}
+        setFilter={setFilter}
+        onFilter={onFilter}
+      />
     </div>
   );
 };

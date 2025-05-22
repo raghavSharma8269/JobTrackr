@@ -2,7 +2,17 @@ import React, { useState } from "react";
 import ResetSearchParametersIconComponent from "../ResetSearchParametersIconComponent.tsx";
 import FilterDropDownButtonComponent from "./FilterDropDownButtonComponent.tsx";
 
-const FilterItemsComponents = () => {
+interface FilterItemsComponentsProps {
+  filter: string;
+  setFilter: (filter: string) => void;
+  onFilter: () => void;
+}
+
+const FilterItemsComponents: React.FC<FilterItemsComponentsProps> = ({
+  filter,
+  setFilter,
+  onFilter,
+}) => {
   const [activeSection, setActiveSection] = useState<
     "applied" | "interview" | "accepted" | "rejected" | "none"
   >("none");
@@ -41,7 +51,11 @@ const FilterItemsComponents = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "blue", borderRadius: "10px" }}
             href="#"
-            onClick={() => setActiveSection("applied")}
+            onClick={() => {
+              setActiveSection("applied");
+              setFilter("APPLIED");
+              onFilter();
+            }}
           >
             Applied
           </a>
@@ -51,7 +65,11 @@ const FilterItemsComponents = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "green", borderRadius: "10px" }}
             href="#"
-            onClick={() => setActiveSection("interview")}
+            onClick={() => {
+              setActiveSection("interview");
+              setFilter("INTERVIEW");
+              onFilter();
+            }}
           >
             Interview
           </a>
@@ -61,7 +79,11 @@ const FilterItemsComponents = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "#7400f0", borderRadius: "10px" }}
             href="#"
-            onClick={() => setActiveSection("accepted")}
+            onClick={() => {
+              setActiveSection("accepted");
+              setFilter("ACCEPTED");
+              onFilter();
+            }}
           >
             Accepted
           </a>
@@ -71,7 +93,11 @@ const FilterItemsComponents = () => {
             className="dropdown-item default-text-color"
             style={{ backgroundColor: "red", borderRadius: "10px" }}
             href="#"
-            onClick={() => setActiveSection("rejected")}
+            onClick={() => {
+              setActiveSection("rejected");
+              setFilter("REJECTED");
+              onFilter();
+            }}
           >
             Rejected
           </a>
@@ -80,7 +106,11 @@ const FilterItemsComponents = () => {
           <a
             className="dropdown-item light-bg default-text-color"
             href="#"
-            onClick={() => setActiveSection("none")}
+            onClick={() => {
+              setActiveSection("none");
+              setFilter("");
+              onFilter();
+            }}
           >
             Reset...
           </a>

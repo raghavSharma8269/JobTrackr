@@ -8,6 +8,9 @@ interface NavBarProps {
   sortBy: string;
   setSortBy: (sortBy: string) => void;
   onSort: () => void;
+  filter: string;
+  setFilter: (filter: string) => void;
+  onFilter: () => void;
 }
 
 const NavBarComponent: React.FC<NavBarProps> = ({
@@ -17,6 +20,9 @@ const NavBarComponent: React.FC<NavBarProps> = ({
   sortBy,
   setSortBy,
   onSort,
+  filter,
+  setFilter,
+  onFilter,
 }) => {
   return (
     <nav
@@ -34,6 +40,9 @@ const NavBarComponent: React.FC<NavBarProps> = ({
           sortBy={sortBy}
           setSortBy={setSortBy}
           onSort={onSort}
+          filter={filter}
+          setFilter={setFilter}
+          onFilter={onFilter}
         />
         <AddJobIcon />
         <form
