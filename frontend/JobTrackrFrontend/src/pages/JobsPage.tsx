@@ -34,20 +34,36 @@ const JobsPage = () => {
     fetchJobs();
   }, []);
 
-  const toggleFavorite = (index: number) => {
-    setJobs((prev) =>
-      prev.map((job, i) =>
-        i === index ? { ...job, favorite: !job.favorite } : job,
-      ),
-    );
-  };
-
   const updateJobStatus = (index: number, newStatus: JobStatus) => {
     setJobs((prev) =>
       prev.map((job, i) =>
         i === index ? { ...job, applicationStatus: newStatus } : job,
       ),
     );
+  };
+
+  const toggleFavorite = async (index: number) => {
+    const job = jobs[index];
+    const newFavorite = !job.favorite;
+
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        `http://localhost:8080/api/jobs/favorite/${job.id}`,
+        null,
+        {
+          params: { favorite: newFavorite },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setJobs((prev) =>
+        prev.map((j, i) => (i === index ? { ...j, favorite: newFavorite } : j)),
+      );
+    } catch (error) {
+      console.error("Failed to update favorite status:", error);
+    }
   };
 
   return (
