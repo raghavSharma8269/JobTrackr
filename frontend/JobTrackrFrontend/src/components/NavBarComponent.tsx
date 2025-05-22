@@ -3,14 +3,20 @@ import AddJobIcon from "./NavBarComponents/AddJobIcon.tsx";
 
 interface NavBarProps {
   search: string;
-  setSearch: (search: string) => void;
+  setSearch: (value: string) => void;
   onSearch: () => void;
+  sortBy: string;
+  setSortBy: (sortBy: string) => void;
+  onSort: () => void;
 }
 
 const NavBarComponent: React.FC<NavBarProps> = ({
   search,
   setSearch,
   onSearch,
+  sortBy,
+  setSortBy,
+  onSort,
 }) => {
   return (
     <nav
@@ -24,7 +30,11 @@ const NavBarComponent: React.FC<NavBarProps> = ({
       }}
     >
       <div className="container-fluid" style={{ backgroundColor: "#292b38" }}>
-        <SortByDropdownComponent />
+        <SortByDropdownComponent
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          onSort={onSort}
+        />
         <AddJobIcon />
         <form
           className="d-flex"

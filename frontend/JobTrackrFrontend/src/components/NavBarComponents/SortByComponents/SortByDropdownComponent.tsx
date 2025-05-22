@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import SortBy_Up_Down_ButtonGroupComponent from "./SortBy_Up_Down_ButtonGroupComponent.tsx";
 import SortByDropdownButtonComponent from "./SortByDropdownButtonComponent.tsx";
-const SortByDropdownComponent = () => {
+
+interface SortByDropdownComponentProps {
+  sortBy: string;
+  setSortBy: (sortBy: string) => void;
+  onSort: () => void;
+}
+
+const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
+  setSortBy,
+  onSort,
+}) => {
   const [activeSection, setActiveSection] = useState<
     "companyName" | "jobTitle" | "dateAdded" | "favorites" | "none"
   >("none");
@@ -29,7 +39,11 @@ const SortByDropdownComponent = () => {
           <a
             className="dropdown-item light-bg default-text-color"
             href="#"
-            onClick={() => setActiveSection("jobTitle")}
+            onClick={() => {
+              setActiveSection("jobTitle");
+              setSortBy("jobTitle");
+              onSort();
+            }}
           >
             Job Title
           </a>
@@ -38,7 +52,11 @@ const SortByDropdownComponent = () => {
           <a
             className="dropdown-item light-bg default-text-color"
             href="#"
-            onClick={() => setActiveSection("companyName")}
+            onClick={() => {
+              setActiveSection("companyName");
+              setSortBy("companyName");
+              onSort();
+            }}
           >
             Company Name
           </a>
@@ -47,7 +65,11 @@ const SortByDropdownComponent = () => {
           <a
             className="dropdown-item light-bg default-text-color"
             href="#"
-            onClick={() => setActiveSection("dateAdded")}
+            onClick={() => {
+              setActiveSection("dateAdded");
+              setSortBy("dateAdded");
+              onSort();
+            }}
           >
             Date
           </a>
@@ -56,7 +78,11 @@ const SortByDropdownComponent = () => {
           <a
             className="dropdown-item light-bg default-text-color"
             href="#"
-            onClick={() => setActiveSection("favorites")}
+            onClick={() => {
+              setActiveSection("favorites");
+              setSortBy("favorite");
+              onSort();
+            }}
           >
             Favorites
           </a>

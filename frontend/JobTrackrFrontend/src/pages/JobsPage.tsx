@@ -22,7 +22,7 @@ const JobsPage = () => {
   const fetchJobs = async () => {
     try {
       const token = localStorage.getItem("token");
-
+      console.log("SORT BY", sortBy);
       const response = await axios.get(
         `http://localhost:8080/api/jobs?sortBy=${sortBy}&search=${search}&status=${status}`,
         {
@@ -117,6 +117,9 @@ const JobsPage = () => {
             search={search}
             setSearch={setSearch}
             onSearch={fetchJobs}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            onSort={fetchJobs}
           />
           <div className="col-md-4 d-flex justify-content-center align-items-start overflow-hidden">
             <JobListComponent
