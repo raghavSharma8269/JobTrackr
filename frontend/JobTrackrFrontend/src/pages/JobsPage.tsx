@@ -34,14 +34,6 @@ const JobsPage = () => {
     fetchJobs();
   }, []);
 
-  const updateJobStatus = (index: number, newStatus: JobStatus) => {
-    setJobs((prev) =>
-      prev.map((job, i) =>
-        i === index ? { ...job, applicationStatus: newStatus } : job,
-      ),
-    );
-  };
-
   const toggleFavorite = async (index: number) => {
     const job = jobs[index];
     const newFavorite = !job.favorite;
@@ -63,6 +55,29 @@ const JobsPage = () => {
       );
     } catch (error) {
       console.error("Failed to update favorite status:", error);
+    }
+  };
+
+  const updateJobStatus = async (index: number, newStatus: JobStatus) => {
+    const job = jobs[index];
+
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.put(`http://localhost:8080/api/jobs/status/${job.id}`, null, {
+        params: newStatus === "none" ? {} : { status: newStatus.toUpperCase() },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setJobs((prev) =>
+        prev.map((j, i) =>
+          i === index ? { ...j, applicationStatus: newStatus } : j,
+        ),
+      );
+    } catch (error) {
+      console.error("Failed to update job status:", error);
     }
   };
 

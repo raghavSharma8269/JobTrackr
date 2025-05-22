@@ -36,7 +36,15 @@ public class UpdateJobStatusService {
 
         if(optionalJob.isPresent() && optionalJob.get().getCustomUser().getEmail().equals(email)){
             JobsList job = optionalJob.get();
-            job.setApplicationStatus(ApplicationStatus.valueOf(status));
+
+            if(status == null || status.isEmpty()) {
+                job.setApplicationStatus(null);
+            }
+            else{
+                job.setApplicationStatus(ApplicationStatus.valueOf(status));
+
+            }
+
             jobsRepository.save(job);
             return ResponseEntity.ok().body(new JobsDTO(job));
         } else {

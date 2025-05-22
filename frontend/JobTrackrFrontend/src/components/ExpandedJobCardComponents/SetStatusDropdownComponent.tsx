@@ -57,10 +57,10 @@ const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
         style={{ backgroundColor: "#292b38" }}
       >
         {[
-          { label: "Applied", value: "applied", bg: "blue" },
-          { label: "Interview", value: "interview", bg: "green" },
-          { label: "Accepted", value: "accepted", bg: "#7400f0" },
-          { label: "Rejected", value: "rejected", bg: "red" },
+          { label: "Applied", value: "APPLIED", bg: "blue" },
+          { label: "Interview", value: "INTERVIEW", bg: "green" },
+          { label: "Accepted", value: "ACCEPTED", bg: "#7400f0" },
+          { label: "Rejected", value: "REJECTED", bg: "red" },
           { label: "Reset...", value: "none", bg: "gray" },
         ].map(({ label, value, bg }) => (
           <li key={value}>

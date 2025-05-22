@@ -75,7 +75,7 @@ public class JobController {
     @PutMapping("/status/{id}")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<JobsDTO> updateJobStatus(@PathVariable String id,
-                                                   @RequestParam String status
+                                                   @RequestParam(required = false) String status
     )
             throws Exception {
         return updateJobStatusService.execute(id, status);
