@@ -52,12 +52,14 @@ public class ProfileController {
      * RESUME REQUESTS
      */
 
+    // upload resume
     @PostMapping("/resume")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<String> uploadResume (@RequestParam MultipartFile resumeFile) throws IOException {
         return uploadResumeService.execute(resumeFile);
     }
 
+    // get ai feedback
     @GetMapping("/resume")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public String analyzeResume (@RequestParam String jobID) throws IOException {
@@ -75,12 +77,14 @@ public class ProfileController {
      * COVER LETTER REQUESTS
      */
 
+    // upload cover letter
     @PostMapping("/cv")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<String> uploadCoverLetter (@RequestParam MultipartFile coverLetterFile) throws IOException {
         return uploadCoverLetterService.execute(coverLetterFile);
     }
 
+    // get ai feedback
     @GetMapping("cv")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public String analyzeCoverLetter (@RequestParam String jobID) throws IOException {
