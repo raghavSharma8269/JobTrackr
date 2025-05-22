@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ExpandedJobCard from "../components/ExpandedJobCard";
 import JobListComponent from "../components/JobListComponent";
 import NavBarComponent from "../components/NavBarComponent";
@@ -45,9 +45,22 @@ const JobsPage = () => {
     }
   };
 
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
-    fetchJobs();
-  }, []);
+    // triggers only when user types something
+    if (search.length === 0 || search.length > 2) {
+      // clears previous timer is user types
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+
+      // starts a new delayed fetchJobs
+      searchTimeoutRef.current = setTimeout(() => {
+        fetchJobs();
+      }, 350); // 350ms delay
+    }
+  }, [search]); // runs search useEffect when search changes
 
   const toggleFavorite = async (index: number) => {
     const job = jobs[index];
