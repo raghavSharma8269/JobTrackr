@@ -20,6 +20,7 @@ public class JobController {
     private final UpdateJobService updateJobService;
     private final DeleteJobService deleteJobService;
     private final UpdateJobStatusService updateJobStatusService;
+    private final UpdateFavoriteService updateFavoriteService;
 
     public JobController(
             LinkedInJobsToTableService linkedInJobsToTableService,
@@ -27,7 +28,8 @@ public class JobController {
             GetAllJobsService getAllJobsService,
             UpdateJobService updateJobService,
             DeleteJobService deleteJobService,
-            UpdateJobStatusService updateJobStatusService
+            UpdateJobStatusService updateJobStatusService,
+            UpdateFavoriteService updateFavoriteService
 
     ) {
         this.linkedInJobsToTableService = linkedInJobsToTableService;
@@ -36,6 +38,7 @@ public class JobController {
         this.updateJobService = updateJobService;
         this.deleteJobService = deleteJobService;
         this.updateJobStatusService = updateJobStatusService;
+        this.updateFavoriteService = updateFavoriteService;
     }
 
     // linkedin url -> table
@@ -76,6 +79,15 @@ public class JobController {
     )
             throws Exception {
         return updateJobStatusService.execute(id, status);
+    }
+
+    // Update job favorite status
+    @PutMapping("/favorite/{id}")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+    public ResponseEntity<JobsDTO> updateJobFavorite(@PathVariable String id,
+                                                     @RequestParam boolean favorite
+    ) {
+        return updateFavoriteService.execute(id, favorite);
     }
 
     @DeleteMapping("/{id}")
