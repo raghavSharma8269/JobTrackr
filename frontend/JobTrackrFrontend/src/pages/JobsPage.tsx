@@ -24,7 +24,15 @@ const JobsPage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setJobs(response.data);
+
+      const normalizedJobs = response.data.map((job: Job) => ({
+        ...job,
+        applicationStatus: job.applicationStatus
+          ? job.applicationStatus.toLowerCase()
+          : "none",
+      }));
+
+      setJobs(normalizedJobs);
     } catch (err) {
       console.error("Failed to fetch jobs:", err);
     }
@@ -96,7 +104,9 @@ const JobsPage = () => {
           <div className="col-md-8 d-flex justify-content-center align-items-start">
             <ExpandedJobCard
               isVisible={selectedJobIndex !== null}
-              job={selectedJobIndex !== null ? jobs[selectedJobIndex] : null}
+              job={
+                selectedJobIndex !== null ? { ...jobs[selectedJobIndex] } : null
+              }
               onToggleFavorite={() =>
                 selectedJobIndex !== null && toggleFavorite(selectedJobIndex)
               }

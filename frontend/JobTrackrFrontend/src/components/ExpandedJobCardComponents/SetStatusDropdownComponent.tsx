@@ -76,7 +76,7 @@ const SetStatusDropdownComponent: React.FC<SetStatusDropdownComponentProps> = ({
               }}
               onClick={() =>
                 onUpdateStatus(
-                  value as SetStatusDropdownComponentProps["status"],
+                  value.toLowerCase() as SetStatusDropdownComponentProps["status"],
                 )
               }
             >
