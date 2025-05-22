@@ -19,18 +19,23 @@ public class JobController {
     private final GetAllJobsService getAllJobsService;
     private final UpdateJobService updateJobService;
     private final DeleteJobService deleteJobService;
+    private final UpdateJobStatusService updateJobStatusService;
 
-    public JobController(LinkedInJobsToTableService linkedInJobsToTableService,
-                         CreateNewCustomJobService createNewCustomJobService,
-                         GetAllJobsService getAllJobsService,
-                         UpdateJobService updateJobService,
-                         DeleteJobService deleteJobService
+    public JobController(
+            LinkedInJobsToTableService linkedInJobsToTableService,
+            CreateNewCustomJobService createNewCustomJobService,
+            GetAllJobsService getAllJobsService,
+            UpdateJobService updateJobService,
+            DeleteJobService deleteJobService,
+            UpdateJobStatusService updateJobStatusService
+
     ) {
         this.linkedInJobsToTableService = linkedInJobsToTableService;
         this.createNewCustomJobService = createNewCustomJobService;
         this.getAllJobsService = getAllJobsService;
         this.updateJobService = updateJobService;
         this.deleteJobService = deleteJobService;
+        this.updateJobStatusService = updateJobStatusService;
     }
 
     // linkedin url -> table
@@ -61,6 +66,16 @@ public class JobController {
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<JobsDTO> updateJob (@PathVariable String id, @RequestBody JobsList job){
         return updateJobService.execute(new UpdateJobCommand(id, job));
+    }
+
+    // Update job status
+    @PutMapping("/status/{id}")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+    public ResponseEntity<JobsDTO> updateJobStatus(@PathVariable String id,
+                                                   @RequestParam String status
+    )
+            throws Exception {
+        return updateJobStatusService.execute(id, status);
     }
 
     @DeleteMapping("/{id}")
