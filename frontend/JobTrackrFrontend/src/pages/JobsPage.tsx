@@ -62,6 +62,13 @@ const JobsPage = () => {
     }
   }, [search]); // runs search useEffect when search changes
 
+  // Fetch jobs on sortBy change
+  useEffect(() => {
+    if (sortBy) {
+      fetchJobs();
+    }
+  }, [sortBy]);
+
   const toggleFavorite = async (index: number) => {
     const job = jobs[index];
     const newFavorite = !job.favorite;
