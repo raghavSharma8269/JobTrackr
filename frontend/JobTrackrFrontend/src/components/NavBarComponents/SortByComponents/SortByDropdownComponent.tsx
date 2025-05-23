@@ -26,7 +26,7 @@ const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
     <div className="dropdown">
       {activeSection === "none" && <SortByDropdownButtonComponent />}
       {activeSection === "companyName" && (
-        <SortByDropdownButtonComponent text={"Company Name"} />
+        <SortByDropdownButtonComponent text={"Company"} />
       )}
       {activeSection === "jobTitle" && (
         <SortByDropdownButtonComponent text={"Job Title"} />
@@ -64,7 +64,7 @@ const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
               onSort();
             }}
           >
-            Company Name
+            Company
           </a>
         </li>
         <li>
