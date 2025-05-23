@@ -64,6 +64,7 @@ public class CoverLetterOpenAIService {
         JobsList job = jobsRepository.findById(jobId)
                 .orElseThrow(() -> new JobDoesNotExistException(ExceptionMessages.JOB_DOES_NOT_EXIST.getMessage()));
 
+        // if user is an admin, no need to check the number of requests
         if (user.getAuthority() == Authority.ADMIN) {
 
             String response = callToOpenAiApi(
@@ -103,20 +104,32 @@ public class CoverLetterOpenAIService {
     private String callToOpenAiApi(String resume, String jobDescription, String jobTitle, String companyName, String coverLetter) {
         logger.info("Executing " + getClass() + " Job Title: " + jobTitle + " || Company Name: " + companyName);
 
-        String prompt = "Given these parameters: \n" +
-                "Given Resume: " + resume + " ,Job Description: " + jobDescription + " ,Job title: " + jobTitle +
-                " ,Company Name: " + companyName + " ,Cover Letter: " + coverLetter + "\n" +
-                "Do these 3 steps: \n" +
-                "You are a career coach with over 15 years of experience helping job seekers land their dream jobs in " +
-                "tech. You are helping a candidate to write a cover letter for the below role. Approach this task in " +
-                "three steps. Step 1. Identify main challenges someone in this position would face day to day. " +
-                "Step 2. Write an attention grabbing hook for your cover letter that highlights your experience and " +
-                "qualifications in a way that shows you empathize and can successfully take on challenges of the role. " +
-                "Consider incorporating specific examples of how you tackled these challenges in your past work, and " +
-                "explore creative ways to express your enthusiasm for the opportunity. Put emphasis on how the candidate " +
-                "can contribute to company as opposed to just listing accomplishments. Keep your hook within 100 words " +
-                "or less. Step 3. Finish writing the cover letter based on the resume and keep it within 250 words. " +
-                "Respond with final cover letter only and do not make up information.";
+        String prompt =
+                "You are a senior career coach and expert cover letter writer helping a job candidate tailor a compelling and effective cover letter for a specific job. Use the following inputs:\n\n" +
+
+                        "- Resume:\n" + resume + "\n" +
+                        "- Job Title:\n" + jobTitle + "\n" +
+                        "- Job Description:\n" + jobDescription + "\n" +
+                        "- Company Name:\n" + companyName + "\n" +
+                        "- Existing Cover Letter (if any):\n" + coverLetter + "\n\n" +
+
+                        "Follow these 3 steps:\n\n" +
+
+                        "1. Identify the top 2–3 challenges, goals, or expectations someone in this role is likely to face. These should be derived directly from the job description. Think like a hiring manager — what problems need solving?\n\n" +
+
+                        "2. Create a concise, attention-grabbing opening paragraph (under 100 words) that empathizes with those challenges and shows how the candidate is equipped to handle them. Make it personal, enthusiastic, and demonstrate alignment between the candidate’s experience and the company's mission or needs.\n\n" +
+
+                        "3. Write the remainder of the cover letter (maximum 250 words), using the resume and job description to highlight relevant skills, experience, and accomplishments. Avoid generic statements. Emphasize how the candidate will bring value to the company and address its goals or challenges. End with a confident and polite call to action.\n\n" +
+
+                        "Formatting:\n" +
+                        "- Return only the final cover letter — no step-by-step breakdown.\n" +
+                        "- Use a professional tone and structure.\n" +
+                        "- Do not fabricate skills or experience not present in the resume.\n" +
+                        "- Do not include markdown or code blocks — return plain text.\n\n" +
+
+                        "Output:\n" +
+                        "The completed, tailored cover letter ready to be sent for the above role.";
+
 
         List<Map<String, String>> messages = new ArrayList<>();
         Map<String, String> systemMessage = new HashMap<>();
