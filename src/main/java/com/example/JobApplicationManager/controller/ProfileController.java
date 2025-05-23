@@ -60,9 +60,9 @@ public class ProfileController {
     }
 
     // get ai feedback
-    @GetMapping("/resume")
+    @GetMapping("/resume/{jobID}")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-    public String analyzeResume (@RequestParam String jobID) throws IOException {
+    public String analyzeResume (@PathVariable String jobID) throws IOException {
         return resumeOpenAIService.analyzeResume(jobID);
     }
 
