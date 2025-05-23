@@ -80,17 +80,39 @@ public class ResumeOpenAIService {
     private String callToOpenAiApi(String resume, String jobDescription, String jobTitle, String companyName) {
         logger.info("Executing " + getClass() + " Job Title: " + jobTitle + " || Company Name: " + companyName);
 
-        String prompt = "Given these parameters: \n" +
-                "Given Resume: " + resume + " ,Job Description: " + jobDescription + " ,Job title: " + jobTitle +
-                " ,Company Name: " + companyName + "\n" +
-                "Do these 4 steps: \n" +
-                "Step 1: Focus on this step the least. Highlight the most relevant key bullet points from the resume for this role\n" +
-                "Step 2: This is the step you should focus on the most.In order to maximize an interview offer, use the 3 parameters to edit bullet points in " +
-                "the resume for this role to bypass Applicant Tracking Systems (ATS) by using key words. Return both the " +
-                "edited bullet point along with the original to let the user easily figure out which bullet points need to be edited\n" +
-                "Step 3: Give suggestions of what is missing in this resume based on the given parameters and what the user should focus on adding to their resume.\n" +
-                "Step 4: Give a score from 1-10 on how well this resume fits the job description and an explanation on why you gave it that score including what technologies are missing or need more work. \n" +
-                "Limit the response to 350 words and do not make up information. If some skills are not already stated in the resume do not just add them to the resume to make it more aligned with the description.";
+        String prompt =
+                "You are an expert resume reviewer helping a job applicant tailor their resume for a specific role.\n\n" +
+                        "Parameters:\n" +
+                        "- Resume:\n" + resume + "\n" +
+                        "- Job Title: " + jobTitle + "\n" +
+                        "- Job Description:\n" + jobDescription + "\n" +
+                        "- Company Name: " + companyName + "\n\n" +
+
+                        "Your task is to improve the resume and give feedback in 4 structured steps. Your goal is to help the applicant avoid being rejected by AI resume scanners (ATS) by ensuring relevant keywords and phrasing from the job description are properly reflected in the resume. However, do not fabricate experience or skills that do not already exist in the resume.\n\n" +
+
+                        "Return your full response as a formatted HTML code using <h4>, <ul>, <p>, and <strong> where appropriate. Return the full response as raw HTML. Do not use triple backticks or Markdown code blocks and add the step number in the same tag as the step name.  " +
+
+                        "Limit your total response to 500 words (DO NOT include any html in the word limit).\n\n" +
+
+                        "1. <h2>Key Interview Talking Points</h2>\n" +
+                        "- Briefly highlight 2–3 bullet points from the resume that are most relevant to this specific role.\n" +
+                        "- Show how they align with the job description or company mission.\n\n" +
+
+                        "2. <h2>Specific Bullet Point Improvements (ATS Optimization)</h2>\n" +
+                        "- Focus most of your effort here.\n" +
+                        "- Identify bullet points that can be improved by inserting relevant job description keywords to improve ATS score.\n" +
+                        "- For each, show:\n" +
+                        "    • <strong>Original:</strong> [original bullet]\n" +
+                        "    • <strong>Improved:</strong> [edited version with keywords]\n\n" +
+
+                        "3. <h2>Missing Skills or Experience</h2>\n" +
+                        "- List any critical job description skills or technologies missing from the resume.\n" +
+                        "- Emphasize that the user should find ways to gain or mention them in future versions.\n" +
+                        "- DO NOT make up skills or experience.\n\n" +
+
+                        "4. <h2>Resume Fit Score</h2>\n" +
+                        "- Give a score from 1–10 based on how well the resume fits the job.\n" +
+                        "- Justify your score based on coverage of job description keywords, experience relevance, and technical fit.\n";
 
         List<Map<String, String>> messages = new ArrayList<>();
         Map<String, String> systemMessage = new HashMap<>();
