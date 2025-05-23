@@ -29,7 +29,7 @@ import java.util.Map;
 public class ResumeOpenAIService {
 
     @Value("${openai.api.key}")
-    String apiKey;
+    String openAiApiKey;
 
     private final RestTemplate restTemplate;
     private final JobsRepository jobsRepository;
@@ -42,7 +42,8 @@ public class ResumeOpenAIService {
                                JobsRepository jobsRepository,
                                ResumeScannerService resumeScannerService,
                                OptionalCustomUserToCustomUserService optionalCustomUserToCustomUserService,
-                               UserRepository userRepository) {
+                               UserRepository userRepository
+    ) {
         this.restTemplate = restTemplate;
         this.jobsRepository = jobsRepository;
         this.resumeScannerService = resumeScannerService;
@@ -55,6 +56,7 @@ public class ResumeOpenAIService {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = userDetails.getUsername();
+
         CustomUser user = optionalCustomUserToCustomUserService.execute(email);
 
         JobsList job = jobsRepository.findById(jobId)
@@ -65,7 +67,7 @@ public class ResumeOpenAIService {
         }
 
         if (user.getNumOfAiRequests() >= 8) {
-            return "Reached Max AI calls";
+            return "Reached Max AI Calls";
         }
 
         String response = callToOpenAiApi(resumeScannerService.execute(), job.getJobDescription(), job.getJobTitle(), job.getCompanyName());
@@ -134,7 +136,7 @@ public class ResumeOpenAIService {
         // Set up HTTP headers
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + apiKey);
+        headers.set("Authorization", "Bearer " + openAiApiKey);
 
         // Send the request
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
@@ -144,12 +146,12 @@ public class ResumeOpenAIService {
         // Extract the improved resume text from the OpenAI response
         Map<String, Object> responseBody = response.getBody();
         if (responseBody != null && responseBody.containsKey("choices")) {
-            // Extract the generated message content from the response
+            // Extract the generated message from the response
             List<Map<String, Object>> choices = (List<Map<String, Object>>) responseBody.get("choices");
             if (!choices.isEmpty()) {
                 Map<String, Object> choice = choices.get(0);
                 Map<String, String> message = (Map<String, String>) choice.get("message");
-                return message.get("content");  // Return the response content
+                return message.get("content");  // Return the response
             }
         }
 
