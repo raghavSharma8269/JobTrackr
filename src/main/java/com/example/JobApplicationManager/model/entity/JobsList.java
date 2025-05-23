@@ -35,7 +35,7 @@ public class JobsList {
     @Column(name = "job_salary")
     private String jobSalary;
 
-    @Column(name = "job_description", columnDefinition = "TEXT")
+    @Column(name = "job_description", columnDefinition = "LONGTEXT")
     private String jobDescription;
 
     @Column(name = "application_status")
@@ -48,10 +48,10 @@ public class JobsList {
     @Column(name = "favorite")
     private boolean favorite;
 
-    @Column(name = "resume_feedback", columnDefinition = "TEXT")
+    @Column(name = "resume_feedback", columnDefinition = "LONGTEXT")
     private String resumeFeedback;
 
-    @Column(name = "cv_feedback", columnDefinition = "TEXT")
+    @Column(name = "cv_feedback", columnDefinition = "LONGTEXT")
     private String cvFeedback;
 
     @CreationTimestamp
