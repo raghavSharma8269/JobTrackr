@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Job } from "../../types/Job.ts";
 import { UserContext } from "../../context/UserContext";
@@ -8,17 +8,19 @@ interface CvComponentProps {
 }
 
 const CvComponent: FC<CvComponentProps> = ({ job }) => {
-  const [feedback, setFeedback] = useState<string>("");
+  const [feedback, setFeedback] = useState<string>(job.cvFeedback || "");
   const [loading, setLoading] = useState<boolean>(false);
   const { user, loading: userLoading, refreshUser } = useContext(UserContext);
+
+  useEffect(() => {
+    setFeedback(job.cvFeedback || "");
+  }, [job.cvFeedback]);
 
   const handleGenerateCoverLetter = async () => {
     if (!job?.id) {
       alert("Job ID is not available");
       return;
     }
-
-    console.log("Job ID: " + job.id);
 
     if (user && user.numOfAiRequests >= 8) {
       alert(
@@ -38,8 +40,9 @@ const CvComponent: FC<CvComponentProps> = ({ job }) => {
           },
         },
       );
-      setFeedback(response.data);
-      await refreshUser();
+
+      setFeedback(response.data); // ✅ display immediately
+      await refreshUser(); // ✅ update request count
     } catch (error) {
       console.error("Error generating cover letter:", error);
       alert("Failed to generate cover letter");

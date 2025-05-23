@@ -17,4 +17,5 @@ export interface Job {
   favorite: boolean;
   localDateTime: string;
   resumeFeedback?: string;
+  cvFeedback?: string;
 }
