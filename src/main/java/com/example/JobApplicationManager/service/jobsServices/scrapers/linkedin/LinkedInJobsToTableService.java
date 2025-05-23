@@ -44,7 +44,10 @@ public class LinkedInJobsToTableService {
 
         // Extract job details
         String jobTitle = getElementText(doc, "h1.top-card-layout__title");
-        String jobDescription = getElementText(doc, "div.show-more-less-html__markup");
+
+        Element jobDescElement = doc.selectFirst("div.show-more-less-html__markup");
+        String jobDescriptionHtml = jobDescElement != null ? jobDescElement.html() : "";
+
         String jobLocation = getElementText(doc, "span.topcard__flavor.topcard__flavor--bullet");
         String jobSalary = getElementText(doc, "div.compensation__salary");
         String companyName = getElementText(doc, "a.sub-nav-cta__optional-url");
@@ -68,7 +71,7 @@ public class LinkedInJobsToTableService {
         job.setJobTitle(jobTitle);
         job.setJobLocation(jobLocation);
         job.setJobSalary(jobSalary);
-        job.setJobDescription(jobDescription);
+        job.setJobDescription(jobDescriptionHtml);
         job.setApplicationStatus(null);
         job.setJobUrl(url);
 
