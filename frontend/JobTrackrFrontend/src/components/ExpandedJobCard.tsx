@@ -120,7 +120,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
             >
               {activeSection === "description" && <p>{job.jobDescription}</p>}
               {activeSection === "cv" && <CvComponent />}
-              {activeSection === "resume" && <ResumeComponent />}
+              {activeSection === "resume" && <ResumeComponent job={job} />}
             </div>
           </div>
         </div>
