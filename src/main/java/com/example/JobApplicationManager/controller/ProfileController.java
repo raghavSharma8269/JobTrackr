@@ -3,10 +3,7 @@ package com.example.JobApplicationManager.controller;
 import com.example.JobApplicationManager.model.DTOs.ResetPasswordDTO;
 import com.example.JobApplicationManager.service.openaiServices.CoverLetterOpenAIService;
 import com.example.JobApplicationManager.service.openaiServices.ResumeOpenAIService;
-import com.example.JobApplicationManager.service.resumeServices.CoverLetterScannerService;
-import com.example.JobApplicationManager.service.resumeServices.ResumeScannerService;
-import com.example.JobApplicationManager.service.resumeServices.UploadCoverLetterService;
-import com.example.JobApplicationManager.service.resumeServices.UploadResumeService;
+import com.example.JobApplicationManager.service.resumeServices.*;
 import com.example.JobApplicationManager.service.userServices.DeleteUserService;
 import com.example.JobApplicationManager.service.userServices.ResetPasswordService;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +25,7 @@ public class ProfileController {
     private final CoverLetterScannerService coverLetterScannerService;
     private final DeleteUserService deleteUserService;
     private final ResetPasswordService resetPasswordService;
+    private final GetResumeFeedbackService getFeedbackFromDatabase;
 
     public ProfileController(UploadResumeService uploadResumeService,
                              UploadCoverLetterService uploadCoverLetterService,
@@ -36,7 +34,8 @@ public class ProfileController {
                              ResumeScannerService resumeScannerService,
                              CoverLetterScannerService coverLetterScannerService,
                              DeleteUserService deleteUserService,
-                             ResetPasswordService resetPasswordService
+                             ResetPasswordService resetPasswordService,
+                             GetResumeFeedbackService getFeedbackFromDatabase
     ) {
         this.uploadResumeService = uploadResumeService;
         this.uploadCoverLetterService = uploadCoverLetterService;
@@ -46,6 +45,7 @@ public class ProfileController {
         this.coverLetterScannerService = coverLetterScannerService;
         this.deleteUserService = deleteUserService;
         this.resetPasswordService = resetPasswordService;
+        this.getFeedbackFromDatabase = getFeedbackFromDatabase;
     }
 
     /**
@@ -59,12 +59,20 @@ public class ProfileController {
         return uploadResumeService.execute(resumeFile);
     }
 
-    // get ai feedback
+    // generate ai feedback
     @GetMapping("/resume/{jobID}")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public String analyzeResume (@PathVariable String jobID) throws IOException {
         return resumeOpenAIService.analyzeResume(jobID);
     }
+
+    // get feedback from the database
+    @GetMapping("/resume-feedback/{jobID}")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+    public ResponseEntity<String> getResumeFeedback (@PathVariable String jobID) {
+        return getFeedbackFromDatabase.execute(jobID);
+    }
+
 
     // TESTING RESUME SCANNER ENDPOINT
     @GetMapping("resume/scan")
