@@ -4,8 +4,10 @@ import com.example.JobApplicationManager.model.entity.CustomUser;
 import com.example.JobApplicationManager.service.authServices.CreateNewUserService;
 import com.example.JobApplicationManager.service.authServices.LoginService;
 import com.example.JobApplicationManager.service.emailVerification.VerifyAccountService;
+import com.example.JobApplicationManager.service.userServices.GetUserService;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,13 +18,17 @@ public class UserController {
 private final CreateNewUserService createNewUserService;
 private final LoginService loginService;
 private final VerifyAccountService verifyAccountService;
+private final GetUserService getUserService;
+
     public UserController(
             CreateNewUserService createNewUserService,
-            LoginService loginService, VerifyAccountService verifyAccountService
+            LoginService loginService, VerifyAccountService verifyAccountService,
+            GetUserService getUserService
     ) {
         this.createNewUserService = createNewUserService;
         this.loginService = loginService;
         this.verifyAccountService = verifyAccountService;
+        this.getUserService = getUserService;
     }
 
     @PostMapping("/register")
@@ -40,6 +46,12 @@ private final VerifyAccountService verifyAccountService;
     @GetMapping("/verify")
     public ResponseEntity<String> verify(@RequestParam String emailVerificationToken) {
         return verifyAccountService.execute(emailVerificationToken);
+    }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+    public ResponseEntity<CustomUser> getUser() {
+        return getUserService.execute();
     }
 
 }
