@@ -65,12 +65,11 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
           style={{
             backgroundColor: "#1c1d26",
             color: "#c9c9c9",
-            whiteSpace: "pre-wrap",
+            whiteSpace: "normal", // change this from pre-wrap
             border: "1px solid #7400f0",
           }}
-        >
-          {feedback}
-        </div>
+          dangerouslySetInnerHTML={{ __html: feedback }} // 👈 render HTML
+        ></div>
       )}
     </div>
   );
