@@ -65,22 +65,38 @@ public class CoverLetterOpenAIService {
                 .orElseThrow(() -> new JobDoesNotExistException(ExceptionMessages.JOB_DOES_NOT_EXIST.getMessage()));
 
         if (user.getAuthority() == Authority.ADMIN) {
-            return callToOpenAiApi(resumeScannerService.execute(), job.getJobDescription(), job.getJobTitle(), job.getCompanyName(), coverLetterScannerService.execute());
+
+            String response = callToOpenAiApi(
+                    resumeScannerService.execute(),
+                    job.getJobDescription(),
+                    job.getJobTitle(),
+                    job.getCompanyName(),
+                    coverLetterScannerService.execute());
+
+            job.setCvFeedback(response);
+            jobsRepository.save(job);
+
+            return response;
         }
 
         if (user.getNumOfAiRequests() >= 8) {
             return "You have no more AI requests left.";
         }
 
-        String updatedCoverLetter = callToOpenAiApi(resumeScannerService.execute(), job.getJobDescription(), job.getJobTitle(), job.getCompanyName(), coverLetterScannerService.execute());
+        String response = callToOpenAiApi(
+                resumeScannerService.execute(),
+                job.getJobDescription(),
+                job.getJobTitle(),
+                job.getCompanyName(),
+                coverLetterScannerService.execute());
 
-        job.setCvFeedback(updatedCoverLetter);
+        job.setCvFeedback(response);
         jobsRepository.save(job);
 
         user.setNumOfAiRequests(user.getNumOfAiRequests() + 1);
         userRepository.save(user);
 
-        return updatedCoverLetter + "\n\n You have " + (8 - user.getNumOfAiRequests()) + " AI requests left.";
+        return response + "\n\n You have " + (8 - user.getNumOfAiRequests()) + " AI requests left.";
     }
 
 
