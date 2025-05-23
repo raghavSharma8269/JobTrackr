@@ -51,6 +51,9 @@ public class JobsList {
     @Column(name = "resume_feedback", columnDefinition = "TEXT")
     private String resumeFeedback;
 
+    @Column(name = "cv_feedback", columnDefinition = "TEXT")
+    private String cvFeedback;
+
     @CreationTimestamp
     @Column(name = "date_added", nullable = false, updatable = false)
     private LocalDateTime localDateTime;
