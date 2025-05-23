@@ -72,6 +72,9 @@ public class ResumeOpenAIService {
 
         String response = callToOpenAiApi(resumeScannerService.execute(), job.getJobDescription(), job.getJobTitle(), job.getCompanyName());
 
+        job.setResumeFeedback(response);
+        jobsRepository.save(job);
+
         user.setNumOfAiRequests(user.getNumOfAiRequests() + 1);
         userRepository.save(user);
 
