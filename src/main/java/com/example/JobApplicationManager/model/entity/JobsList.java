@@ -48,6 +48,9 @@ public class JobsList {
     @Column(name = "favorite")
     private boolean favorite;
 
+    @Column(name = "resume_feedback", columnDefinition = "TEXT")
+    private String resumeFeedback;
+
     @CreationTimestamp
     @Column(name = "date_added", nullable = false, updatable = false)
     private LocalDateTime localDateTime;
