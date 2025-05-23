@@ -118,7 +118,9 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
                 maxHeight: "calc(100vh - 579px)",
               }}
             >
-              {activeSection === "Description" && <p>{job.jobDescription}</p>}
+              {activeSection === "Description" && (
+                <div dangerouslySetInnerHTML={{ __html: job.jobDescription }} />
+              )}
               {activeSection === "CV" && <CvComponent job={job} />}
               {activeSection === "Resume" && <ResumeComponent job={job} />}
             </div>
