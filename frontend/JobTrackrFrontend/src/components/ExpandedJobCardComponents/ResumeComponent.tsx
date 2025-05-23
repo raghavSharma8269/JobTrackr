@@ -65,10 +65,10 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
           style={{
             backgroundColor: "#1c1d26",
             color: "#c9c9c9",
-            whiteSpace: "normal", // change this from pre-wrap
+            whiteSpace: "normal", // allow line breaks
             border: "1px solid #7400f0",
           }}
-          dangerouslySetInnerHTML={{ __html: feedback }} // 👈 render HTML
+          dangerouslySetInnerHTML={{ __html: feedback }} // render HTML
         ></div>
       )}
     </div>
