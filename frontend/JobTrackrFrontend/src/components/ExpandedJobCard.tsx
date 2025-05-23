@@ -20,8 +20,8 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
   onUpdateStatus,
 }) => {
   const [activeSection, setActiveSection] = useState<
-    "description" | "cv" | "resume"
-  >("description");
+    "Description" | "CV" | "Resume"
+  >("Description");
 
   if (!isVisible || job === null) return null;
 
@@ -85,7 +85,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
               style={{ paddingTop: "15px", paddingBottom: "15px" }}
             >
               <div className="row">
-                {["description", "cv", "resume"].map((section) => (
+                {["Description", "CV", "Resume"].map((section) => (
                   <button
                     key={section}
                     className="col btn section-change-button"
@@ -98,7 +98,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
                       setActiveSection(section as typeof activeSection)
                     }
                   >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                    {section}
                   </button>
                 ))}
               </div>
@@ -118,9 +118,9 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
                 maxHeight: "calc(100vh - 579px)",
               }}
             >
-              {activeSection === "description" && <p>{job.jobDescription}</p>}
-              {activeSection === "cv" && <CvComponent job={job} />}
-              {activeSection === "resume" && <ResumeComponent job={job} />}
+              {activeSection === "Description" && <p>{job.jobDescription}</p>}
+              {activeSection === "CV" && <CvComponent job={job} />}
+              {activeSection === "Resume" && <ResumeComponent job={job} />}
             </div>
           </div>
         </div>
