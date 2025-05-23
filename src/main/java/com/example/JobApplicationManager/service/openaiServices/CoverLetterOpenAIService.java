@@ -74,6 +74,9 @@ public class CoverLetterOpenAIService {
 
         String updatedCoverLetter = callToOpenAiApi(resumeScannerService.execute(), job.getJobDescription(), job.getJobTitle(), job.getCompanyName(), coverLetterScannerService.execute());
 
+        job.setResumeFeedback(updatedCoverLetter);
+        jobsRepository.save(job);
+
         user.setNumOfAiRequests(user.getNumOfAiRequests() + 1);
         userRepository.save(user);
 
