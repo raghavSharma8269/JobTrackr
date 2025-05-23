@@ -26,6 +26,7 @@ public class ProfileController {
     private final DeleteUserService deleteUserService;
     private final ResetPasswordService resetPasswordService;
     private final GetResumeFeedbackService getFeedbackFromDatabase;
+    private final GetCvFeedbackService getCvFeedbackService;
 
     public ProfileController(UploadResumeService uploadResumeService,
                              UploadCoverLetterService uploadCoverLetterService,
@@ -35,7 +36,8 @@ public class ProfileController {
                              CoverLetterScannerService coverLetterScannerService,
                              DeleteUserService deleteUserService,
                              ResetPasswordService resetPasswordService,
-                             GetResumeFeedbackService getFeedbackFromDatabase
+                             GetResumeFeedbackService getFeedbackFromDatabase,
+                             GetCvFeedbackService getCvFeedbackService
     ) {
         this.uploadResumeService = uploadResumeService;
         this.uploadCoverLetterService = uploadCoverLetterService;
@@ -46,6 +48,7 @@ public class ProfileController {
         this.deleteUserService = deleteUserService;
         this.resetPasswordService = resetPasswordService;
         this.getFeedbackFromDatabase = getFeedbackFromDatabase;
+        this.getCvFeedbackService = getCvFeedbackService;
     }
 
     /**
@@ -92,11 +95,18 @@ public class ProfileController {
         return uploadCoverLetterService.execute(coverLetterFile);
     }
 
-    // get ai feedback
+    // generate ai feedback
     @GetMapping("cv")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public String analyzeCoverLetter (@RequestParam String jobID) throws IOException {
         return coverLetterOpenAIService.analyzeCoverLetter(jobID);
+    }
+
+    // get feedback from the database
+    @GetMapping("/cv-feedback/{jobID}")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+    public ResponseEntity<String> getCvFeedback (@PathVariable String jobID) {
+        return getCvFeedbackService.execute(jobID);
     }
 
     // TESTING CV SCANNER ENDPOINT
