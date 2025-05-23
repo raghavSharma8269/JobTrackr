@@ -22,7 +22,6 @@ const JobsPage = () => {
   const fetchJobs = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log("SORT BY", sortBy);
       const response = await axios.get(
         `http://localhost:8080/api/jobs?sortBy=${sortBy}&search=${search}&status=${filter}`,
         {
