@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Job } from "../../types/Job.ts";
 import axios from "axios";
 
@@ -9,6 +9,11 @@ interface ResumeComponentProps {
 const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
   const [feedback, setFeedback] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  // Update feedback when the job's resumeFeedback changes
+  useEffect(() => {
+    setFeedback(job.resumeFeedback || "");
+  }, [job.resumeFeedback]);
 
   const handleGenerateResumeFeedback = async () => {
     if (!job || !job.id) {

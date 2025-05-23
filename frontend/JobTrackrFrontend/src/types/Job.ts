@@ -16,4 +16,5 @@ export interface Job {
   jobUrl: string;
   favorite: boolean;
   localDateTime: string;
+  resumeFeedback?: string;
 }

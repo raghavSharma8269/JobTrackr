@@ -19,6 +19,8 @@ public class JobsDTO {
     private ApplicationStatus applicationStatus;
     private String jobUrl;
     private boolean favorite;
+    private String resumeFeedback;
+    private String cvFeedback;
 
 
     public JobsDTO(JobsList jobsList) {
@@ -32,5 +34,7 @@ public class JobsDTO {
         this.applicationStatus = jobsList.getApplicationStatus();
         this.jobUrl = jobsList.getJobUrl();
         this.favorite = jobsList.isFavorite();
+        this.resumeFeedback = jobsList.getResumeFeedback();
+        this.cvFeedback = jobsList.getCvFeedback();
     }
 }
