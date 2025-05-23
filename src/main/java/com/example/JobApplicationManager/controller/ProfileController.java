@@ -96,9 +96,9 @@ public class ProfileController {
     }
 
     // generate ai feedback
-    @GetMapping("cv")
+    @GetMapping("cv/{jobID}")
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-    public String analyzeCoverLetter (@RequestParam String jobID) throws IOException {
+    public String analyzeCoverLetter (@PathVariable String jobID) throws IOException {
         return coverLetterOpenAIService.analyzeCoverLetter(jobID);
     }
 
