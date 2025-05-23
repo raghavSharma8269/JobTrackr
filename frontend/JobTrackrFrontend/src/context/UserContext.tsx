@@ -6,6 +6,7 @@ interface User {
   email: string;
   name: string;
   authority: string;
+  numOfAiRequests: number;
 }
 
 interface UserContextType {
@@ -14,7 +15,7 @@ interface UserContextType {
   refreshUser: () => void;
 }
 
-const UserContext = createContext<UserContextType>({
+export const UserContext = createContext<UserContextType>({
   user: null,
   loading: true,
   refreshUser: () => {},
@@ -29,7 +30,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8080/api/users/me", {
+      const response = await axios.get("http://localhost:8080/api/auth/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
