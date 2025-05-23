@@ -88,29 +88,29 @@ public class ResumeOpenAIService {
                         "- Job Description:\n" + jobDescription + "\n" +
                         "- Company Name: " + companyName + "\n\n" +
 
-                        "Your task is to improve the resume and give feedback in 4 structured steps. Your goal is to help the applicant avoid being rejected by AI resume scanners (ATS) by ensuring relevant keywords and phrasing from the job description are properly reflected in the resume. However, do not fabricate experience or skills that do not already exist in the resume.\n\n" +
+                        "Your task is to improve the resume and give feedback in 4 structured steps. Your goal is to help the applicant avoid being rejected by AI resume scanners (ATS) by ensuring relevant keywords and phrasing from the job description are properly reflected in the resume. However, do not fabricate experience or skills that do not already exist in the resume (THIS INSTRUCTION IS THE MOST CRUCIAL).\n\n" +
 
-                        "Return your full response as a formatted HTML code using <h4>, <ul>, <p>, and <strong> where appropriate. Return the full response as raw HTML. Do not use triple backticks or Markdown code blocks and add the step number in the same tag as the step name.  " +
+                        "Return your full response as a formatted HTML code using <h4>, <ul>, <p>, and <strong> where appropriate. Return the full response as raw HTML. Do not use triple backticks or Markdown code blocks and add the step number in the same tag as the step name. " +
 
-                        "Limit your total response to 500 words (DO NOT include any html in the word limit).\n\n" +
+                        "Limit your total response to 500 words (DO NOT include any html in the word limit). Refer to the reader of the feedback as you. \n\n" +
 
-                        "1. <h2>Key Interview Talking Points</h2>\n" +
+                        "1. <h4>Key Interview Talking Points</h4>\n" +
                         "- Briefly highlight 2–3 bullet points from the resume that are most relevant to this specific role.\n" +
                         "- Show how they align with the job description or company mission.\n\n" +
 
-                        "2. <h2>Specific Bullet Point Improvements (ATS Optimization)</h2>\n" +
+                        "2. <h4>Specific Bullet Point Improvements (ATS Optimization)</h4>\n" +
                         "- Focus most of your effort here.\n" +
                         "- Identify bullet points that can be improved by inserting relevant job description keywords to improve ATS score.\n" +
                         "- For each, show:\n" +
                         "    • <strong>Original:</strong> [original bullet]\n" +
                         "    • <strong>Improved:</strong> [edited version with keywords]\n\n" +
 
-                        "3. <h2>Missing Skills or Experience</h2>\n" +
+                        "3. <h4>Missing Skills or Experience</h4>\n" +
                         "- List any critical job description skills or technologies missing from the resume.\n" +
                         "- Emphasize that the user should find ways to gain or mention them in future versions.\n" +
                         "- DO NOT make up skills or experience.\n\n" +
 
-                        "4. <h2>Resume Fit Score</h2>\n" +
+                        "4. <h4>Resume Fit Score</h4>\n" +
                         "- Give a score from 1–10 based on how well the resume fits the job.\n" +
                         "- Justify your score based on coverage of job description keywords, experience relevance, and technical fit.\n";
 
@@ -127,7 +127,7 @@ public class ResumeOpenAIService {
 
         // Prepare request body
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("model", "gpt-4");
+        requestBody.put("model", "gpt-4-turbo");
         requestBody.put("messages", messages);
         requestBody.put("temperature", 0.5);
 
