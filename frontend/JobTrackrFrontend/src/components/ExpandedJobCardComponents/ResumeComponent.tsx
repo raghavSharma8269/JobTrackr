@@ -54,7 +54,8 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
         {loading ? "Generating..." : "Generate Resume Feedback"}
       </button>
       <p style={{ paddingTop: "15px" }}>
-        ** Make sure you have your resume uploaded **
+        <span style={{ color: "#d9182b" }}>**</span> Make sure you have your
+        resume uploaded <span style={{ color: "#d9182b" }}>**</span>
       </p>
 
       {/* Feedback output */}
