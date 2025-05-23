@@ -8,6 +8,8 @@ interface ResumeComponentProps {
 
 const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
   const [feedback, setFeedback] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleGenerateResumeFeedback = async () => {
     if (!job || !job.id) {
       alert("Job ID is not available");
@@ -15,6 +17,8 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
     }
 
     const id = job.id;
+
+    setLoading(true);
 
     try {
       const response = await axios.get(
@@ -26,9 +30,11 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
         },
       );
       setFeedback(response.data);
+      setLoading(false);
     } catch (error) {
       console.error("Error generating resume feedback:", error);
       alert("Failed to generate resume feedback");
+      setLoading(false);
     }
   };
 
@@ -38,8 +44,14 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
         className="btn default-text-color"
         style={{ backgroundColor: "#7400f0", marginTop: "15px" }}
         onClick={handleGenerateResumeFeedback}
+        disabled={loading} // prevent multiple clicks
       >
-        Generate Resume Feedback
+        {loading && (
+          <div className="spinner-border spinner-border-sm me-2" role="status">
+            <span className="visually-hidden" />
+          </div>
+        )}
+        {loading ? "Generating..." : "Generate Resume Feedback"}
       </button>
       <p style={{ paddingTop: "15px" }}>
         ** Make sure you have your resume uploaded **
