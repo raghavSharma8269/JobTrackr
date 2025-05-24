@@ -10,9 +10,7 @@ const AddJobIcon = () => {
           fontSize: "2rem",
           cursor: "pointer",
           display: "inline-block",
-          position: "absolute",
           top: "10px",
-          left: "235px",
         }}
         data-bs-toggle="modal"
         data-bs-target="#newJobModal" // This must match the modal ID exactly

@@ -37,27 +37,37 @@ const NavBarComponent: React.FC<NavBarProps> = ({
         paddingBottom: "15px",
       }}
     >
-      <div className="container-fluid" style={{ backgroundColor: "#292b38" }}>
-        <FilterItemsComponents
-          filter={filter}
-          setFilter={setFilter}
-          onFilter={onFilter}
-        />
-        <SortByDropdownComponent
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          onSort={onSort}
-          filter={filter}
-          setFilter={setFilter}
-          onFilter={onFilter}
-        />
-        <AddJobIcon />
+      <div
+        className="container-fluid d-flex flex-wrap align-items-center justify-content-between"
+        style={{ backgroundColor: "#292b38" }}
+      >
+        {/* Grouped Controls: Sort → Filter → Add */}
+        <div className="d-flex align-items-center gap-3">
+          <SortByDropdownComponent
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            onSort={onSort}
+            filter={filter}
+            setFilter={setFilter}
+            onFilter={onFilter}
+          />
+
+          <FilterItemsComponents
+            filter={filter}
+            setFilter={setFilter}
+            onFilter={onFilter}
+          />
+
+          <AddJobIcon />
+        </div>
+
+        {/* Search bar aligned to the right */}
         <form
-          className="d-flex"
+          className="d-flex mt-2 mt-md-0"
           role="search"
           onSubmit={(e) => {
-            e.preventDefault(); // Prevent form reload
-            onSearch(); // trigger the search function
+            e.preventDefault();
+            onSearch();
           }}
         >
           <input
