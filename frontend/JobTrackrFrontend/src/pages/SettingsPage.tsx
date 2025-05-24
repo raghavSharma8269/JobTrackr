@@ -32,6 +32,29 @@ const SettingsPage: React.FC = () => {
     }
   };
 
+  const uploadCv = async (file: File) => {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("coverLetterFile", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/profile/cv",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+      alert("✅ " + response.data);
+    } catch (error: any) {
+      console.error("Upload failed:", error);
+      alert("❌ Upload failed: " + (error.response?.data || error.message));
+    }
+  };
+
   const handleResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
@@ -49,7 +72,7 @@ const SettingsPage: React.FC = () => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
       setCoverLetter(file);
-      // Optional: make this auto-upload too if needed
+      uploadCv(file); // auto-upload
     } else {
       alert("Please upload a PDF file.");
       event.target.value = "";
