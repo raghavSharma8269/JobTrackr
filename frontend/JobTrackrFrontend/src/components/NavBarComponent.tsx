@@ -41,7 +41,7 @@ const NavBarComponent: React.FC<NavBarProps> = ({
         className="container-fluid d-flex flex-wrap align-items-center justify-content-between"
         style={{ backgroundColor: "#292b38" }}
       >
-        {/* Grouped Controls: Sort → Filter → Add */}
+        {/* Groups the sort, filter, add job buttons */}
         <div className="d-flex align-items-center gap-3">
           <SortByDropdownComponent
             sortBy={sortBy}
@@ -61,7 +61,7 @@ const NavBarComponent: React.FC<NavBarProps> = ({
           <AddJobIcon />
         </div>
 
-        {/* Search bar aligned to the right */}
+        {/* aligns search bar to right */}
         <form
           className="d-flex mt-2 mt-md-0"
           role="search"
