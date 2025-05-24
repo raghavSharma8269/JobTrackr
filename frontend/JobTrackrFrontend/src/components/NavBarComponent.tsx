@@ -1,5 +1,7 @@
 import SortByDropdownComponent from "./NavBarComponents/SortByComponents/SortByDropdownComponent.tsx";
 import AddJobIcon from "./NavBarComponents/AddJobIcon.tsx";
+import FilterItemsComponents from "./NavBarComponents/FilterComponents/FilterItemsComponents.tsx";
+import React from "react";
 
 interface NavBarProps {
   search: string;
@@ -36,6 +38,11 @@ const NavBarComponent: React.FC<NavBarProps> = ({
       }}
     >
       <div className="container-fluid" style={{ backgroundColor: "#292b38" }}>
+        <FilterItemsComponents
+          filter={filter}
+          setFilter={setFilter}
+          onFilter={onFilter}
+        />
         <SortByDropdownComponent
           sortBy={sortBy}
           setSortBy={setSortBy}

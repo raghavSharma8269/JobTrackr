@@ -94,11 +94,11 @@ const SortByDropdownComponent: React.FC<SortByDropdownComponentProps> = ({
           </a>
         </li>
       </ul>
-      <SortBy_Up_Down_ButtonGroupComponent
-        filter={filter}
-        setFilter={setFilter}
-        onFilter={onFilter}
-      />
+      {/*<SortBy_Up_Down_ButtonGroupComponent*/}
+      {/*  filter={filter}*/}
+      {/*  setFilter={setFilter}*/}
+      {/*  onFilter={onFilter}*/}
+      {/*/>*/}
     </div>
   );
 };

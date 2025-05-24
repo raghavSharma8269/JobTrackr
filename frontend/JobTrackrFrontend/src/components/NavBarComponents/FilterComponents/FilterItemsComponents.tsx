@@ -117,7 +117,7 @@ const FilterItemsComponents: React.FC<FilterItemsComponentsProps> = ({
         </li>
       </ul>
 
-      <ResetSearchParametersIconComponent />
+      {/*<ResetSearchParametersIconComponent />*/}
     </div>
   );
 };

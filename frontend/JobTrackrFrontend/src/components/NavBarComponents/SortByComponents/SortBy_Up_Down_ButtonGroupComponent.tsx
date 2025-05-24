@@ -40,11 +40,11 @@ const SortBy_Up_Down_ButtonGroupComponent: React.FC<
       <label className="btn btn-outline-primary" htmlFor="btnradio2">
         <SortDownIconComponent />
       </label>
-      <FilterItemsComponents
-        filter={filter}
-        setFilter={setFilter}
-        onFilter={onFilter}
-      />
+      {/*<FilterItemsComponents*/}
+      {/*  filter={filter}*/}
+      {/*  setFilter={setFilter}*/}
+      {/*  onFilter={onFilter}*/}
+      {/*/>*/}
     </div>
   );
 };

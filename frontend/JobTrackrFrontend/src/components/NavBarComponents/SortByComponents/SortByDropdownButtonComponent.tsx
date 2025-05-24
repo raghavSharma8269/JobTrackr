@@ -12,7 +12,7 @@ const SortByDropdownButtonComponent: React.FC<
       className="btn dropdown-toggle purple-bg default-text-color"
       data-bs-toggle="dropdown"
       aria-expanded="false"
-      style={{ marginRight: "10px" }}
+      style={{ marginRight: "650px" }}
     >
       {text}
     </button>
