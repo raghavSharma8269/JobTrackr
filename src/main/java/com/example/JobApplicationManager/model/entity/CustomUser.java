@@ -26,9 +26,15 @@ public class CustomUser {
     @Lob
     private byte[] resume;
 
+    @Column(name = "resume_file_name")
+    private String resumeFileName;
+
     @Column(name = "cover_letter", columnDefinition = "LONGBLOB")
     @Lob
     private byte[] coverLetter;
+
+    @Column(name = "cover_letter_file_name")
+    private String coverLetterFileName;
 
     @Column(name = "authority")
     @Enumerated(EnumType.STRING)

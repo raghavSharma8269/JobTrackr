@@ -41,6 +41,7 @@ public class UploadCoverLetterService {
 
             if (coverLetter.getContentType().equals("application/pdf")){
                 customUser.setCoverLetter(coverLetter.getBytes());
+                customUser.setCoverLetterFileName(coverLetter.getOriginalFilename());
                 userRepository.save(customUser);
             }
 

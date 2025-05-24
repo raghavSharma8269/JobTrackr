@@ -41,6 +41,7 @@ public class UploadResumeService{
 
             if (resumeFile.getContentType().equals("application/pdf")){
                 customUser.setResume(resumeFile.getBytes());
+                customUser.setResumeFileName(resumeFile.getOriginalFilename());
                 userRepository.save(customUser);
             }
 
