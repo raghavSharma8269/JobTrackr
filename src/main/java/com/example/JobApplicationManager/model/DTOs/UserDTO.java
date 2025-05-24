@@ -10,7 +10,9 @@ public class UserDTO {
     private String password;
     private String fullName;
     private byte[] coverLetter;
+    private String coverLetterFileName;
     private byte[] resume;
+    private String resumeFileName;
     private Authority authority;
     private String authToken;
 
@@ -22,6 +24,8 @@ public class UserDTO {
         this.coverLetter = customUser.getCoverLetter();
         this.authority = customUser.getAuthority();
         this.authToken = customUser.getAuthToken();
+        this.resumeFileName = customUser.getResumeFileName();
+        this.coverLetterFileName = customUser.getCoverLetterFileName();
     }
 
 }
