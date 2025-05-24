@@ -5,9 +5,10 @@ import { UserContext } from "../../context/UserContext";
 
 interface CvComponentProps {
   job: Job;
+  onRefreshJobs: () => Promise<void>;
 }
 
-const CvComponent: FC<CvComponentProps> = ({ job }) => {
+const CvComponent: FC<CvComponentProps> = ({ job, onRefreshJobs }) => {
   const [feedback, setFeedback] = useState<string>(job.cvFeedback || "");
   const [loading, setLoading] = useState<boolean>(false);
   const { user, loading: userLoading, refreshUser } = useContext(UserContext);
@@ -41,8 +42,9 @@ const CvComponent: FC<CvComponentProps> = ({ job }) => {
         },
       );
 
-      setFeedback(response.data); // ✅ display immediately
-      await refreshUser(); // ✅ update request count
+      setFeedback(response.data); // display immediately
+      await refreshUser(); // update request count
+      await onRefreshJobs(); // refresh jobs to get updated feedback
     } catch (error) {
       console.error("Error generating cover letter:", error);
       alert("Failed to generate cover letter");
@@ -75,7 +77,7 @@ const CvComponent: FC<CvComponentProps> = ({ job }) => {
 
       {!userLoading && user && (
         <p style={{ marginTop: "10px", color: "#9e9ca1" }}>
-          🔁 You have used {user.numOfAiRequests} of 8 AI cover letter requests.
+          🔁 You have {8 - user.numOfAiRequests} AI requests remaining
         </p>
       )}
 

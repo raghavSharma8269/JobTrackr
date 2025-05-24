@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -27,6 +28,7 @@ public class ProfileController {
     private final ResetPasswordService resetPasswordService;
     private final GetResumeFeedbackService getFeedbackFromDatabase;
     private final GetCvFeedbackService getCvFeedbackService;
+    private final GetFileNamesService getFileNameService;
 
     public ProfileController(UploadResumeService uploadResumeService,
                              UploadCoverLetterService uploadCoverLetterService,
@@ -37,7 +39,8 @@ public class ProfileController {
                              DeleteUserService deleteUserService,
                              ResetPasswordService resetPasswordService,
                              GetResumeFeedbackService getFeedbackFromDatabase,
-                             GetCvFeedbackService getCvFeedbackService
+                             GetCvFeedbackService getCvFeedbackService,
+                             GetFileNamesService getFileNameService
     ) {
         this.uploadResumeService = uploadResumeService;
         this.uploadCoverLetterService = uploadCoverLetterService;
@@ -49,6 +52,7 @@ public class ProfileController {
         this.resetPasswordService = resetPasswordService;
         this.getFeedbackFromDatabase = getFeedbackFromDatabase;
         this.getCvFeedbackService = getCvFeedbackService;
+        this.getFileNameService = getFileNameService;
     }
 
     /**
@@ -126,6 +130,13 @@ public class ProfileController {
     @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     public ResponseEntity<String> resetUserPassword (@RequestBody ResetPasswordDTO request) {
         return resetPasswordService.execute(request);
+    }
+
+    // GETS FILE NAMES
+    @GetMapping("/file-name")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+    public ResponseEntity<Map<String, String>> getFileNames()  {
+        return getFileNameService.execute();
     }
 
 }

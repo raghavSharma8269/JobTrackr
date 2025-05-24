@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import { useUser } from "../context/UserContext";
 
 const SettingsPage: React.FC = () => {
+  const { user, loading: userLoading, refreshUser } = useUser();
+
+  console.log("User from context:", user);
+
   useEffect(() => {
     document.title = "Settings | JobVault";
   }, []);
-
-  const [resume, setResume] = useState<File | null>(null);
-  const [coverLetter, setCoverLetter] = useState<File | null>(null);
 
   const uploadResume = async (file: File) => {
     const token = localStorage.getItem("token");
@@ -25,10 +27,14 @@ const SettingsPage: React.FC = () => {
           },
         },
       );
+      await refreshUser(); // refresh filenames after upload
       alert("✅ " + response.data);
     } catch (error: any) {
-      console.error("Upload failed:", error);
-      alert("❌ Upload failed: " + JSON.stringify(error.response.data));
+      console.error("Resume upload failed:", error);
+      alert(
+        "❌ Upload failed: " +
+          JSON.stringify(error.response?.data || error.message),
+      );
     }
   };
 
@@ -48,18 +54,21 @@ const SettingsPage: React.FC = () => {
           },
         },
       );
+      await refreshUser(); // refresh filenames after upload
       alert("✅ " + response.data);
     } catch (error: any) {
-      console.error("Upload failed:", error);
-      alert("❌ Upload failed: " + JSON.stringify(error.response.data));
+      console.error("Cover letter upload failed:", error);
+      alert(
+        "❌ Upload failed: " +
+          JSON.stringify(error.response?.data || error.message),
+      );
     }
   };
 
   const handleResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
-      setResume(file);
-      uploadResume(file); // auto-upload
+      uploadResume(file);
     } else {
       alert("Please upload a PDF file.");
       event.target.value = "";
@@ -71,8 +80,7 @@ const SettingsPage: React.FC = () => {
   ) => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
-      setCoverLetter(file);
-      uploadCv(file); // auto-upload
+      uploadCv(file);
     } else {
       alert("Please upload a PDF file.");
       event.target.value = "";
@@ -93,8 +101,8 @@ const SettingsPage: React.FC = () => {
       >
         <h1 className="default-text-color">Resume</h1>
 
-        {resume ? (
-          <p style={{ color: "#c9c9c9" }}>Selected: {resume.name}</p>
+        {!userLoading && user?.resumeFileName ? (
+          <p style={{ color: "#4caf50" }}>✅ {user.resumeFileName} uploaded</p>
         ) : (
           <p style={{ color: "#c9c9c9" }}>No resume uploaded</p>
         )}
@@ -138,8 +146,10 @@ const SettingsPage: React.FC = () => {
       >
         <h1 className="default-text-color">Cover Letter</h1>
 
-        {coverLetter ? (
-          <p style={{ color: "#c9c9c9" }}>Selected: {coverLetter.name}</p>
+        {!userLoading && user?.coverLetterFileName ? (
+          <p style={{ color: "#4caf50" }}>
+            ✅ {user.coverLetterFileName} uploaded
+          </p>
         ) : (
           <p style={{ color: "#c9c9c9" }}>No cover letter uploaded</p>
         )}

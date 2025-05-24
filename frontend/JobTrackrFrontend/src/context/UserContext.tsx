@@ -7,6 +7,8 @@ interface User {
   name: string;
   authority: string;
   numOfAiRequests: number;
+  resumeFileName: string;
+  coverLetterFileName: string;
 }
 
 interface UserContextType {
@@ -30,7 +32,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8080/api/auth/users", {
+      const response = await axios.get("http://localhost:8080/api/auth/user", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

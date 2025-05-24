@@ -156,6 +156,7 @@ const JobsPage = () => {
                 selectedJobIndex !== null &&
                 updateJobStatus(selectedJobIndex, newStatus)
               }
+              refreshJobs={fetchJobs}
             />
           </div>
         </div>

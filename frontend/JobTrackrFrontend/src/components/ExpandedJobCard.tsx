@@ -11,6 +11,7 @@ interface ExpandedJobCardProps {
   job: Job | null;
   onToggleFavorite: () => void;
   onUpdateStatus: (status: Job["applicationStatus"]) => void;
+  refreshJobs: () => Promise<void>;
 }
 
 const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
@@ -18,6 +19,7 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
   job,
   onToggleFavorite,
   onUpdateStatus,
+  refreshJobs,
 }) => {
   const [activeSection, setActiveSection] = useState<
     "Description" | "CV" | "Resume"
@@ -62,7 +64,6 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
             <h5>{job.companyName}</h5>
             <p>{job.jobLocation}</p>
             <p>Salary: {job.jobSalary}</p>
-            <p>id: {job.id}</p>
             <p>
               Date Added: {new Date(job.localDateTime).toLocaleDateString()}
             </p>
@@ -121,7 +122,9 @@ const ExpandedJobCard: React.FC<ExpandedJobCardProps> = ({
               {activeSection === "Description" && (
                 <div dangerouslySetInnerHTML={{ __html: job.jobDescription }} />
               )}
-              {activeSection === "CV" && <CvComponent job={job} />}
+              {activeSection === "CV" && (
+                <CvComponent job={job} onRefreshJobs={refreshJobs} />
+              )}
               {activeSection === "Resume" && <ResumeComponent job={job} />}
             </div>
           </div>

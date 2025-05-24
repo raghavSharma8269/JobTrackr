@@ -72,8 +72,7 @@ const ResumeComponent: FC<ResumeComponentProps> = ({ job }) => {
       {/* Show AI usage below button */}
       {!userLoading && user && (
         <p style={{ marginTop: "10px", color: "#9e9ca1" }}>
-          🔁 You have used {user.numOfAiRequests} of 8 AI resume feedback
-          requests.
+          🔁 You have {8 - user.numOfAiRequests} AI requests remaining
         </p>
       )}
 
