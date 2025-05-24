@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-interface SettingsPageProps {
-  closeSettingsPage: () => void;
-}
-
-const SettingsPage: React.FC<SettingsPageProps> = () => {
-  //changes tab name
+const SettingsPage: React.FC = () => {
   useEffect(() => {
     document.title = "Settings | JobVault";
   }, []);
@@ -13,13 +9,37 @@ const SettingsPage: React.FC<SettingsPageProps> = () => {
   const [resume, setResume] = useState<File | null>(null);
   const [coverLetter, setCoverLetter] = useState<File | null>(null);
 
+  const uploadResume = async (file: File) => {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("resumeFile", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/profile/resume",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+      alert("✅ " + response.data);
+    } catch (error: any) {
+      console.error("Upload failed:", error);
+      alert("❌ Upload failed: " + (error.response?.data || error.message));
+    }
+  };
+
   const handleResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
       setResume(file);
+      uploadResume(file); // auto-upload
     } else {
       alert("Please upload a PDF file.");
-      event.target.value = ""; // Reset input if the file is not a PDF
+      event.target.value = "";
     }
   };
 
@@ -29,9 +49,10 @@ const SettingsPage: React.FC<SettingsPageProps> = () => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
       setCoverLetter(file);
+      // Optional: make this auto-upload too if needed
     } else {
       alert("Please upload a PDF file.");
-      event.target.value = ""; // Reset input if the file is not a PDF
+      event.target.value = "";
     }
   };
 
@@ -50,12 +71,11 @@ const SettingsPage: React.FC<SettingsPageProps> = () => {
         <h1 className="default-text-color">Resume</h1>
 
         {resume ? (
-          <p style={{ color: "#c9c9c9" }}>Uploaded: {resume.name}</p>
+          <p style={{ color: "#c9c9c9" }}>Selected: {resume.name}</p>
         ) : (
           <p style={{ color: "#c9c9c9" }}>No resume uploaded</p>
         )}
 
-        {/* Custom "Choose File" Button */}
         <label
           htmlFor="resume-upload"
           style={{
@@ -76,9 +96,7 @@ const SettingsPage: React.FC<SettingsPageProps> = () => {
           accept="application/pdf"
           className="form-control mt-2"
           onChange={handleResumeUpload}
-          style={{
-            display: "none", // Hide the default file input
-          }}
+          style={{ display: "none" }}
         />
       </div>
 
@@ -98,12 +116,11 @@ const SettingsPage: React.FC<SettingsPageProps> = () => {
         <h1 className="default-text-color">Cover Letter</h1>
 
         {coverLetter ? (
-          <p style={{ color: "#c9c9c9" }}>Uploaded: {coverLetter.name}</p>
+          <p style={{ color: "#c9c9c9" }}>Selected: {coverLetter.name}</p>
         ) : (
           <p style={{ color: "#c9c9c9" }}>No cover letter uploaded</p>
         )}
 
-        {/* Custom "Choose File" Button */}
         <label
           htmlFor="cover-letter-upload"
           style={{
@@ -124,9 +141,7 @@ const SettingsPage: React.FC<SettingsPageProps> = () => {
           accept="application/pdf"
           className="form-control mt-2"
           onChange={handleCoverLetterUpload}
-          style={{
-            display: "none", // Hide the default file input
-          }}
+          style={{ display: "none" }}
         />
       </div>
 
