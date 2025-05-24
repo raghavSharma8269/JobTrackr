@@ -28,7 +28,7 @@ const SettingsPage: React.FC = () => {
       alert("✅ " + response.data);
     } catch (error: any) {
       console.error("Upload failed:", error);
-      alert("❌ Upload failed: " + (error.response?.data || error.message));
+      alert("❌ Upload failed: " + JSON.stringify(error.response.data));
     }
   };
 
@@ -51,7 +51,7 @@ const SettingsPage: React.FC = () => {
       alert("✅ " + response.data);
     } catch (error: any) {
       console.error("Upload failed:", error);
-      alert("❌ Upload failed: " + (error.response?.data || error.message));
+      alert("❌ Upload failed: " + JSON.stringify(error.response.data));
     }
   };
 
