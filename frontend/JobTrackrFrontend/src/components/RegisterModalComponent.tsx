@@ -39,6 +39,8 @@ const RegisterModalComponent: React.FC<RegisterModalComponentProps> = ({
       setEmail("");
       setPassword("");
       setConfirmPassword("");
+      // Redirect to email verification page
+      window.open("/verify", "_blank");
     } catch (error: any) {
       console.error(error);
       setErrorMessage("Registration failed. Email may already be in use.");
